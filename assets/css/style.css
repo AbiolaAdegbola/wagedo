@@ -80,7 +80,7 @@ section {
 --------------------------------------------------------------*/
 .breadcrumbs {
   padding: 15px 0;
-  background: #012970;
+  background: #198754;
   min-height: 40px;
   margin-top: 82px;
   color: #fff;
@@ -88,7 +88,7 @@ section {
 
 @media (max-width: 992px) {
   .breadcrumbs {
-    margin-top: 57px;
+    /* margin-top: 57px; */
   }
 }
 
@@ -122,7 +122,7 @@ section {
 .breadcrumbs ol li+li::before {
   display: inline-block;
   padding-right: 10px;
-  color: #8894f6;
+  color: #fff;
   content: "/";
 }
 
@@ -188,8 +188,8 @@ section {
 }
 
 .header .logo img {
-  max-height: 40px;
-  margin-right: 6px;
+  max-height: 50px;
+  margin-right: 2px;
 }
 
 .header .logo span {
@@ -1785,7 +1785,7 @@ section {
 }
 
 .blog .entry .entry-title a {
-  color: #012970;
+  color: #0a7b2b;
   transition: 0.3s;
 }
 
@@ -1795,7 +1795,7 @@ section {
 
 .blog .entry .entry-meta {
   margin-bottom: 15px;
-  color: #4084fd;
+  color: #198754;
 }
 
 .blog .entry .entry-meta ul {
@@ -1878,7 +1878,7 @@ section {
   top: 0;
   bottom: 0;
   width: 3px;
-  background-color: #012970;
+  background-color: #198754;
   margin-top: 20px;
   margin-bottom: 20px;
 }
