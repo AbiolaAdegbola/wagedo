@@ -175,6 +175,11 @@ section {
   transition: all 0.5s;
   z-index: 997;
   padding: 20px 0;
+  top: 0px;
+}
+
+.headerIndex{
+top: 36px;
 }
 
 .header.header-scrolled {
@@ -638,9 +643,9 @@ section {
   transform: scale(1);
   position: absolute;
   left: 0;
-    object-fit: cover;
-    height: 100%;
-    border-radius: 10px;
+  object-fit: cover;
+  height: 100%;
+  border-radius: 10px;
 }
 
 .values .box h3 {
@@ -653,16 +658,16 @@ section {
   left: 5px;
 }
 
-.values .moreBox{
+.values .moreBox {
   position: absolute;
   bottom: 20px;
   left: 10px;
-      line-height: 0;
-    padding: 15px 40px;
-    border-radius: 4px;
-    transition: 0.5s;
-    background: white;
-    box-shadow: 0px 5px 25px rgba(65, 241, 89, 0.3);
+  line-height: 0;
+  padding: 15px 40px;
+  border-radius: 4px;
+  transition: 0.5s;
+  background: white;
+  box-shadow: 0px 5px 25px rgba(65, 241, 89, 0.3);
 }
 
 .values .box:hover {
@@ -2444,4 +2449,217 @@ section {
   text-align: center;
   font-size: 13px;
   color: #012970;
+}
+
+/* PAGE IMPLIQUEZ VOUS */
+.don-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 16px;
+  max-width: 600px;
+  margin: 20px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.don-logo {
+  width: 120px;
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 8px;
+}
+
+.don-logo img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.don-infos {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.info-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+.don-button {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 12px 20px;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.don-button:hover {
+  transform: translateY(-3px);
+}
+
+/* Couleurs dynamiques selon le mode de paiement */
+.don-button.orange {
+  background-color: #f7901e;
+}
+
+.don-button.orange:hover {
+  background-color: #d27813;
+}
+
+.don-button.mtn {
+  background-color: #ffd500;
+  color: #000;
+}
+
+.don-button.mtn:hover {
+  background-color: #e6c200;
+}
+
+.don-button.moov {
+  background-color: #00a859;
+}
+
+.don-button.moov:hover {
+  background-color: #008f4b;
+}
+
+.don-button.wave {
+  background-color: #2c6eff;
+}
+
+.don-button.wave:hover {
+  background-color: #1b56d1;
+}
+
+.don-button.carte {
+  background-color: #5a5a5a;
+}
+
+.don-button.carte:hover {
+  background-color: #444;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .don-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .don-logo {
+    width: 100px;
+  }
+
+  .info-card {
+    text-align: left;
+  }
+}
+
+/* ACTUALITE INFO ACCUEIL */
+.news-container {
+  display: flex;
+  align-items: center;
+  background-color: #007b5e; /* Couleur principale WAGEDO */
+  color: white;
+  padding: 4px 0;
+  overflow: hidden;
+  font-family: "Segoe UI", sans-serif;
+  white-space: nowrap;
+  /* border-top: 3px solid #00c389; */
+  /* border-bottom: 3px solid #00c389; */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* 📰 Partie gauche — titre */
+.news-title {
+  flex-shrink: 0;
+  background-color: #005f45;
+  padding: 4px 8px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 13px;
+  border-right: 1px solid #00c389;
+}
+
+/* 💬 Zone de texte défilant */
+.news-marquee {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ✨ Texte défilant */
+.news-marquee span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scrollText 65s linear infinite;
+  font-size: 15px;
+}
+
+/* ⏸️ Pause du défilement au survol */
+.news-marquee:hover span {
+  animation-play-state: paused;
+}
+
+/* 🎞️ Animation du texte */
+@keyframes scrollText {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .news-container {
+    font-size: 13px;
+  }
+  .news-title {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  .news-marquee span {
+    animation-duration: 75s; /* plus lent sur mobile */
+  }
 }

@@ -37,8 +37,37 @@
 
 <body>
 
+  <!-- 🔔 Bandeau d’actualités WAGEDO -->
+<div class="news-container">
+  <div class="news-title">📰 ACTUALITÉS WAGEDO</div>
+  <div class="news-marquee" id="newsMarquee">
+    <span>
+      🌱 WAGEDO lance un nouveau programme pour les jeunes entrepreneurs agricoles —
+      💡 Webinaire sur l’innovation durable, ce vendredi à 18h —
+      🤝 Nouveau partenariat stratégique avec l’ONG Terre Verte —
+      🌍 Campagne de reboisement prévue ce samedi à Abidjan —
+      📈 Les membres de WAGEDO bénéficient d’un espace collaboratif en ligne !
+    </span>
+  </div>
+</div>
+
+<script>
+/* 💡 Option dynamique : les actualités peuvent venir d'un tableau JS */
+const newsList = [
+  "🌱 WAGEDO lance un programme de formation agricole pour 2025",
+  "💡 Webinaire sur l’innovation durable ce vendredi à 18h",
+  "🤝 Partenariat signé avec l’ONG Terre Verte",
+  "🌍 Reboisement communautaire à Abidjan ce samedi",
+  "📈 Espace collaboratif en ligne pour les membres de WAGEDO",
+  "🎓 Nouveau programme d’incubation pour les jeunes entrepreneurs"
+];
+
+// Injection dynamique du contenu
+document.getElementById("newsMarquee").innerHTML = `<span>${newsList.join(" — ")}</span>`;
+</script>
+
   <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top" style="background-color: white;">
+  <header id="header" class="header headerIndex fixed-top" style="background-color: white;">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center">

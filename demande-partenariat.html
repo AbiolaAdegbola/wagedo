@@ -114,8 +114,7 @@
                         <article class="entry entry-single">
 
                             <h2 class="entry-title">
-                                <a href="blog-single.html">Dolorum optio tempore voluptas dignissimos cumque fuga qui
-                                    quibusdam quia</a>
+                                <a href="#">🤝 Demande de Partenariat avec WAGEDO</a>
                             </h2>
                             <div class="blog-comments">
 
@@ -134,18 +133,95 @@
                                             </div>
                                         </div>
                                         <div class="row">
+                                            <div class="col-md-6 form-group">
+                                                <input name="pays" type="text" class="form-control"
+                                                    placeholder="Votre pays*">
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                <input name="ville" type="text" class="form-control"
+                                                    placeholder="Your ville*">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 form-group">
+                                                <input name="phone" type="text" class="form-control"
+                                                    placeholder="Your numéro de téléphone*">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 form-group">
+                                            <div class="form-group">
+                                                <label for="type_partenariat"><strong>Type de
+                                                        partenariat</strong></label>
+                                                <select name="type_partenariat" id="type_partenariat"
+                                                    class="form-control">
+                                                    <option value="">Veuillez choisir le type de partenariat
+                                                    </option>
+                                                    <option value="technique">Partenariat technique</option>
+                                                    <option value="financier">Partenariat financier</option>
+                                                    <option value="institutionnel">Partenariat institutionnel
+                                                    </option>
+                                                    <option value="strategique">Partenariat stratégique</option>
+                                                    <option value="formation">Partenariat pour la formation et le
+                                                        renforcement des capacités</option>
+                                                    <option value="projet">Partenariat pour la mise en œuvre de
+                                                        projets</option>
+                                                    <option value="recherche">Partenariat scientifique / recherche
+                                                        et innovation</option>
+                                                    <option value="commercial">Partenariat commercial</option>
+                                                    <option value="communication">Partenariat média et communication
+                                                    </option>
+                                                    <option value="communautaire">Partenariat communautaire /
+                                                        associatif</option>
+                                                    <option value="rse">Partenariat RSE (Responsabilité Sociétale
+                                                        des Entreprises)</option>
+                                                    <option value="mecenat">Mécénat ou parrainage</option>
+                                                    <option value="logistique">Partenariat logistique ou matériel
+                                                    </option>
+                                                    <option value="autre">Autre type de partenariat</option>
+                                                </select>
+                                            </div>
+
+                                            <!-- Champ caché qui s’affiche si "autre" est sélectionné -->
+                                            <div class="form-group" id="autrePartenariatDiv"
+                                                style="display: none; margin-top: 10px;">
+                                                <label for="autre_partenariat"><strong>Précisez votre
+                                                        partenariat</strong></label>
+                                                <input type="text" id="autre_partenariat" name="autre_partenariat"
+                                                    class="form-control"
+                                                    placeholder="Décrivez le type de partenariat que vous proposez..." />
+                                            </div>
+
+                                            <script>
+                                                // Sélection des éléments
+                                                const selectPartenariat = document.getElementById("type_partenariat");
+                                                const autreDiv = document.getElementById("autrePartenariatDiv");
+
+                                                // Événement quand la valeur du select change
+                                                selectPartenariat.addEventListener("change", function () {
+                                                    if (this.value === "autre") {
+                                                        autreDiv.style.display = "block"; // Affiche le champ
+                                                    } else {
+                                                        autreDiv.style.display = "none"; // Cache le champ
+                                                    }
+                                                });
+                                            </script>
+
+                                        </div>
+
+                                        <div class="row">
                                             <div class="col form-group">
-                                                <input name="website" type="text" class="form-control"
-                                                    placeholder="Your Website">
+                                                <input name="subject" type="text" class="form-control"
+                                                    placeholder="Your raison de votre integration à WAGEDO">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col form-group">
                                                 <textarea name="comment" class="form-control"
-                                                    placeholder="Your Comment*"></textarea>
+                                                    placeholder="Your Motivation*"></textarea>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Post Comment</button>
+                                        <button type="submit" class="btn btn-primary">ENVOYER</button>
 
                                     </form>
 
@@ -156,6 +232,40 @@
                         </article><!-- End blog entry -->
 
                     </div><!-- End blog entries list -->
+
+                    <div class="col-lg-4">
+                        <p style="text-align: justify;">
+                            WAGEDO est une initiative engagée dans la promotion du développement durable, de
+                            l’innovation sociale et de l’autonomisation économique à travers des projets à fort impact
+                            communautaire.
+                            Nous croyons que les grands changements naissent de <strong>la collaboration</strong>, et
+                            c’est pourquoi nous invitons les organisations, entreprises, institutions et acteurs du
+                            développement à <strong>devenir partenaires</strong> de WAGEDO.
+                            <br><br>
+                            En rejoignant notre réseau de partenaires, vous contribuez à :
+                        <ul>
+                            <li>🌍 Renforcer l’impact social à travers des actions concrètes sur le terrain.</li>
+                            <li>💡 Soutenir l’innovation locale dans les domaines de l’agriculture, de l’éducation, de
+                                la technologie et de l’environnement.</li>
+                            <li>🤝 Créer des synergies durables entre acteurs publics et privés.</li>
+                            <li>📈 Valoriser votre engagement sociétal à travers des projets visibles et mesurables.
+                            </li>
+                        </ul>
+
+                        Nous sommes ouverts à différents types de partenariats :
+
+                        <ul>
+                            <li>Partenariats techniques (accompagnement, formation, expertise)</li>
+                            <li>Partenariats financiers (soutien aux projets, bourses, mécénat)</li>
+                            <li>Partenariats institutionnels et stratégiques</li>
+                        </ul>
+
+                        ✨ Ensemble, bâtissons un avenir durable et solidaire avec WAGEDO.
+                        <br>
+                        Pour toute collaboration ou proposition, veuillez remplir notre formulaire de demande de
+                        partenariat.
+                        </p>
+                    </div>
 
                 </div>
 

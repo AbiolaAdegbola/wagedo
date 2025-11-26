@@ -31,6 +31,17 @@
     }
   }
 
+  window.addEventListener("scroll", function () {
+  const header = document.querySelector(".headerIndex");
+
+  if (window.scrollY > 45) {
+    header.style.top = "0px";
+  } else {
+    header.style.top = "36px";
+  }
+});
+
+
   /**
    * Easy on scroll event listener 
    */
@@ -291,5 +302,106 @@
    * Initiate Pure Counter 
    */
   new PureCounter();
+
+//     $('.clickBoutonDashboard').on('click', function(e){
+      
+//     var element = $(this).data('id')
+
+
+//     var url = 'dashboard-vue-ensemble.php'
+
+//     if (element == '1') {
+//         url = "dashboard-vue-ensemble.php"
+//     }
+
+//     if (element == '2') {
+//         url= 'dashboard-devis.php'
+//     }
+
+//     if (element == '3') {
+//         url= 'dashboard-devis-laser.php'
+//     }
+
+//     if (element == '4') {
+//         url= 'dashboard-devis-commande.php'
+//     }
+    
+//     if (element == '5') {
+//         url= 'dashboard-newsletter.php'
+//     }
+    
+//     if (element == '6') {
+//         url= 'dashboard-livre.php'
+//     }
+    
+//     if (element == '7') {
+//         url= 'dashboard-formation.php'
+//     }
+    
+//     if (element == '8') {
+//         url= 'dashboard-projet-forage.php'
+//     }
+
+// if (element == '9') {
+//         url= 'dashboard-devis-forage-laser.php'
+//     }
+    
+//     if (element == '10') {
+//         url= 'dashboard-devis-genere.php'
+//     }
+
+//      $.ajax({
+//       type: 'POST',
+//       url: url,
+//       // data: {commandeForage: $form.serialize()},
+//       beforeSend: function() {
+//             $('.conteneurPageDashboard').html(""); 
+//             $('.loadingBouton').removeClass("containerSysteme"); // Affiche la réponse du serveur
+//             $('.loadingBouton').addClass("activeContainerDevis");
+//             },
+//       success: function(response) {
+//         $('.loadingBouton').removeClass("activeContainerDevis"); // Affiche la réponse du serveur
+//         $('.loadingBouton').addClass("containerSysteme"); // Affiche la réponse du serveur
+//         $('.clickBoutonDashboard').removeClass("DashboardBoutonActive"); // Affiche la réponse du serveur
+//         $('.clickBoutonDashboard'+element).addClass("DashboardBoutonActive"); // Affiche la réponse du serveur
+//         $('.conteneurPageDashboard').html(response); // Affiche la réponse du serveur
+//       }
+//     });
+
+//   })
+
+
+     //connexion page administration
+  // $('#connexionPage').submit(function(e) {
+  //   e.preventDefault(); // Empêche la soumission normale du formulaire
+
+  //   var $form = $(this);
+
+  //   // console.log($form)
+  //   // Effectue une requête Ajax vers 'add.php'
+  //   $.ajax({
+
+  //     type: 'POST',
+  //     url: 'back_data.php',
+  //     data: {connexionPage: decodeURIComponent($form.serialize())},
+      
+  //     beforeSend: function() {
+  //       // $('.boutonEnvoyerForm').addClass("containerSysteme"); 
+  //       $('.loadingBoutonConnexion').removeClass("containerSysteme"); // Affiche la réponse du serveur
+  //       $('.loadingBoutonConnexion').addClass("activeContainerDevis");
+  //       $('.envoyerFormConnexion').addClass("containerSysteme");
+  //       },
+        
+  //     success: function(response) {
+  //        $('.loadingBoutonConnexion').removeClass("activeContainerDevis"); // Affiche la réponse du serveur
+  //       $('.loadingBoutonConnexion').addClass("containerSysteme");
+  //       $('.responseConnexion').html(response); // Affiche la réponse du serveur
+  //       $('.responseConnexion').css({"display": "initial"});
+        
+  //     }
+
+  //   });
+
+  // });
 
 })();

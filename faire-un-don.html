@@ -114,8 +114,7 @@
                         <article class="entry entry-single">
 
                             <h2 class="entry-title">
-                                <a href="blog-single.html">Dolorum optio tempore voluptas dignissimos cumque fuga qui
-                                    quibusdam quia</a>
+                                <a href="#">💚 Faire un don à Wagedo</a>
                             </h2>
                             <div class="blog-comments">
 
@@ -134,28 +133,131 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col form-group">
-                                                <input name="website" type="text" class="form-control"
-                                                    placeholder="Your Website">
+                                            <div class="col-md-6 form-group">
+                                                <input name="pays" type="text" class="form-control"
+                                                    placeholder="Votre pays*">
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                <input name="phone" type="text" class="form-control"
+                                                    placeholder="Your numéro de téléphone*">
                                             </div>
                                         </div>
+
+                                        <!-- Sélecteur du mode de paiement -->
                                         <div class="row">
                                             <div class="col form-group">
-                                                <textarea name="comment" class="form-control"
-                                                    placeholder="Your Comment*"></textarea>
+                                                <select name="mode_paiement" id="mode_paiement" class="form-control">
+                                                    <option value="">Veuillez choisir votre mode de paiement</option>
+                                                    <option value="orange">Orange Money</option>
+                                                    <option value="mtn">MTN Money</option>
+                                                    <option value="moov">Moov Money</option>
+                                                    <option value="wave">Wave</option>
+                                                    <option value="carte">Carte de crédit</option>
+                                                </select>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Post Comment</button>
 
+                                        <hr>
+
+                                        <div>
+                                            <h4>Informations du membre WAGEDO selon le mode de paiement</h4>
+                                        </div>
+
+                                        <!-- Conteneur dynamique -->
+                                        <div id="infoContainer"></div>
+
+                                        <!-- ⚙️ SCRIPT -->
+                                        <script>
+                                            const paiementInfos = {
+                                                orange: {
+                                                    logo: "./assets/img/icons/orange-money.png",
+                                                    data: [
+                                                        { nom: "ADEGBOLA ABIOLA MANSOUROU", pays: "Côte d'Ivoire", tel: "+225 01 41 87 05 79" },
+                                                    ]
+                                                },
+                                                mtn: {
+                                                    logo: "./assets/img/icons/mtn.jpg",
+                                                    data: [
+                                                        { nom: "KOFFI YAO", pays: "Côte d'Ivoire", tel: "+225 05 55 55 55 55" },
+                                                    ]
+                                                },
+                                                moov: {
+                                                    logo: "./assets/img/icons/Moov-Money.webp",
+                                                    data: [
+                                                        { nom: "TRAORE AMADOU", pays: "Côte d'Ivoire", tel: "+225 07 77 77 77 77" },
+                                                    ]
+                                                },
+                                                wave: {
+                                                    logo: "./assets/img/icons/wave.png",
+                                                    data: [
+                                                        { nom: "ADEGBOLA ABIOLA MANSOUROU", pays: "Côte d'Ivoire", tel: "+225 01 41 87 05 79" },
+                                                    ]
+                                                },
+                                                carte: {
+                                                    logo: "./assets/img/icons/carte bank.webp",
+                                                    data: [
+                                                        { nom: "Service WAGEDO", pays: "Côte d'Ivoire", tel: "Paiement sécurisé par carte" },
+                                                    ]
+                                                },
+                                            };
+
+                                            const select = document.getElementById('mode_paiement');
+                                            const infoContainer = document.getElementById('infoContainer');
+
+                                            select.addEventListener('change', (e) => {
+                                                const mode = e.target.value;
+                                                infoContainer.innerHTML = ""; // vide le contenu précédent
+
+                                                if (mode && paiementInfos[mode]) {
+                                                    const { logo, data } = paiementInfos[mode];
+
+                                                 const html = `
+                                                    <div class="don-container">
+                                                        <div class="don-logo">
+                                                        <img src="${logo}" alt="${mode}">
+                                                        </div>
+                                                        <div class="don-infos">
+                                                        ${data.map(item => `
+                                                            <div class="info-card">
+                                                            <div><strong>Nom :</strong> ${item.nom}</div>
+                                                            <div><strong>Pays :</strong> ${item.pays}</div>
+                                                            <div><strong>Téléphone :</strong> ${item.tel}</div>
+                                                            </div>
+                                                        `).join('')}
+                                                        <button class="don-button ${mode}">Faire un don maintenant</button>
+                                                        </div>
+                                                    </div>
+                                                    `;
+
+                                                    infoContainer.innerHTML = html;
+                                                }
+                                            });
+                                        </script>
                                     </form>
-
                                 </div>
-
                             </div>
-
                         </article><!-- End blog entry -->
-
                     </div><!-- End blog entries list -->
+
+                    <div class="col-lg-4 text-justify">
+                        <p>
+                            Soutenir Wagedo, c’est contribuer à un projet engagé pour le développement durable et
+                            l’innovation au service des communautés.
+                            Chaque don, quel qu’en soit le montant, nous aide à poursuivre nos actions, à améliorer nos
+                            services et à créer un impact positif sur le terrain.
+                            <br>
+                            Votre générosité nous permet de :
+                            <br>
+                        <ul>
+                            <li>Renforcer nos programmes d’accompagnement et de formation,</li>
+                            <li>Développer de nouvelles solutions pour les agriculteurs et les jeunes entrepreneurs,
+                            </li>
+                            <li>Étendre notre portée afin d’aider davantage de bénéficiaires.</li>
+                        </ul>
+
+                        ✨ Faites un geste solidaire aujourd’hui et devenez acteur du changement avec Wagedo !
+                        </p>
+                    </div>
 
                 </div>
 
