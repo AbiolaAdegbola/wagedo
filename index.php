@@ -1,3 +1,80 @@
+<?php
+include 'connexionBdd.php';
+
+// --------- IP du visiteur ---------
+$ip = $_SERVER['REMOTE_ADDR'];
+$jour = date('Y-m-d'); // format : 2025-07-16
+
+// --------- Vérifie si cette IP a déjà été comptée aujourd’hui ---------
+$check = $bdd->prepare("SELECT COUNT(*) FROM visites_jour WHERE ip = :ip AND jour = :jour");
+$check->execute(['ip' => $ip, 'jour' => $jour]);
+$dejaCompte = $check->fetchColumn() > 0;
+$check->closeCursor();
+
+if (!$dejaCompte) {
+    // --------- Enregistrer la visite dans la table visites_jour ---------
+    $insert = $bdd->prepare("INSERT INTO visites_jour (ip, jour) VALUES (:ip, :jour)");
+    $insert->execute(['ip' => $ip, 'jour' => $jour]);
+    $insert->closeCursor();
+
+    // --------- Récupération des données globales ---------
+    $result = $bdd->query("SELECT * FROM visiteur");
+    $visiteurData = $result->fetch();
+    $result->closeCursor();
+
+    if (!$visiteurData) {
+        exit("Erreur : données de visiteurs introuvables.");
+    }
+
+    $count = (int)$visiteurData['count'];
+    $nombre = !empty($visiteurData['nombre']) ? explode(', ', $visiteurData['nombre']) : [];
+    $mois = !empty($visiteurData['mois']) ? explode(', ', $visiteurData['mois']) : [];
+    $etat = (int)$visiteurData['etat'];
+    $jourActuel = date('j');
+    $dateComplete = date("d/m/Y");
+
+    // --------- Traitement du compteur ---------
+    if ($jourActuel != 5) {
+        $count++;
+        $nombre[count($nombre) - 1] = $count;
+        $etat = 1;
+
+        $req = $bdd->prepare("UPDATE visiteur SET count = :count, nombre = :nombre, etat = :etat");
+        $req->bindValue(':count', $count, PDO::PARAM_INT);
+        $req->bindValue(':nombre', implode(', ', $nombre), PDO::PARAM_STR);
+        $req->bindValue(':etat', $etat, PDO::PARAM_INT);
+        $req->execute();
+        $req->closeCursor();
+    } else {
+        if ($etat === 1) {
+            $mois[] = $dateComplete;
+            $nombre[] = $count;
+            $count = 0;
+            $etat = 0;
+
+            $req = $bdd->prepare("UPDATE visiteur SET count = :count, nombre = :nombre, mois = :mois, etat = :etat");
+            $req->bindValue(':count', $count, PDO::PARAM_INT);
+            $req->bindValue(':nombre', implode(', ', $nombre), PDO::PARAM_STR);
+            $req->bindValue(':mois', implode(', ', $mois), PDO::PARAM_STR);
+            $req->bindValue(':etat', $etat, PDO::PARAM_INT);
+            $req->execute();
+            $req->closeCursor();
+        } else {
+            $count++;
+            $nombre[count($nombre) - 1] = $count;
+
+            $req = $bdd->prepare("UPDATE visiteur SET count = :count, nombre = :nombre");
+            $req->bindValue(':count', $count, PDO::PARAM_INT);
+            $req->bindValue(':nombre', implode(', ', $nombre), PDO::PARAM_STR);
+            $req->execute();
+            $req->closeCursor();
+        }
+    }
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 

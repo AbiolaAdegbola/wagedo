@@ -2663,3 +2663,13 @@ top: 36px;
     animation-duration: 75s; /* plus lent sur mobile */
   }
 }
+
+.containerDisplayNone
+{
+  display: none;
+}
+
+.containerDisplayInitial
+{
+  display: initial;
+}

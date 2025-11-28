@@ -121,7 +121,7 @@
                                 <div class="reply-form">
                                     <h4>Leave a Reply</h4>
                                     <p>Your email address will not be published. Required fields are marked * </p>
-                                    <form action="">
+                                    <form id="submitRejoindreWagedo">
                                         <div class="row">
                                             <div class="col-md-6 form-group">
                                                 <input name="name" type="text" class="form-control"
@@ -173,17 +173,26 @@
                                         
                                         <div class="row">
                                             <div class="col form-group">
-                                                <input name="subject" type="text" class="form-control"
+                                                <input name="raison" type="text" class="form-control"
                                                     placeholder="Your raison de votre integration à WAGEDO">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col form-group">
-                                                <textarea name="comment" class="form-control"
+                                                <textarea name="message" class="form-control"
                                                     placeholder="Your Motivation*"></textarea>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">ENVOYER</button>
+
+                                        <input type="text" name="submitRejoindreWagedo" style="display: none;">
+
+                                         <div class="responseForm" style="background-color: red; color: white; text-align: center; padding: 10px; display: none;"></div>
+                                                     <div class="responseFormSuccess" style="background-color: green; color: white; text-align: center; padding: 10px; display: none;"></div>
+                                                        <div class="spinner-grow loadingBoutonForm containerDisplayNone" style="color: orange; display:none" role="status">
+                                                        <span class="sr-only">Loading...</span>
+                                                     </div>
+
+                                        <button type="submit" class="btn btn-primary submitRejoindreWagedo">ENVOYER</button>
 
                                     </form>
 

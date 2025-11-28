@@ -33,12 +33,14 @@
 
   window.addEventListener("scroll", function () {
   const header = document.querySelector(".headerIndex");
-
-  if (window.scrollY > 45) {
+if (header) {
+    if (window.scrollY > 45) {
     header.style.top = "0px";
   } else {
     header.style.top = "36px";
   }
+}
+
 });
 
 
@@ -303,105 +305,172 @@
    */
   new PureCounter();
 
-//     $('.clickBoutonDashboard').on('click', function(e){
-      
-//     var element = $(this).data('id')
+  // Gestion du clic sur les boutons du dashboard
+document.querySelectorAll('.clickBoutonDashboard').forEach(button => {
+  button.addEventListener('click', async (e) => {
+    const element = button.dataset.id;
+    let url = '';
+
+    switch (element) {
+      case '1': url = 'dashboard-vue-ensemble.php'; break;
+      case '2': url = 'dashboard-devis.php'; break;
+      case '3': url = 'dashboard-devis-laser.php'; break;
+      case '4': url = 'dashboard-devis-commande.php'; break;
+      case '5': url = 'dashboard-newsletter.php'; break;
+      case '6': url = 'dashboard-livre.php'; break;
+      case '7': url = 'dashboard-formation.php'; break;
+      case '8': url = 'dashboard-projet-forage.php'; break;
+      case '9': url = 'dashboard-devis-forage-laser.php'; break;
+      case '10': url = 'dashboard-devis-genere.php'; break;
+      default: return;
+    }
+
+    // Avant l’envoi
+    const conteneurPage = document.querySelector('.conteneurPageDashboard');
+    const loadingBouton = document.querySelector('.loadingBouton');
+    conteneurPage.innerHTML = '';
+    loadingBouton.classList.remove('containerDisplayNone');
+    loadingBouton.classList.add('containerDisplayInitial');
+
+    try {
+      const response = await fetch(url, { method: 'POST' });
+      const data = await response.text();
+
+      // Après succès
+      loadingBouton.classList.remove('containerDisplayInitial');
+      loadingBouton.classList.add('containerDisplayNone');
+      document.querySelectorAll('.clickBoutonDashboard').forEach(btn => btn.classList.remove('DashboardBoutonActive'));
+      document.querySelector(`.clickBoutonDashboard${element}`)?.classList.add('DashboardBoutonActive');
+      conteneurPage.innerHTML = data;
+    } catch (error) {
+      console.error('Erreur de chargement :', error);
+      loadingBouton.classList.remove('containerDisplayInitial');
+      loadingBouton.classList.add('containerDisplayNone');
+      conteneurPage.innerHTML = "<p>Erreur lors du chargement de la page.</p>";
+    }
+  });
+});
+
+// Connexion page administration
+const formConnexion = document.querySelector('#connexionPage');
+if (formConnexion) {
+  formConnexion.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(formConnexion);
+    const params = new URLSearchParams(formData).toString();
+
+    const loading = document.querySelector('.loadingBoutonConnexion');
+    const envoyerForm = document.querySelector('.envoyerFormConnexion');
+    const responseContainer = document.querySelector('.responseConnexion');
+
+    loading.classList.remove('containerDisplayNone');
+    loading.classList.add('containerDisplayInitial');
+    envoyerForm.classList.add('containerDisplayNone');
+
+    try {
+      const response = await fetch('back_data.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'connexionPage=' + decodeURIComponent(params),
+      });
+      const data = await response.text();
+
+      loading.classList.remove('containerDisplayInitial');
+      loading.classList.add('containerDisplayNone');
+      responseContainer.innerHTML = data;
+      responseContainer.style.display = 'initial';
+    } catch (error) {
+      console.error('Erreur de connexion :', error);
+      loading.classList.remove('containerDisplayInitial');
+      loading.classList.add('containerDisplayNone');
+      responseContainer.innerHTML = "<p>Erreur de connexion au serveur.</p>";
+      responseContainer.style.display = 'initial';
+    }
+  });
+}
 
 
-//     var url = 'dashboard-vue-ensemble.php'
+// faire un don
+const submitFaireDon = document.querySelector('#submitFaireDon');
+if (submitFaireDon) {
+  submitFaireDon.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-//     if (element == '1') {
-//         url = "dashboard-vue-ensemble.php"
-//     }
-
-//     if (element == '2') {
-//         url= 'dashboard-devis.php'
-//     }
-
-//     if (element == '3') {
-//         url= 'dashboard-devis-laser.php'
-//     }
-
-//     if (element == '4') {
-//         url= 'dashboard-devis-commande.php'
-//     }
+    const formData = new FormData(submitFaireDon);
     
-//     if (element == '5') {
-//         url= 'dashboard-newsletter.php'
-//     }
+    const params = new URLSearchParams(formData).toString();
+// console.log("params", params)
+    const loading = document.querySelector('.loadingBoutonForm');
+    const envoyerForm = document.querySelector('.submitFaireDon');
+    const responseContainer = document.querySelector('.responseForm');
+    const responseContainerSuccess = document.querySelector('.responseFormSuccess');
+
+    loading.classList.remove('containerDisplayNone');
+    loading.classList.add('containerDisplayInitial');
+    envoyerForm.classList.add('containerDisplayNone');
+
+    try {
+      const response = await fetch('back_data.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: decodeURIComponent(params),
+      });
+      const data = await response.text();
+
+      loading.classList.remove('containerDisplayInitial');
+      loading.classList.add('containerDisplayNone');
+      responseContainerSuccess.innerHTML = data;
+      responseContainerSuccess.style.display = 'initial';
+    } catch (error) {
+      console.error('Erreur de connexion :', error);
+      loading.classList.remove('containerDisplayInitial');
+      loading.classList.add('containerDisplayNone');
+      responseContainer.innerHTML = "<p>Erreur de connexion au serveur.</p>";
+      responseContainer.style.display = 'initial';
+    }
+  });
+}
+
+// Rejoindre wagedo
+const submitRejoindreWagedo = document.querySelector('#submitRejoindreWagedo');
+if (submitRejoindreWagedo) {
+  submitRejoindreWagedo.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(submitRejoindreWagedo);
     
-//     if (element == '6') {
-//         url= 'dashboard-livre.php'
-//     }
-    
-//     if (element == '7') {
-//         url= 'dashboard-formation.php'
-//     }
-    
-//     if (element == '8') {
-//         url= 'dashboard-projet-forage.php'
-//     }
+    const params = new URLSearchParams(formData).toString();
 
-// if (element == '9') {
-//         url= 'dashboard-devis-forage-laser.php'
-//     }
-    
-//     if (element == '10') {
-//         url= 'dashboard-devis-genere.php'
-//     }
+    const loading = document.querySelector('.loadingBoutonForm');
+    const envoyerForm = document.querySelector('.submitRejoindreWagedo');
+    const responseContainer = document.querySelector('.responseForm');
+    const responseContainerSuccess = document.querySelector('.responseFormSuccess');
 
-//      $.ajax({
-//       type: 'POST',
-//       url: url,
-//       // data: {commandeForage: $form.serialize()},
-//       beforeSend: function() {
-//             $('.conteneurPageDashboard').html(""); 
-//             $('.loadingBouton').removeClass("containerSysteme"); // Affiche la réponse du serveur
-//             $('.loadingBouton').addClass("activeContainerDevis");
-//             },
-//       success: function(response) {
-//         $('.loadingBouton').removeClass("activeContainerDevis"); // Affiche la réponse du serveur
-//         $('.loadingBouton').addClass("containerSysteme"); // Affiche la réponse du serveur
-//         $('.clickBoutonDashboard').removeClass("DashboardBoutonActive"); // Affiche la réponse du serveur
-//         $('.clickBoutonDashboard'+element).addClass("DashboardBoutonActive"); // Affiche la réponse du serveur
-//         $('.conteneurPageDashboard').html(response); // Affiche la réponse du serveur
-//       }
-//     });
+    loading.classList.remove('containerDisplayNone');
+    loading.classList.add('containerDisplayInitial');
+    envoyerForm.classList.add('containerDisplayNone');
 
-//   })
+    try {
+      const response = await fetch('back_data.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: decodeURIComponent(params),
+      });
+      const data = await response.text();
 
-
-     //connexion page administration
-  // $('#connexionPage').submit(function(e) {
-  //   e.preventDefault(); // Empêche la soumission normale du formulaire
-
-  //   var $form = $(this);
-
-  //   // console.log($form)
-  //   // Effectue une requête Ajax vers 'add.php'
-  //   $.ajax({
-
-  //     type: 'POST',
-  //     url: 'back_data.php',
-  //     data: {connexionPage: decodeURIComponent($form.serialize())},
-      
-  //     beforeSend: function() {
-  //       // $('.boutonEnvoyerForm').addClass("containerSysteme"); 
-  //       $('.loadingBoutonConnexion').removeClass("containerSysteme"); // Affiche la réponse du serveur
-  //       $('.loadingBoutonConnexion').addClass("activeContainerDevis");
-  //       $('.envoyerFormConnexion').addClass("containerSysteme");
-  //       },
-        
-  //     success: function(response) {
-  //        $('.loadingBoutonConnexion').removeClass("activeContainerDevis"); // Affiche la réponse du serveur
-  //       $('.loadingBoutonConnexion').addClass("containerSysteme");
-  //       $('.responseConnexion').html(response); // Affiche la réponse du serveur
-  //       $('.responseConnexion').css({"display": "initial"});
-        
-  //     }
-
-  //   });
-
-  // });
+      loading.classList.remove('containerDisplayInitial');
+      loading.classList.add('containerDisplayNone');
+      responseContainerSuccess.innerHTML = data;
+      responseContainerSuccess.style.display = 'initial';
+    } catch (error) {
+      console.error('Erreur de connexion :', error);
+      loading.classList.remove('containerDisplayInitial');
+      loading.classList.add('containerDisplayNone');
+      responseContainer.innerHTML = "<p>Erreur de connexion au serveur.</p>";
+      responseContainer.style.display = 'initial';
+    }
+  });
+}
 
 })();

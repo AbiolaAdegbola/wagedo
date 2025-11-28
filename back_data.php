@@ -865,35 +865,26 @@ L'équipe GREEN AGRO VALLEY CI";
 
     }
     
-    if (isset($_POST['inscriptionForm'])) {
+    if (isset($_POST['submitFaireDon'])) {
+
+        // var_dump( $_POST['submitFaireDon']);
+        $nom = htmlspecialchars($_POST['name']);
+        $email = htmlspecialchars($_POST['email']);
+        $pays = htmlspecialchars($_POST['pays']);
+        $phone = htmlspecialchars($_POST['phone']);
+        $mode_paiement = htmlspecialchars($_POST['mode_paiement']);
+
+     $ins = $bdd->prepare('INSERT INTO donateur(nom, email, pays, telephone, mode_paiement, date_don) VALUES(:nom, :email, :pays, :telephone, :mode_paiement, NOW())');
 
 
-        $inscriptionForm = $_POST['inscriptionForm'];
-        $inscriptionFormTable = explode('&', $inscriptionForm);
-
-        $typeFormation = explode('=', $inscriptionFormTable[5]);
-        $nom = explode('=', $inscriptionFormTable[0]);
-        $phone = explode('=', $inscriptionFormTable[1]);
-        $email = explode('=', $inscriptionFormTable[2]);
-        $pays = explode('=', $inscriptionFormTable[3]);
-        $ville = explode('=', $inscriptionFormTable[4]);
-        $profession = explode('=', $inscriptionFormTable[6]);
-        $decouverte = explode('=', $inscriptionFormTable[7]);
-
-
-     $ins = $bdd->prepare('INSERT INTO formation(nom, telephone, email, profession, typeFormation, pays, ville, decouvert, dateEnregistrer) VALUES(:nom, :telephone, :email, :profession, :typeFormation, :pays, :ville, :decouvert, NOW())');
-
-
-      $ins->bindParam(':nom', $nom[1]);
-      $ins->bindParam(':email', $email[1]);
-      $ins->bindParam(':telephone', $phone[1]);
-      $ins->bindParam(':pays', $pays[1]);
-      $ins->bindParam(':ville', $ville[1]);
-      $ins->bindParam(':decouvert', $decouverte[1]);
-      $ins->bindParam(':profession', $profession[1]);
-      $ins->bindParam(':typeFormation', $typeFormation[1]);
+      $ins->bindParam(':nom', $nom);
+      $ins->bindParam(':email', $email);
+      $ins->bindParam(':telephone', $phone);
+      $ins->bindParam(':pays', $pays);
+      $ins->bindParam(':mode_paiement', $mode_paiement);
       $ins->execute();
 
+echo 'Nous allons vous confirmé la reception du DON dans quelqu\'instant; Merci de patienter!';
 
 try {
     //Server settings
@@ -932,8 +923,73 @@ try {
         }
 
     }
-        
 
+
+    // Nous rejoindre
+      if (isset($_POST['submitRejoindreWagedo'])) {
+
+        // var_dump( $_POST['submitFaireDon']);
+        $nom = htmlspecialchars($_POST['name']);
+        $email = htmlspecialchars($_POST['email']);
+        $pays = htmlspecialchars($_POST['pays']);
+        $phone = htmlspecialchars($_POST['phone']);
+        $ville = htmlspecialchars($_POST['ville']);
+        $profession = htmlspecialchars($_POST['profession']);
+        $raison = htmlspecialchars($_POST['raison']);
+        $message = htmlspecialchars($_POST['message']);
+
+     $ins = $bdd->prepare('INSERT INTO nous_rejoindre(nom, email, telephone, profession, ville,  pays, raison, message, createdAt) VALUES(:nom, :email, :telephone, :profession, :ville, :pays, :raison, :message, NOW())');
+
+
+      $ins->bindParam(':nom', $nom);
+      $ins->bindParam(':email', $email);
+      $ins->bindParam(':telephone', $phone);
+      $ins->bindParam(':pays', $pays);
+      $ins->bindParam(':ville', $ville);
+      $ins->bindParam(':profession', $profession);
+      $ins->bindParam(':raison', $raison);
+      $ins->bindParam(':message', $message);
+      $ins->execute();
+
+echo 'Votre demande a été bien envoyé. Nous allons contacter dans les plus brefs delai!';
+
+// try {
+//     //Server settings
+//     // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+//     $mail->isSMTP();                                            //Send using SMTP
+//     $mail->Host       = 'mail12.lwspanel.com';                     //Set the SMTP server to send through
+//     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+//     $mail->Username   = 'no-reply@greenagrovalley.org';                     //SMTP username
+//     $mail->Password   = 'Noreply@2024';                              //SMTP password
+//     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+//     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+//     //Recipients
+//     $mail->setFrom('no-reply@greenagrovalley.org', 'GREEN AGRO VALLEY CI');
+//     $mail->addAddress('devis@greenagrovalley.org', "");  
+//      // $mail->AddCC('appessika.koffi@greenagrovalley.org', ' '); 
+//     // $mail->addAddress('abiole68@gmail.com', ' ');     //Add a recipient
+//     // $mail->addAddress('ellen@example.com');               //Name is optional
+//     // if (isset($email)) {
+//     //   $mail->addReplyTo($email, strtoupper($nom));
+//     // }
+
+//     //Content
+//     $mail->isHTML(true);                                  //Set email format to HTML
+//     $mail->Subject = 'NOUVELLE INSCRIPTION AUX FORMATIONS';
+//     $mail->Body    = 'Hello GREEN AGRO VALLEY CI, <br><br>Je m\'appelle '.$nom[1].' <br><br> Vous avez une nouvelle inscription à la formation sur : '.$typeFormation[1].'<br><br><a src="https://greenagrovalley.org/dashboard.php">Connexion</a>';
+// // Set UTF-8 encoding
+//     $mail->CharSet = 'UTF-8';
+//     $mail->send();
+//     echo 'Message envoyé avec succès';
+
+//         } catch (Exception $e) {
+        
+//             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            
+//         }
+
+    }
 
 //connexion page administration
 if (isset($_POST['connexionPage'])) {

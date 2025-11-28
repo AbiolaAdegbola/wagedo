@@ -119,16 +119,16 @@
                             <div class="blog-comments">
 
                                 <div class="reply-form">
-                                    <h4>Leave a Reply</h4>
-                                    <p>Your email address will not be published. Required fields are marked * </p>
-                                    <form action="">
+                                    <h4>Remplir les informations</h4>
+                                    <!-- <p>Your email address will not be published. Required fields are marked * </p> -->
+                                    <form id="submitFaireDon">
                                         <div class="row">
                                             <div class="col-md-6 form-group">
                                                 <input name="name" type="text" class="form-control"
                                                     placeholder="Your Name*">
                                             </div>
                                             <div class="col-md-6 form-group">
-                                                <input name="email" type="text" class="form-control"
+                                                <input name="email" type="email" class="form-control"
                                                     placeholder="Your Email*">
                                             </div>
                                         </div>
@@ -156,6 +156,8 @@
                                                 </select>
                                             </div>
                                         </div>
+
+                                        <input type="text" name="submitFaireDon" style="display: none;">
 
                                         <hr>
 
@@ -211,7 +213,7 @@
                                                 if (mode && paiementInfos[mode]) {
                                                     const { logo, data } = paiementInfos[mode];
 
-                                                 const html = `
+                                                    const html = `
                                                     <div class="don-container">
                                                         <div class="don-logo">
                                                         <img src="${logo}" alt="${mode}">
@@ -224,7 +226,14 @@
                                                             <div><strong>Téléphone :</strong> ${item.tel}</div>
                                                             </div>
                                                         `).join('')}
-                                                        <button class="don-button ${mode}">Faire un don maintenant</button>
+
+                                                     <div class="responseForm" style="background-color: red; color: white; text-align: center; padding: 10px; display: none;"></div>
+                                                     <div class="responseFormSuccess" style="background-color: green; color: white; text-align: center; padding: 10px; display: none;"></div>
+                                                        <div class="spinner-grow loadingBoutonForm containerDisplayNone" style="color: orange; display:none" role="status">
+                                                        <span class="sr-only">Loading...</span>
+                                                     </div>
+
+                                                        <button class="don-button ${mode} submitFaireDon" type="submit">Faire un don maintenant</button>
                                                         </div>
                                                     </div>
                                                     `;
