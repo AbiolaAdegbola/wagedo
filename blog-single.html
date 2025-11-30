@@ -106,7 +106,96 @@
 
           <div class="col-lg-8 entries">
 
-            <article class="entry entry-single">
+
+            <div class="containerActualites" id="containerActualites">
+              <p>⏳ Chargement des actualités...</p>
+            </div>
+
+            <script>
+              let currentPage = 1;
+              const itemsPerPage = 10;
+              let actualites = [];
+
+              async function chargerActualites(id_article) {
+                const container = document.getElementById('containerActualites');
+
+                try {
+                  const response = await fetch(`get_actualites_single.php?id=${id_article}`);
+                  
+                  const result = await response.json();
+console.log("response", result.data)
+                  if (!result.success) {
+                    container.innerHTML = `<p style="color:red;">Erreur : ${result.message}</p>`;
+                    return;
+                  }
+
+                  actualites = result.data;
+
+                  if ([actualites].length === 0) {
+                    container.innerHTML = "<p>Aucune actualité disponible pour le moment.</p>";
+                    return;
+                  }
+
+                  afficherPage(currentPage);
+
+                } catch (error) {
+                  console.error(error);
+                  document.getElementById('containerActualites').innerHTML = "<p style='color:red;'>Erreur de connexion au serveur.</p>";
+                }
+              }
+
+              function afficherPage(page) {
+                const container = document.getElementById('containerActualites');
+                container.innerHTML = '';
+
+                // Pagination des actualités
+                const start = (page - 1) * itemsPerPage;
+                const end = start + itemsPerPage;
+                const pageData = [actualites].slice(start, end);
+
+                pageData.forEach(actu => {
+                  const image = actu.images && actu.images.length > 0
+                    ? actu.images[0]
+                    : 'assets/img/blog-1.jpg';
+
+                  const card = document.createElement('article');
+                  card.className = 'entry entry-single';
+                  card.innerHTML = `
+        <div class="entry-img">
+          <img src="${image}" alt="Image actualité" class="img-fluid" style="border-radius:10px;">
+        </div>
+
+        <h2 class="entry-title">
+          <a href="#">${actu.titre}</a>
+        </h2>
+
+        <div class="entry-meta">
+          <ul>
+            <li class="d-flex align-items-center"><i class="bi bi-person"></i> ${actu.auteur}</li>
+            <li class="d-flex align-items-center"><i class="bi bi-clock"></i> ${new Date(actu.createdAt).toLocaleDateString()}</li>
+            <li class="d-flex align-items-center"><i class="bi bi-folder"></i> ${actu.categorie}</li>
+          </ul>
+        </div>
+
+        <div class="entry-content">
+          <p>${actu.contenu}</p>
+        </div>
+      `;
+                  container.appendChild(card);
+                });
+
+                // Scroll en haut du conteneur à chaque changement de page
+                container.scrollIntoView({ behavior: 'smooth' });
+              }
+
+              // Récupération de l'ID du devis depuis l'URL
+const id_article = new URLSearchParams(window.location.search).get("id");
+// console.log("window.location.search", window.location.search)
+              chargerActualites(id_article);
+            </script>
+
+
+            <!-- <article class="entry entry-single">
 
               <div class="entry-img">
                 <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
@@ -115,14 +204,6 @@
               <h2 class="entry-title">
                 <a href="blog-single.html">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia</a>
               </h2>
-
-              <div class="entry-meta">
-                <ul>
-                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
-                </ul>
-              </div>
 
               <div class="entry-content">
                 <p>
@@ -179,7 +260,7 @@
                 </ul>
               </div>
 
-            </article><!-- End blog entry -->
+            </article>End blog entry -->
 
           </div><!-- End blog entries list -->
 

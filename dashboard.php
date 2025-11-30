@@ -485,8 +485,8 @@
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="assets/js/main_dashboard.js"></script>
     <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/main_dashboard.js"></script>
     
     <script type="text/javascript">
     $('.onclickDetail').on('click', function(e){

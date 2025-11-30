@@ -31,6 +31,7 @@ Ajouter une nouvelle actualité
         <th>Titre</th>
         <th>auteur</th>
         <th>Date</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -40,41 +41,21 @@ Ajouter une nouvelle actualité
     $u = 1;
      while ($result = $data->fetch()) {
        ?>
-   
-      <tr class="success onclickDetail" style="font-size: 12px" data-id="<?php echo($result['id']); ?>">
+      <tr class="success" style="font-size: 12px" data-id="<?php echo($result['id']); ?>">
         <td width="30px"><?php echo($u); ?></td>
-        <td width="190px" style="text-transform: capitalize;"><?php echo($result['categorie']); ?></td>
-        <td width="20%"><?php echo($result['titre']); ?></td>
-        <td width="150px"><?php echo($result['auteur']); ?></td>
-     <td width="120px"><?php if($result['createdAt']){ $da = explode(' ', $result['createdAt']); $d = explode('-', $da[0]); echo($d[2].'-'.$d[1].'-'.$d[0]);}  ?></td>
-
+        <td width="100px" style="text-transform: capitalize;"><?php echo($result['categorie']); ?></td>
+        <td><?php echo($result['titre']); ?></td>
+        <td width="250px"><?php echo($result['auteur']); ?></td>
+     <td width="100px"><?php if($result['createdAt']){ $da = explode(' ', $result['createdAt']); $d = explode('-', $da[0]); echo($d[2].'-'.$d[1].'-'.$d[0]);}  ?></td>
+     <td width="100px">
+      <a href=<?php echo("blog-single.html?categorie=".$result['categorie']."&titre=".$result['titre']."&id=".$result['id']) ?> style="color:blue; font-size: 15px; margin-right: 10px"><i class="bi bi-eye"></i></a>
+      <span style="color:orange; font-size: 15px; margin-right: 10px"><i class="bi bi-pencil"></i></span>
+      <span style="color:red; font-size: 15px;"><i class="bi bi-trash"></i></span>
+     </td>
       </tr>
-      
      <?php $u++; } $data->closeCursor(); ?> 
     </tbody>
   </table>
- 
-  <script type="text/javascript">
-    $('.onclickDetail').on('click', function(e){
-        
-    e.preventDefault()
-
-    var element = $(this).data('id')
-    
-    let url = "blog-single.html"
-
-    $.ajax({
-      type: 'POST',
-      url: url,
-      data: {modalDetail: el},
-      success: function(response) {
-        // $('.contentModal').html(response); 
-        // $('#dashboardDevisModal').modal('show')
-      }
-    });
-
-  })
-</script>
   
 </div>
      
