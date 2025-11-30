@@ -886,41 +886,41 @@ L'équipe GREEN AGRO VALLEY CI";
 
 echo 'Nous allons vous confirmé la reception du DON dans quelqu\'instant; Merci de patienter!';
 
-try {
-    //Server settings
-    // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-    $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'mail12.lwspanel.com';                     //Set the SMTP server to send through
-    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'no-reply@greenagrovalley.org';                     //SMTP username
-    $mail->Password   = 'Noreply@2024';                              //SMTP password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+// try {
+//     //Server settings
+//     // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+//     $mail->isSMTP();                                            //Send using SMTP
+//     $mail->Host       = 'mail12.lwspanel.com';                     //Set the SMTP server to send through
+//     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+//     $mail->Username   = 'no-reply@greenagrovalley.org';                     //SMTP username
+//     $mail->Password   = 'Noreply@2024';                              //SMTP password
+//     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+//     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
-    //Recipients
-    $mail->setFrom('no-reply@greenagrovalley.org', 'GREEN AGRO VALLEY CI');
-    $mail->addAddress('devis@greenagrovalley.org', "");  
-     // $mail->AddCC('appessika.koffi@greenagrovalley.org', ' '); 
-    // $mail->addAddress('abiole68@gmail.com', ' ');     //Add a recipient
-    // $mail->addAddress('ellen@example.com');               //Name is optional
-    // if (isset($email)) {
-    //   $mail->addReplyTo($email, strtoupper($nom));
-    // }
+//     //Recipients
+//     $mail->setFrom('no-reply@greenagrovalley.org', 'GREEN AGRO VALLEY CI');
+//     $mail->addAddress('devis@greenagrovalley.org', "");  
+//      // $mail->AddCC('appessika.koffi@greenagrovalley.org', ' '); 
+//     // $mail->addAddress('abiole68@gmail.com', ' ');     //Add a recipient
+//     // $mail->addAddress('ellen@example.com');               //Name is optional
+//     // if (isset($email)) {
+//     //   $mail->addReplyTo($email, strtoupper($nom));
+//     // }
 
-    //Content
-    $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = 'NOUVELLE INSCRIPTION AUX FORMATIONS';
-    $mail->Body    = 'Hello GREEN AGRO VALLEY CI, <br><br>Je m\'appelle '.$nom[1].' <br><br> Vous avez une nouvelle inscription à la formation sur : '.$typeFormation[1].'<br><br><a src="https://greenagrovalley.org/dashboard.php">Connexion</a>';
-// Set UTF-8 encoding
-    $mail->CharSet = 'UTF-8';
-    $mail->send();
-    echo 'Message envoyé avec succès';
+//     //Content
+//     $mail->isHTML(true);                                  //Set email format to HTML
+//     $mail->Subject = 'NOUVELLE INSCRIPTION AUX FORMATIONS';
+//     $mail->Body    = 'Hello GREEN AGRO VALLEY CI, <br><br>Je m\'appelle '.$nom[1].' <br><br> Vous avez une nouvelle inscription à la formation sur : '.$typeFormation[1].'<br><br><a src="https://greenagrovalley.org/dashboard.php">Connexion</a>';
+// // Set UTF-8 encoding
+//     $mail->CharSet = 'UTF-8';
+//     $mail->send();
+//     echo 'Message envoyé avec succès';
 
-        } catch (Exception $e) {
+//         } catch (Exception $e) {
         
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+//             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
             
-        }
+//         }
 
     }
 
@@ -991,24 +991,87 @@ echo 'Votre demande a été bien envoyé. Nous allons contacter dans les plus br
 
     }
 
-//connexion page administration
-if (isset($_POST['connexionPage'])) {
+   // Demande de partenariat
+      if (isset($_POST['demandePartenariat'])) {
 
-    $connexionPage = htmlspecialchars($_POST['connexionPage']);
-// var_dump($newsletter);
-    $connexionPage = explode('&', $connexionPage);
-    $email = explode('=', $connexionPage[0]);
-    $mdp = explode('=', $connexionPage[1]);
+        $nom = htmlspecialchars($_POST['name']);
+        $email = htmlspecialchars($_POST['email']);
+        $pays = htmlspecialchars($_POST['pays']);
+        $phone = htmlspecialchars($_POST['phone']);
+        $ville = htmlspecialchars($_POST['ville']);
+        $type_partenariat = htmlspecialchars($_POST['type_partenariat']);
+        $raison = htmlspecialchars($_POST['subject']);
+        $message = htmlspecialchars($_POST['comment']);
+
+        if ($type_partenariat === "autre") {
+            $type_partenariat = htmlspecialchars($_POST['autrePartenariatDiv']);
+        }
+
+     $ins = $bdd->prepare('INSERT INTO partenariat(nom, email, telephone, pays, ville, partenariat, raison, descriptionPartenariat, createdAt) VALUES(:nom, :email, :telephone, :pays, :ville, :partenariat, :raison, :descriptionPartenariat, NOW())');
+
+      $ins->bindParam(':nom', $nom);
+      $ins->bindParam(':email', $email);
+      $ins->bindParam(':telephone', $phone);
+      $ins->bindParam(':pays', $pays);
+      $ins->bindParam(':ville', $ville);
+      $ins->bindParam(':partenariat', $type_partenariat);
+      $ins->bindParam(':raison', $raison);
+      $ins->bindParam(':descriptionPartenariat', $message);
+      $ins->execute();
+
+echo 'Votre demande a été bien envoyé. Nous allons contacter dans les plus brefs delai!';
+
+// try {
+//     //Server settings
+//     // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+//     $mail->isSMTP();                                            //Send using SMTP
+//     $mail->Host       = 'mail12.lwspanel.com';                     //Set the SMTP server to send through
+//     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+//     $mail->Username   = 'no-reply@greenagrovalley.org';                     //SMTP username
+//     $mail->Password   = 'Noreply@2024';                              //SMTP password
+//     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+//     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+//     //Recipients
+//     $mail->setFrom('no-reply@greenagrovalley.org', 'GREEN AGRO VALLEY CI');
+//     $mail->addAddress('devis@greenagrovalley.org', "");  
+//      // $mail->AddCC('appessika.koffi@greenagrovalley.org', ' '); 
+//     // $mail->addAddress('abiole68@gmail.com', ' ');     //Add a recipient
+//     // $mail->addAddress('ellen@example.com');               //Name is optional
+//     // if (isset($email)) {
+//     //   $mail->addReplyTo($email, strtoupper($nom));
+//     // }
+
+//     //Content
+//     $mail->isHTML(true);                                  //Set email format to HTML
+//     $mail->Subject = 'NOUVELLE INSCRIPTION AUX FORMATIONS';
+//     $mail->Body    = 'Hello GREEN AGRO VALLEY CI, <br><br>Je m\'appelle '.$nom[1].' <br><br> Vous avez une nouvelle inscription à la formation sur : '.$typeFormation[1].'<br><br><a src="https://greenagrovalley.org/dashboard.php">Connexion</a>';
+// // Set UTF-8 encoding
+//     $mail->CharSet = 'UTF-8';
+//     $mail->send();
+//     echo 'Message envoyé avec succès';
+
+//         } catch (Exception $e) {
+        
+//             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            
+//         }
+
+    }
+
+//connexion page administration
+if (isset($_POST['envoyerFormConnexion'])) {
+
+    $email = htmlspecialchars($_POST['email']);
+    $mdp = htmlspecialchars($_POST['mdp']);
 
     $ins = $bdd->query('SELECT * FROM connexion');
     $ins->execute();
     
-    
-    
     while($result = $ins->fetch()){
-        if($result['email'] === rtrim($email[1])){
+        if($result['email'] === rtrim($email)){
         
-        if($result['mdp'] === rtrim($mdp[1])){
+        if($result['mdp'] === rtrim($mdp)){
             
             $_SESSION['admin'] = $result['nom'];
             
@@ -1025,6 +1088,108 @@ if (isset($_POST['connexionPage'])) {
     }
     
 }
+
+// Ajouter actualites
+if (isset($_POST['submitFormNewActualite'])) {
+    $titre = htmlspecialchars($_POST['title']);
+    $auteur = htmlspecialchars($_POST['auteur']);
+    $categorie = htmlspecialchars($_POST['categorie']);
+    $contenu = $_POST['contenu'];
+
+    if ($categorie === "autre") {
+        $categorie = htmlspecialchars($_POST['autre_categorie']);
+    }
+
+    $uploadDir = __DIR__ . '/assets/img/blog/';
+    if (!file_exists($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
+    }
+
+    $imagePaths = [];
+
+    // ✅ Vérifier si un ou plusieurs fichiers ont été envoyés
+    if (!empty($_FILES['images']['name'])) {
+        // Si c’est un seul fichier (pas un tableau)
+        if (!is_array($_FILES['images']['name'])) {
+            $_FILES['images'] = [
+                'name' => [$_FILES['images']['name']],
+                'type' => [$_FILES['images']['type']],
+                'tmp_name' => [$_FILES['images']['tmp_name']],
+                'error' => [$_FILES['images']['error']],
+                'size' => [$_FILES['images']['size']]
+            ];
+        }
+
+        $totalFiles = count($_FILES['images']['name']);
+        $allowedExt = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+
+        for ($i = 0; $i < $totalFiles; $i++) {
+            $fileName = basename($_FILES['images']['name'][$i]);
+            $fileTmp = $_FILES['images']['tmp_name'][$i];
+            $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+
+            if (in_array($fileExt, $allowedExt)) {
+                $newFileName = uniqid('img_', true) . '.' . $fileExt;
+                $targetFile = $uploadDir . $newFileName;
+
+                if (move_uploaded_file($fileTmp, $targetFile)) {
+                    $imagePaths[] = 'assets/img/blog/' . $newFileName;
+                }
+            }
+        }
+    }
+
+    $imagesJSON = json_encode($imagePaths);
+
+    $ins = $bdd->prepare('INSERT INTO actualite (titre, images, auteur, categorie, contenu, createdAt) 
+                          VALUES (:titre, :images, :auteur, :categorie, :contenu, NOW())');
+    $ins->bindParam(':titre', $titre);
+    $ins->bindParam(':images', $imagesJSON);
+    $ins->bindParam(':auteur', $auteur);
+    $ins->bindParam(':categorie', $categorie);
+    $ins->bindParam(':contenu', $contenu);
+    $ins->execute();
+
+    echo '<div style="color: green;">✅ Votre article a été publié avec succès.</div>';
+}
+
+
+
+
+   // Message visiteur
+      if (isset($_POST['submitFormMessageVisiteur'])) {
+
+        $nom = htmlspecialchars($_POST['name']);
+        $email = htmlspecialchars($_POST['email']);
+        $titre = htmlspecialchars($_POST['titre']);
+        $contenu = htmlspecialchars($_POST['contenu']);
+
+     $ins = $bdd->prepare('INSERT INTO message_visiteur(nom, email, titre, contenu, createdAt) VALUES(:nom, :email, :titre, :contenu, NOW())');
+
+      $ins->bindParam(':nom', $nom);
+      $ins->bindParam(':email', $email);
+      $ins->bindParam(':titre', $titre);
+      $ins->bindParam(':contenu', $contenu);
+      $ins->execute();
+
+echo 'Votre message a été envoyé avec succès.';
+
+    }
+
+       // newsletters
+      if (isset($_POST['submitFormNewsletter'])) {
+
+        $email = htmlspecialchars($_POST['email']);
+
+     $ins = $bdd->prepare('INSERT INTO newsletters(email, createdAt) VALUES(:email, NOW())');
+
+      $ins->bindParam(':email', $email);
+      $ins->execute();
+
+echo 'Votre inscription au newsletters de WAGEDO a été effectué avec succès.';
+
+    }
+
 
 if(isset($_POST['etat'])){
     $id = htmlspecialchars($_POST['id']);

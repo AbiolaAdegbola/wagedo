@@ -83,6 +83,7 @@
       border-radius: 5px;
       cursor: pointer;
       transition: 0.3s;
+      margin-bottom:10px
     }
     .sidebar .upgrade button a{
       color: #fff;
@@ -127,7 +128,7 @@
       background-color: #fff;
       padding: 20px;
       border-radius: 10px;
-      width: calc(33.333% - 20px);
+      width: calc(33.33% - 20px);
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
     .card h3 {
@@ -215,19 +216,19 @@
     
     <?php
     
-        if(!isset($_SESSION['admin'])){ ?>
+        if(isset($_SESSION['admin'])){ ?>
 
   <!-- Sidebar -->
   <div class="sidebar">
     <h2 style="text-align: center; font-size: 24px; font-weight: bold; padding:20px">WAGEDO</h2>
     <a href="#" class="clickBoutonDashboard clickBoutonDashboard1 DashboardBouton DashboardBoutonActive" data-id="1"><i class="fas fa-home"></i> Dashboard</a>
-    <a href="#" class="clickBoutonDashboard clickBoutonDashboard10 DashboardBouton" data-id="10"><i class="fas fa-file-pdf"></i> Actualités</a>
-    <a href="#" class="clickBoutonDashboard clickBoutonDashboard2 DashboardBouton" data-id="2"><i class="fas fa-file-pdf"></i> Projets</a>
-    <a href="#" class="clickBoutonDashboard clickBoutonDashboard3 DashboardBouton" data-id="3"><i class="fas fa-file-pdf"></i> Demande de partenariat</a>
-    <a href="#" class="clickBoutonDashboard clickBoutonDashboard9 DashboardBouton" data-id="9"><i class="fas fa-file-pdf"></i> Donateurs</a>
-    <a href="#" class="clickBoutonDashboard clickBoutonDashboard4 DashboardBouton" data-id="4"><i class="fas fa-file-pdf"></i> Rejoindre la communauté</a>
-    <a href="#" class="clickBoutonDashboard clickBoutonDashboard6 DashboardBouton" data-id="6"><i class="fas fa-book"></i> Newsletters</a>
-    <a href="#" class="clickBoutonDashboard clickBoutonDashboard7 DashboardBouton" data-id="7"><i class="fas fa-file"></i> Message visiteur</a>
+    <a href="#" class="clickBoutonDashboard clickBoutonDashboard2 DashboardBouton" data-id="2"><i class="fas fa-file-pdf"></i> Actualités</a>
+    <a href="#" class="clickBoutonDashboard clickBoutonDashboard3 DashboardBouton" data-id="3"><i class="fas fa-file-pdf"></i> Projets</a>
+    <a href="#" class="clickBoutonDashboard clickBoutonDashboard4 DashboardBouton" data-id="4"><i class="fas fa-file-pdf"></i> Demande de partenariat</a>
+    <a href="#" class="clickBoutonDashboard clickBoutonDashboard5 DashboardBouton" data-id="5"><i class="fas fa-file-pdf"></i> Donateurs</a>
+    <a href="#" class="clickBoutonDashboard clickBoutonDashboard6 DashboardBouton" data-id="6"><i class="fas fa-file-pdf"></i> Rejoindre la communauté</a>
+    <a href="#" class="clickBoutonDashboard clickBoutonDashboard7 DashboardBouton" data-id="7"><i class="fas fa-book"></i> Newsletters</a>
+    <a href="#" class="clickBoutonDashboard clickBoutonDashboard8 DashboardBouton" data-id="8"><i class="fas fa-file"></i> Message visiteur</a>
     <div class="upgrade">
       <button><a href="deconnexion.php"> <i class="fa fa-door-open"></i> Déconnexion</a></button>
     </div>
@@ -280,21 +281,13 @@
     </div>
 
 
-
+<div class="loadingBouton"></div>
  <div class="conteneurPageDashboard">
      
      
         <?php 
 
 	include 'connexionBdd.php';
-	
-	
-	// $actualitesCursor = $bdd->query('SELECT * FROM actualites ORDER BY id desc');
-	// $actualitesCursor->execute();
-
-	// $actualitesData = $actualitesCursor->rowCount();
-
-	// $actualitesCursor->closeCursor();
 	
 	$state = $bdd->query('SELECT * FROM donateur');
 	$state->execute();
@@ -440,18 +433,21 @@
                         <div class="row g-3">
                            
                             <div class="col-md-12">
-                                <input type="email" name="email" class="form-control border-0 px-4" placeholder="Votre Email" style="height: 55px;">
+                                <input type="email" name="email" class="form-control border-0 px-4" placeholder="Votre Email" style="height: 55px;" required>
                             </div>
                             <div class="col-12">
-                                <input type="password" name="mdp" class="form-control border-0 px-4" placeholder="Votre mot de passe" style="height: 55px;">
+                                <input type="password" name="mdp" class="form-control border-0 px-4" placeholder="Votre mot de passe" style="height: 55px;" required>
                             </div>
+
+                             <input type="text" name="envoyerFormConnexion" style="display:none">
+
                             <div class="responseConnexion" style="background-color: red; color: white; text-align: center; padding: 10px; display: none;"></div>
-                            <div class="spinner-grow loadingBoutonConnexion containerSysteme" style="color: orange; display:none" role="status">
+                            <div class="spinner-grow loadingBoutonConnexion containerDisplayNone" style="color: orange; display:none" role="status">
                               <span class="sr-only">Loading...</span>
                             </div>
                             
                             <div class="col-12">
-                                <button class="btn btn-secondary w-100 py-3" type="submit">connexion</button>
+                                <button class="btn btn-secondary w-100 py-3 envoyerFormConnexion" type="submit">connexion</button>
                             </div>
                         </div>
                     </form>
@@ -465,10 +461,6 @@
         </div>
         
     <?php  }?>
-    
-    
-    
-    
       
   <div class="modal fade" id="dashboardDevisModal" tabindex="-1">
         <div class="modal-dialog modal-fullscreen">
@@ -482,26 +474,19 @@
             </div>
         </div>
     </div>
-
-
-
-    
-    
-    
-    
   
 <!-- JavaScript Libraries -->
     <!--<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>-->
-    <script src="lib/jQuery.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="assets/js/main_dashboard.js"></script>
+    <script src="assets/js/jquery.js"></script>
     
     <script type="text/javascript">
     $('.onclickDetail').on('click', function(e){

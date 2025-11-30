@@ -25,9 +25,9 @@
    */
   const on = (type, el, listener, all = false) => {
     if (all) {
-      select(el, all).forEach(e => e.addEventListener(type, listener))
+      select(el, all).forEach(e => e?.addEventListener(type, listener))
     } else {
-      select(el, all).addEventListener(type, listener)
+      select(el, all)?.addEventListener(type, listener)
     }
   }
 
@@ -305,52 +305,6 @@ if (header) {
    */
   new PureCounter();
 
-  // Gestion du clic sur les boutons du dashboard
-document.querySelectorAll('.clickBoutonDashboard').forEach(button => {
-  button.addEventListener('click', async (e) => {
-    const element = button.dataset.id;
-    let url = '';
-
-    switch (element) {
-      case '1': url = 'dashboard-vue-ensemble.php'; break;
-      case '2': url = 'dashboard-devis.php'; break;
-      case '3': url = 'dashboard-devis-laser.php'; break;
-      case '4': url = 'dashboard-devis-commande.php'; break;
-      case '5': url = 'dashboard-newsletter.php'; break;
-      case '6': url = 'dashboard-livre.php'; break;
-      case '7': url = 'dashboard-formation.php'; break;
-      case '8': url = 'dashboard-projet-forage.php'; break;
-      case '9': url = 'dashboard-devis-forage-laser.php'; break;
-      case '10': url = 'dashboard-devis-genere.php'; break;
-      default: return;
-    }
-
-    // Avant l’envoi
-    const conteneurPage = document.querySelector('.conteneurPageDashboard');
-    const loadingBouton = document.querySelector('.loadingBouton');
-    conteneurPage.innerHTML = '';
-    loadingBouton.classList.remove('containerDisplayNone');
-    loadingBouton.classList.add('containerDisplayInitial');
-
-    try {
-      const response = await fetch(url, { method: 'POST' });
-      const data = await response.text();
-
-      // Après succès
-      loadingBouton.classList.remove('containerDisplayInitial');
-      loadingBouton.classList.add('containerDisplayNone');
-      document.querySelectorAll('.clickBoutonDashboard').forEach(btn => btn.classList.remove('DashboardBoutonActive'));
-      document.querySelector(`.clickBoutonDashboard${element}`)?.classList.add('DashboardBoutonActive');
-      conteneurPage.innerHTML = data;
-    } catch (error) {
-      console.error('Erreur de chargement :', error);
-      loadingBouton.classList.remove('containerDisplayInitial');
-      loadingBouton.classList.add('containerDisplayNone');
-      conteneurPage.innerHTML = "<p>Erreur lors du chargement de la page.</p>";
-    }
-  });
-});
-
 // Connexion page administration
 const formConnexion = document.querySelector('#connexionPage');
 if (formConnexion) {
@@ -446,6 +400,203 @@ if (submitRejoindreWagedo) {
     const envoyerForm = document.querySelector('.submitRejoindreWagedo');
     const responseContainer = document.querySelector('.responseForm');
     const responseContainerSuccess = document.querySelector('.responseFormSuccess');
+
+    loading.classList.remove('containerDisplayNone');
+    loading.classList.add('containerDisplayInitial');
+    envoyerForm.classList.add('containerDisplayNone');
+
+    try {
+      const response = await fetch('back_data.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: decodeURIComponent(params),
+      });
+      const data = await response.text();
+
+      loading.classList.remove('containerDisplayInitial');
+      loading.classList.add('containerDisplayNone');
+      responseContainerSuccess.innerHTML = data;
+      responseContainerSuccess.style.display = 'initial';
+    } catch (error) {
+      console.error('Erreur de connexion :', error);
+      loading.classList.remove('containerDisplayInitial');
+      loading.classList.add('containerDisplayNone');
+      responseContainer.innerHTML = "<p>Erreur de connexion au serveur.</p>";
+      responseContainer.style.display = 'initial';
+    }
+  });
+}
+
+// Demande de partenariat
+const submitFormPartenariat = document.querySelector('#submitFormPartenariat');
+if (submitFormPartenariat) {
+  submitFormPartenariat.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(submitFormPartenariat);
+    
+    const params = new URLSearchParams(formData).toString();
+
+    const loading = document.querySelector('.loadingBoutonForm');
+    const envoyerForm = document.querySelector('.submitFormPartenariat');
+    const responseContainer = document.querySelector('.responseForm');
+    const responseContainerSuccess = document.querySelector('.responseFormSuccess');
+
+    loading.classList.remove('containerDisplayNone');
+    loading.classList.add('containerDisplayInitial');
+    envoyerForm.classList.add('containerDisplayNone');
+
+    try {
+      const response = await fetch('back_data.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: decodeURIComponent(params),
+      });
+      const data = await response.text();
+
+      loading.classList.remove('containerDisplayInitial');
+      loading.classList.add('containerDisplayNone');
+      responseContainerSuccess.innerHTML = data;
+      responseContainerSuccess.style.display = 'initial';
+    } catch (error) {
+      console.error('Erreur de connexion :', error);
+      loading.classList.remove('containerDisplayInitial');
+      loading.classList.add('containerDisplayNone');
+      responseContainer.innerHTML = "<p>Erreur de connexion au serveur.</p>";
+      responseContainer.style.display = 'initial';
+    }
+  });
+}
+
+
+
+//  Message des visiteurs
+const submitFormMessageVisiteur = document.querySelector('#submitFormMessageVisiteur');
+if (submitFormMessageVisiteur) {
+  submitFormMessageVisiteur.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(submitFormMessageVisiteur);
+    
+    const params = new URLSearchParams(formData).toString();
+
+    const loading = document.querySelector('.loadingBoutonForm');
+    const envoyerForm = document.querySelector('.submitFormMessageVisiteur');
+    const responseContainer = document.querySelector('.responseForm');
+    const responseContainerSuccess = document.querySelector('.responseFormSuccess');
+
+    loading.classList.remove('containerDisplayNone');
+    loading.classList.add('containerDisplayInitial');
+    envoyerForm.classList.add('containerDisplayNone');
+
+    try {
+      const response = await fetch('back_data.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: decodeURIComponent(params),
+      });
+      const data = await response.text();
+
+      loading.classList.remove('containerDisplayInitial');
+      loading.classList.add('containerDisplayNone');
+      responseContainerSuccess.innerHTML = data;
+      responseContainerSuccess.style.display = 'initial';
+    } catch (error) {
+      console.error('Erreur de connexion :', error);
+      loading.classList.remove('containerDisplayInitial');
+      loading.classList.add('containerDisplayNone');
+      responseContainer.innerHTML = "<p>Erreur de connexion au serveur.</p>";
+      responseContainer.style.display = 'initial';
+    }
+  });
+}
+
+
+// ajouter actualités
+const submitFormNewActualite = document.querySelector('#submitFormNewActualite');
+if (submitFormNewActualite) {
+  submitFormNewActualite.addEventListener('submit', async (e) => {
+    e.preventDefault();
+ // ⚡ Important : synchroniser TinyMCE avec le <textarea>
+  tinymce.triggerSave();
+    const formData = new FormData(submitFormNewActualite);
+
+    const loading = document.querySelector('.loadingBoutonForm');
+    const envoyerForm = document.querySelector('.submitFormNewActualite');
+    const responseContainer = document.querySelector('.responseForm');
+    const responseContainerSuccess = document.querySelector('.responseFormSuccess');
+
+    // Loader visible
+    loading.classList.remove('containerDisplayNone');
+    loading.classList.add('containerDisplayInitial');
+    envoyerForm.classList.add('containerDisplayNone');
+
+    try {
+      const response = await fetch('back_data.php', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.text();
+
+      // Cacher le loader
+      loading.classList.remove('containerDisplayInitial');
+      loading.classList.add('containerDisplayNone');
+
+      // Afficher la réponse succès
+      responseContainerSuccess.innerHTML = data;
+      responseContainerSuccess.style.display = 'initial';
+
+      // ✅ Réinitialiser le formulaire après succès
+      submitFormNewActualite.reset();
+
+      // vider TinyMCE aussi
+    tinymce.get('contenu').setContent('');
+
+      // ✅ Si tu as un conteneur d'aperçu d’images (prévisualisation)
+      const previewContainer = document.getElementById('preview-container');
+      if (previewContainer) previewContainer.innerHTML = '';
+
+      // ✅ Réafficher le bouton d’envoi
+      envoyerForm.classList.remove('containerDisplayNone');
+
+      // ✅ Masquer le message succès après quelques secondes (optionnel)
+      setTimeout(() => {
+        responseContainerSuccess.style.display = 'none';
+        responseContainerSuccess.innerHTML = '';
+      }, 4000);
+
+    } catch (error) {
+      console.error('Erreur de connexion :', error);
+
+      loading.classList.remove('containerDisplayInitial');
+      loading.classList.add('containerDisplayNone');
+
+      responseContainer.innerHTML = "<p>❌ Erreur de connexion au serveur.</p>";
+      responseContainer.style.display = 'initial';
+
+      // Réafficher le bouton
+      envoyerForm.classList.remove('containerDisplayNone');
+    }
+  });
+}
+
+
+
+// inscription au newsletters
+const submitFormNewsletter = document.querySelector('#submitFormNewsletter');
+if (submitFormNewsletter) {
+  submitFormNewsletter.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(submitFormNewsletter);
+    
+    const params = new URLSearchParams(formData).toString();
+
+    const loading = document.querySelector('.loadingBoutonFormNews');
+    const envoyerForm = document.querySelector('.submitFormNewsletter');
+    const responseContainer = document.querySelector('.responseFormNews');
+    const responseContainerSuccess = document.querySelector('.responseFormSuccessNews');
 
     loading.classList.remove('containerDisplayNone');
     loading.classList.add('containerDisplayInitial');

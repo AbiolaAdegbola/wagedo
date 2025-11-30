@@ -1,80 +1,3 @@
-<?php
-include 'connexionBdd.php';
-
-// --------- IP du visiteur ---------
-$ip = $_SERVER['REMOTE_ADDR'];
-$jour = date('Y-m-d'); // format : 2025-07-16
-
-// --------- Vérifie si cette IP a déjà été comptée aujourd’hui ---------
-$check = $bdd->prepare("SELECT COUNT(*) FROM visites_jour WHERE ip = :ip AND jour = :jour");
-$check->execute(['ip' => $ip, 'jour' => $jour]);
-$dejaCompte = $check->fetchColumn() > 0;
-$check->closeCursor();
-
-if (!$dejaCompte) {
-    // --------- Enregistrer la visite dans la table visites_jour ---------
-    $insert = $bdd->prepare("INSERT INTO visites_jour (ip, jour) VALUES (:ip, :jour)");
-    $insert->execute(['ip' => $ip, 'jour' => $jour]);
-    $insert->closeCursor();
-
-    // --------- Récupération des données globales ---------
-    $result = $bdd->query("SELECT * FROM visiteur");
-    $visiteurData = $result->fetch();
-    $result->closeCursor();
-
-    if (!$visiteurData) {
-        exit("Erreur : données de visiteurs introuvables.");
-    }
-
-    $count = (int)$visiteurData['count'];
-    $nombre = !empty($visiteurData['nombre']) ? explode(', ', $visiteurData['nombre']) : [];
-    $mois = !empty($visiteurData['mois']) ? explode(', ', $visiteurData['mois']) : [];
-    $etat = (int)$visiteurData['etat'];
-    $jourActuel = date('j');
-    $dateComplete = date("d/m/Y");
-
-    // --------- Traitement du compteur ---------
-    if ($jourActuel != 5) {
-        $count++;
-        $nombre[count($nombre) - 1] = $count;
-        $etat = 1;
-
-        $req = $bdd->prepare("UPDATE visiteur SET count = :count, nombre = :nombre, etat = :etat");
-        $req->bindValue(':count', $count, PDO::PARAM_INT);
-        $req->bindValue(':nombre', implode(', ', $nombre), PDO::PARAM_STR);
-        $req->bindValue(':etat', $etat, PDO::PARAM_INT);
-        $req->execute();
-        $req->closeCursor();
-    } else {
-        if ($etat === 1) {
-            $mois[] = $dateComplete;
-            $nombre[] = $count;
-            $count = 0;
-            $etat = 0;
-
-            $req = $bdd->prepare("UPDATE visiteur SET count = :count, nombre = :nombre, mois = :mois, etat = :etat");
-            $req->bindValue(':count', $count, PDO::PARAM_INT);
-            $req->bindValue(':nombre', implode(', ', $nombre), PDO::PARAM_STR);
-            $req->bindValue(':mois', implode(', ', $mois), PDO::PARAM_STR);
-            $req->bindValue(':etat', $etat, PDO::PARAM_INT);
-            $req->execute();
-            $req->closeCursor();
-        } else {
-            $count++;
-            $nombre[count($nombre) - 1] = $count;
-
-            $req = $bdd->prepare("UPDATE visiteur SET count = :count, nombre = :nombre");
-            $req->bindValue(':count', $count, PDO::PARAM_INT);
-            $req->bindValue(':nombre', implode(', ', $nombre), PDO::PARAM_STR);
-            $req->execute();
-            $req->closeCursor();
-        }
-    }
-}
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -113,6 +36,25 @@ if (!$dejaCompte) {
 </head>
 
 <body>
+
+<script>
+async function chargerActualites() {
+  try {
+    const response = await fetch('state_visiteur.php');
+    const result = await response.json();
+    if (result.success) {
+      console.log(result.message);
+    } else {
+      console.error("Erreur :", result.message);
+    }
+  } catch (error) {
+    console.error("Erreur de connexion :", error);
+  }
+}
+
+chargerActualites();
+</script>
+
 
   <!-- 🔔 Bandeau d’actualités WAGEDO -->
 <div class="news-container">
@@ -799,7 +741,7 @@ document.getElementById("newsMarquee").innerHTML = `<span>${newsList.join(" — 
           </div>
 
           <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" class="php-email-form">
+            <form id="submitFormMessageVisiteur">
               <div class="row gy-4">
 
                 <div class="col-md-6">
@@ -811,19 +753,23 @@ document.getElementById("newsMarquee").innerHTML = `<span>${newsList.join(" — 
                 </div>
 
                 <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject/Object" required>
+                  <input type="text" class="form-control" name="titre" placeholder="Subject/Object" required>
                 </div>
 
                 <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                  <textarea class="form-control" name="contenu" rows="6" placeholder="Message" required></textarea>
                 </div>
+                
+                  <input type="text" name="submitFormMessageVisiteur" style="display:none">
+
+              <div class="responseForm" style="background-color: red; color: white; text-align: center; padding: 10px; display: none;"></div>
+              <div class="responseFormSuccess" style="background-color: green; color: white; text-align: center; padding: 10px; display: none;"></div>
+                <div class="spinner-grow loadingBoutonForm containerDisplayNone" style="color: orange; display:none" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
 
                 <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you for your attention</div>
-
-                  <button type="submit">Send a message</button>
+                  <button type="submit" class="btn btn-primary submitFormMessageVisiteur">Send a message</button>
                 </div>
 
               </div>
@@ -850,9 +796,15 @@ document.getElementById("newsMarquee").innerHTML = `<span>${newsList.join(" — 
             <p>Get our latest news, projects, and events delivered straight to your inbox.</p>
           </div>
           <div class="col-lg-6">
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Souscrire">
+            <form id="submitFormNewsletter">
+              <input type="email" name="email" required><input type="submit" class="submitFormNewsletter">
+              <input type="text" name="submitFormNewsletter" style="display:none;">
             </form>
+             <div class="responseFormNews" style="background-color: red; color: white; text-align: center; padding: 10px; display: none;"></div>
+              <div class="responseFormSuccessNews" style="background-color: green; color: white; text-align: center; padding: 10px; display: none;"></div>
+                <div class="spinner-grow loadingBoutonFormNews containerDisplayNone" style="color: orange; display:none" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
           </div>
         </div>
       </div>

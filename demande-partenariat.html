@@ -121,31 +121,31 @@
                                 <div class="reply-form">
                                     <h4>Leave a Reply</h4>
                                     <p>Your email address will not be published. Required fields are marked * </p>
-                                    <form action="">
+                                    <form id="submitFormPartenariat">
                                         <div class="row">
                                             <div class="col-md-6 form-group">
                                                 <input name="name" type="text" class="form-control"
-                                                    placeholder="Your Name*">
+                                                    placeholder="Your Name*" required>
                                             </div>
                                             <div class="col-md-6 form-group">
                                                 <input name="email" type="text" class="form-control"
-                                                    placeholder="Your Email*">
+                                                    placeholder="Your Email*" required>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6 form-group">
                                                 <input name="pays" type="text" class="form-control"
-                                                    placeholder="Votre pays*">
+                                                    placeholder="Votre pays*" required>
                                             </div>
                                             <div class="col-md-6 form-group">
                                                 <input name="ville" type="text" class="form-control"
-                                                    placeholder="Your ville*">
+                                                    placeholder="Your ville*" required>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12 form-group">
                                                 <input name="phone" type="text" class="form-control"
-                                                    placeholder="Your numéro de téléphone*">
+                                                    placeholder="Your numéro de téléphone*" required>
                                             </div>
                                         </div>
 
@@ -154,7 +154,7 @@
                                                 <label for="type_partenariat"><strong>Type de
                                                         partenariat</strong></label>
                                                 <select name="type_partenariat" id="type_partenariat"
-                                                    class="form-control">
+                                                    class="form-control" required>
                                                     <option value="">Veuillez choisir le type de partenariat
                                                     </option>
                                                     <option value="technique">Partenariat technique</option>
@@ -212,16 +212,26 @@
                                         <div class="row">
                                             <div class="col form-group">
                                                 <input name="subject" type="text" class="form-control"
-                                                    placeholder="Your raison de votre integration à WAGEDO">
+                                                    placeholder="Your raison de votre integration à WAGEDO" required>
                                             </div>
                                         </div>
+
+                                        <input name="demandePartenariat" type="text" style="display: none;">
+
                                         <div class="row">
                                             <div class="col form-group">
                                                 <textarea name="comment" class="form-control"
-                                                    placeholder="Your Motivation*"></textarea>
+                                                    placeholder="Your Motivation*" required></textarea>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">ENVOYER</button>
+
+                                         <div class="responseForm" style="background-color: red; color: white; text-align: center; padding: 10px; display: none;"></div>
+                                                     <div class="responseFormSuccess" style="background-color: green; color: white; text-align: center; padding: 10px; display: none;"></div>
+                                                        <div class="spinner-grow loadingBoutonForm containerDisplayNone" style="color: orange; display:none" role="status">
+                                                        <span class="sr-only">Loading...</span>
+                                                     </div>
+
+                                        <button type="submit" class="btn btn-primary submitFormPartenariat">ENVOYER</button>
 
                                     </form>
 
