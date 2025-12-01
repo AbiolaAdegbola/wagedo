@@ -41,7 +41,7 @@ Ajouter une nouvelle actualité
     $u = 1;
      while ($result = $data->fetch()) {
        ?>
-      <tr class="success" style="font-size: 12px" data-id="<?php echo($result['id']); ?>">
+      <tr class="success" style="font-size: 12px; cursor: normal">
         <td width="30px"><?php echo($u); ?></td>
         <td width="100px" style="text-transform: capitalize;"><?php echo($result['categorie']); ?></td>
         <td><?php echo($result['titre']); ?></td>
@@ -49,7 +49,7 @@ Ajouter une nouvelle actualité
      <td width="100px"><?php if($result['createdAt']){ $da = explode(' ', $result['createdAt']); $d = explode('-', $da[0]); echo($d[2].'-'.$d[1].'-'.$d[0]);}  ?></td>
      <td width="100px">
       <a href=<?php echo("blog-single.html?categorie=".$result['categorie']."&titre=".$result['titre']."&id=".$result['id']) ?> style="color:blue; font-size: 15px; margin-right: 10px"><i class="bi bi-eye"></i></a>
-      <span style="color:orange; font-size: 15px; margin-right: 10px"><i class="bi bi-pencil"></i></span>
+      <span style="color:orange; font-size: 15px; margin-right: 10px" id="delete_artcile"><i class="bi bi-pencil"></i></span>
       <span style="color:red; font-size: 15px;"><i class="bi bi-trash"></i></span>
      </td>
       </tr>
@@ -58,4 +58,50 @@ Ajouter une nouvelle actualité
   </table>
   
 </div>
-     
+
+<script>
+  // Suppression d'un article
+  document.addEventListener("click", async (e) => {
+    // Vérifie si le bouton cliqué a la classe "delete_article"
+    if (e.target.classList.contains("delete_article")) {
+      e.preventDefault();
+
+      // Récupération de l'ID depuis un attribut data-id sur le bouton
+      const id_article = e.target.getAttribute("data-id");
+      const ligneArticle = e.target.closest("tr"); // ou "div" selon ta structure
+
+      if (!id_article) return alert("ID article introuvable.");
+
+      // Optionnel : confirmation avant suppression
+      if (!confirm("Voulez-vous vraiment supprimer cet article ?")) return;
+
+      try {
+        // Envoi au backend
+        const response = await fetch("delete_actualite.php", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams({ id: id_article }),
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          // ✅ Suppression réussie → retirer la ligne du DOM
+          ligneArticle.style.transition = "opacity 0.5s ease";
+          ligneArticle.style.opacity = "0";
+
+          setTimeout(() => ligneArticle.remove(), 500);
+
+          console.log("Article supprimé :", result.message);
+        } else {
+          alert(result.message || "Erreur lors de la suppression.");
+        }
+      } catch (error) {
+        console.error("Erreur :", error);
+        alert("Une erreur est survenue.");
+      }
+    }
+  });
+</script>
