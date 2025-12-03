@@ -219,26 +219,52 @@
         if(isset($_SESSION['admin'])){ ?>
 
   <!-- Sidebar -->
-  <div class="sidebar">
-    <h2 style="text-align: center; font-size: 24px; font-weight: bold; padding:20px">WAGEDO</h2>
-    <a href="#" class="clickBoutonDashboard clickBoutonDashboard1 DashboardBouton DashboardBoutonActive" data-id="1"><i class="fas fa-home"></i> Dashboard</a>
-    <a href="#" class="clickBoutonDashboard clickBoutonDashboard2 DashboardBouton" data-id="2"><i class="fas fa-file-pdf"></i> Actualités</a>
-    <a href="#" class="clickBoutonDashboard clickBoutonDashboard3 DashboardBouton" data-id="3"><i class="fas fa-file-pdf"></i> Projets</a>
-    <a href="#" class="clickBoutonDashboard clickBoutonDashboard4 DashboardBouton" data-id="4"><i class="fas fa-file-pdf"></i> Demande de partenariat</a>
-    <a href="#" class="clickBoutonDashboard clickBoutonDashboard5 DashboardBouton" data-id="5"><i class="fas fa-file-pdf"></i> Donateurs</a>
-    <a href="#" class="clickBoutonDashboard clickBoutonDashboard6 DashboardBouton" data-id="6"><i class="fas fa-file-pdf"></i> Rejoindre la communauté</a>
-    <a href="#" class="clickBoutonDashboard clickBoutonDashboard7 DashboardBouton" data-id="7"><i class="fas fa-book"></i> Newsletters</a>
-    <a href="#" class="clickBoutonDashboard clickBoutonDashboard8 DashboardBouton" data-id="8"><i class="fas fa-file"></i> Message visiteur</a>
-    <div class="upgrade">
-      <button><a href="deconnexion.php"> <i class="fa fa-door-open"></i> Déconnexion</a></button>
-    </div>
+<div class="sidebar">
+  <h2 style="text-align: center; font-size: 24px; font-weight: bold; padding: 20px;">WAGEDO</h2>
+
+  <a href="#" class="clickBoutonDashboard clickBoutonDashboard1 DashboardBouton DashboardBoutonActive" data-id="1">
+    <i class="fas fa-tachometer-alt"></i> Dashboard
+  </a>
+
+  <a href="#" class="clickBoutonDashboard clickBoutonDashboard2 DashboardBouton" data-id="2">
+    <i class="fas fa-newspaper"></i> Actualités
+  </a>
+
+  <a href="#" class="clickBoutonDashboard clickBoutonDashboard3 DashboardBouton" data-id="3">
+    <i class="fas fa-project-diagram"></i> Projets
+  </a>
+
+  <a href="#" class="clickBoutonDashboard clickBoutonDashboard4 DashboardBouton" data-id="4">
+    <i class="fas fa-handshake"></i> Demande de partenariat
+  </a>
+
+  <a href="#" class="clickBoutonDashboard clickBoutonDashboard5 DashboardBouton" data-id="5">
+    <i class="fas fa-donate"></i> Donateurs
+  </a>
+
+  <a href="#" class="clickBoutonDashboard clickBoutonDashboard6 DashboardBouton" data-id="6">
+    <i class="fas fa-users"></i> Rejoindre la communauté
+  </a>
+
+  <a href="#" class="clickBoutonDashboard clickBoutonDashboard7 DashboardBouton" data-id="7">
+    <i class="fas fa-envelope-open-text"></i> Newsletters
+  </a>
+
+  <a href="#" class="clickBoutonDashboard clickBoutonDashboard8 DashboardBouton" data-id="8">
+    <i class="fas fa-comments"></i> Message visiteur
+  </a>
+
+  <div class="upgrade">
+    <button>
+      <a href="deconnexion.php"><i class="fas fa-door-open"></i> Déconnexion</a>
+    </button>
   </div>
+</div>
 
   <!-- Main Content -->
   <div class="main-content" style="margin-left:250px;">
     <!-- Top Bar -->
     <div class="top-bar">
-      <!--<input type="search" placeholder="Search...">-->
 <div style="background-color: orange; padding:10px; text-align: center; border-radius: 10px; cursor: pointer; color:white" 
      class="reporting" 
      onclick="handleReportingDownload()">
@@ -249,11 +275,11 @@
 <script type="text/javascript">
   function handleReportingDownload() {
     // Appeler le fichier reporting.php
-    fetch('https://wagedo.org/reporting.php')
+    fetch('reporting.php')
       .then(response => {
         if (response.ok) {
           // Si l'appel a réussi, télécharger le fichier Excel
-          downloadFile('https://wagedo.org/reporting-gav-ci.xlsx');
+          downloadFile('reporting-gav-ci.xlsx');
         } else {
           console.error('Erreur lors de l\'appel à reporting.php');
         }
@@ -462,7 +488,7 @@
         
     <?php  }?>
       
-  <div class="modal fade" id="dashboardDevisModal" tabindex="-1">
+      <div class="modal fade" id="dashboardDevisModal" tabindex="-1">
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content " style="background: rgba(255, 255, 255, .8);">
                 <div class="modal-header border-0">
@@ -473,9 +499,9 @@
                 </div>
             </div>
         </div>
-    </div>
-  
-<!-- JavaScript Libraries -->
+      </div>
+
+    <!-- JavaScript Libraries -->
     <!--<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>-->
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
@@ -525,74 +551,31 @@
       alert("Une erreur est survenue.");
     }
   });
-</script>
-    
-    <script type="text/javascript">
-    $('.onclickDetail').on('click', function(e){
-        
-    e.preventDefault()
 
-    var element = $(this).data('id')
-    
-    // console.log(element)
-    
-    const el = element.split("@]")
-    
-    console.log(el)
-    
-    let url = ""
-    
-    if(el[1] === "laserSpray" || el[1] === "promoLaser"){
-        url = 'dashboard-devis-modal-laser.php'
-    } else if(el[1] === "forage"){
-        url = 'dashboard-devis-modal.php'
-    } else if(el[1] === "foragepluslaser"){
-        url = 'dashboard-devis-modal-forage-laser.php'
-    }else if(el[1] === "commande"){
-        url = 'dashboard-devis-modal-laser.php'
+  $(document).on('click', '.onclickDetailModal', function (e) {
+  e.preventDefault();
+
+  const id = $(this).data('id');
+
+  const data_id = id.split("@]")
+
+  $.ajax({
+    type: 'POST',
+    url: 'dashboard-modal-donateur.php',
+    data: { modalDetail: data_id[0], table: data_id[1] },
+    beforeSend: function() {
+      $('.contentModal').html('<div style="padding:20px;text-align:center;">Chargement...</div>');
+    },
+    success: function (response) {
+      $('.contentModal').html(response);
+      $('#dashboardDevisModal').modal('show');
+    },
+    error: function() {
+      alert('Erreur lors du chargement du détail.');
     }
-    
+  });
+});
 
-    $.ajax({
-      type: 'POST',
-      url: url,
-      data: {modalDetail: el[0]},
-      success: function(response) {
-        $('.contentModal').html(response); 
-        $('#dashboardDevisModal').modal('show')
-      }
-    });
-    
-
-  })
-  
-//   devis genere
-$('.onclickDetailDevisGenere').on('click', function(e){
-        
-    e.preventDefault()
-
-    var element = $(this).data('id')
-    
-    // console.log(element)
-    
-    // const el = element.split("@]")
-    
-    // console.log(el)
-    
-    let url = "dashboard-devis-modal-genere.php"
-  
-    $.ajax({
-      type: 'POST',
-      url: url,
-      data: {modalDetail: element},
-      success: function(response) {
-        $('.contentModal').html(response); 
-        $('#dashboardDevisModal').modal('show')
-      }
-    });
-    
-
-  })
 </script>
 
 </body>

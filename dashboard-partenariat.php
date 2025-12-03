@@ -45,7 +45,7 @@ Ajouter une nouvelle actualité
      while ($result = $data->fetch()) {
        ?>
    
-      <tr class="success onclickDetail" style="font-size: 12px" data-id="<?php echo($result['id']); ?>">
+      <tr class="success onclickDetailModal" style="font-size: 12px" data-id="<?php echo($result['id'].'@]'."partenariat"); ?>">
         <td width="30px"><?php echo($u); ?></td>
         <td width="190px" style="text-transform: capitalize;"><?php echo($result['nom']); ?></td>
         <td width="20%"><?php echo($result['email']); ?></td>

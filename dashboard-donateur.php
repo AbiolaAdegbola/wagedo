@@ -1,25 +1,3 @@
-<style>
-    .boutonAjouter{
-        background-color: #fff; 
-        padding: 10px; 
-        border-radius: 10px; 
-        width: 280px; 
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-        margin-bottom:20px; 
-        cursor: pointer;
-        display: flex;
-        justify-content: center
-    }
-    .boutonAjouter:hover{
-        background-color: #0a7b2b;
-        color: white;
-    }
-</style>
-
-<!-- <a href="ajouter-actualite.html" class="boutonAjouter" >
-Ajouter une nouvelle actualité
-</a> -->
-
 <div class="card" style="width: 100%">
 <h3>Liste des donateurs WAGEDO</h3>
 
@@ -44,7 +22,7 @@ Ajouter une nouvelle actualité
      while ($result = $data->fetch()) {
        ?>
    
-      <tr class="success onclickDetail" style="font-size: 12px" data-id="<?php echo($result['id']); ?>">
+      <tr class="success onclickDetailModal" style="font-size: 12px" data-id="<?php echo($result['id'].'@]'."donateur"); ?>">
         <td width="30px"><?php echo($u); ?></td>
         <td width="190px" style="text-transform: capitalize;"><?php echo($result['nom']); ?></td>
         <td width="20%"><?php echo($result['email']); ?></td>
@@ -58,28 +36,6 @@ Ajouter une nouvelle actualité
      <?php $u++; } $data->closeCursor(); ?> 
     </tbody>
   </table>
- 
-  <script type="text/javascript">
-    $('.onclickDetail').on('click', function(e){
-        
-    e.preventDefault()
 
-    var element = $(this).data('id')
-    
-    let url = "blog-single.html"
-
-    $.ajax({
-      type: 'POST',
-      url: url,
-      data: {modalDetail: el},
-      success: function(response) {
-        // $('.contentModal').html(response); 
-        // $('#dashboardDevisModal').modal('show')
-      }
-    });
-
-  })
-</script>
-  
 </div>
      
