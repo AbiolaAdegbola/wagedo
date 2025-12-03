@@ -1091,70 +1091,101 @@ if (isset($_POST['envoyerFormConnexion'])) {
 
 // Ajouter actualites
 if (isset($_POST['submitFormNewActualite'])) {
-    $titre = htmlspecialchars($_POST['title']);
-    $auteur = htmlspecialchars($_POST['auteur']);
-    $categorie = htmlspecialchars($_POST['categorie']);
-    $contenu = $_POST['contenu'];
+    $titre = trim(htmlspecialchars($_POST['title'] ?? ''));
+    $auteur = trim(htmlspecialchars($_POST['auteur'] ?? ''));
+    $categorie = trim(htmlspecialchars($_POST['categorie'] ?? ''));
+    $contenu = $_POST['contenu'] ?? '';
+    $nameTable = trim(htmlspecialchars($_POST['submitFormNewActualite'] ?? ''));
 
     if ($categorie === "autre") {
-        $categorie = htmlspecialchars($_POST['autre_categorie']);
+        $categorie = trim(htmlspecialchars($_POST['autre_categorie'] ?? ''));
     }
 
     $uploadDir = __DIR__ . '/assets/img/blog/';
-    if (!file_exists($uploadDir)) {
+    if (!is_dir($uploadDir)) {
         mkdir($uploadDir, 0777, true);
     }
 
     $imagePaths = [];
 
-    // ✅ Vérifier si un ou plusieurs fichiers ont été envoyés
-    if (!empty($_FILES['images']['name'])) {
-        // Si c’est un seul fichier (pas un tableau)
-        if (!is_array($_FILES['images']['name'])) {
-            $_FILES['images'] = [
-                'name' => [$_FILES['images']['name']],
-                'type' => [$_FILES['images']['type']],
-                'tmp_name' => [$_FILES['images']['tmp_name']],
-                'error' => [$_FILES['images']['error']],
-                'size' => [$_FILES['images']['size']]
-            ];
+    // ✅ Gestion multi-fichiers
+    if (!empty($_FILES['images']['name'][0])) {
+        // Uniformiser le tableau des fichiers
+        $files = [];
+        foreach ($_FILES['images'] as $key => $values) {
+            foreach ((array)$values as $i => $value) {
+                $files[$i][$key] = $value;
+            }
         }
 
-        $totalFiles = count($_FILES['images']['name']);
-        $allowedExt = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+        // ✅ Extensions autorisées + nouveaux formats
+        $allowedExt = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp', 'svg', 'avif', 'heic'];
 
-        for ($i = 0; $i < $totalFiles; $i++) {
-            $fileName = basename($_FILES['images']['name'][$i]);
-            $fileTmp = $_FILES['images']['tmp_name'][$i];
+        foreach ($files as $file) {
+            if ($file['error'] !== UPLOAD_ERR_OK) continue;
+
+            $fileName = basename($file['name']);
+            $fileTmp = $file['tmp_name'];
             $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
-            if (in_array($fileExt, $allowedExt)) {
-                $newFileName = uniqid('img_', true) . '.' . $fileExt;
+            // Vérification du type MIME par sécurité
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            $mime = finfo_file($finfo, $fileTmp);
+            finfo_close($finfo);
+
+            $allowedMime = [
+                'image/jpeg', 'image/png', 'image/gif', 'image/webp',
+                'image/bmp', 'image/svg+xml', 'image/avif', 'image/heic'
+            ];
+
+            if (in_array($fileExt, $allowedExt) && in_array($mime, $allowedMime)) {
+                // Nom unique + nettoyage du nom original
+                $cleanName = preg_replace('/[^a-zA-Z0-9_-]/', '_', pathinfo($fileName, PATHINFO_FILENAME));
+                $newFileName = uniqid($cleanName . '_', true) . '.' . $fileExt;
                 $targetFile = $uploadDir . $newFileName;
 
+                // Déplacement du fichier
                 if (move_uploaded_file($fileTmp, $targetFile)) {
-                    $imagePaths[] = 'assets/img/blog/' . $newFileName;
+                    // Vérifie si l’image est valide (évite scripts déguisés)
+                    if (@getimagesize($targetFile)) {
+                        $imagePaths[] = 'assets/img/blog/' . $newFileName;
+                    } else {
+                        unlink($targetFile);
+                    }
                 }
             }
         }
     }
 
-    $imagesJSON = json_encode($imagePaths);
+    $imagesJSON = json_encode($imagePaths, JSON_UNESCAPED_SLASHES);
 
-    $ins = $bdd->prepare('INSERT INTO actualite (titre, images, auteur, categorie, contenu, createdAt) 
+    if ($nameTable === "projets") {
+        $ins = $bdd->prepare('INSERT INTO projets (titre, images, auteur, categorie, contenu, createdAt) 
                           VALUES (:titre, :images, :auteur, :categorie, :contenu, NOW())');
-    $ins->bindParam(':titre', $titre);
-    $ins->bindParam(':images', $imagesJSON);
-    $ins->bindParam(':auteur', $auteur);
-    $ins->bindParam(':categorie', $categorie);
-    $ins->bindParam(':contenu', $contenu);
-    $ins->execute();
-
+    $ins->execute([
+        ':titre' => $titre,
+        ':images' => $imagesJSON,
+        ':auteur' => $auteur,
+        ':categorie' => $categorie,
+        ':contenu' => $contenu
+    ]);
+    echo '<div style="color: green;">✅ Votre projet a été publié avec succès.</div>';
+}else{
+     $ins = $bdd->prepare('INSERT INTO actualite (titre, images, auteur, categorie, contenu, createdAt) 
+                          VALUES (:titre, :images, :auteur, :categorie, :contenu, NOW())');
+    $ins->execute([
+        ':titre' => $titre,
+        ':images' => $imagesJSON,
+        ':auteur' => $auteur,
+        ':categorie' => $categorie,
+        ':contenu' => $contenu
+    ]);
     echo '<div style="color: green;">✅ Votre article a été publié avec succès.</div>';
 }
 
 
-
+    
+}
 
    // Message visiteur
       if (isset($_POST['submitFormMessageVisiteur'])) {

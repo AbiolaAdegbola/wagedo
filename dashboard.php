@@ -487,6 +487,45 @@
     <!-- Template Javascript -->
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/main_dashboard.js"></script>
+
+    <script>
+  // Suppression d'un article
+  document.addEventListener("click", async (e) => {
+    // Vérifie si le bouton cliqué a la classe "delete_article" ou son icône interne
+    const deleteBtn = e.target.closest(".delete_article");
+    if (!deleteBtn) return;
+
+    e.preventDefault();
+
+    const id_article = deleteBtn.getAttribute("data-id");
+    const ligneArticle = deleteBtn.closest("tr");
+
+    if (!id_article) return alert("ID article introuvable.");
+
+    if (!confirm("Voulez-vous vraiment supprimer cet article ?")) return;
+
+    try {
+      const response = await fetch("delete_actualite.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({ id: id_article }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        ligneArticle.style.transition = "opacity 0.5s ease";
+        ligneArticle.style.opacity = "0";
+        setTimeout(() => ligneArticle.remove(), 500);
+      } else {
+        alert(result.message || "Erreur lors de la suppression.");
+      }
+    } catch (error) {
+      console.error("Erreur :", error);
+      alert("Une erreur est survenue.");
+    }
+  });
+</script>
     
     <script type="text/javascript">
     $('.onclickDetail').on('click', function(e){
