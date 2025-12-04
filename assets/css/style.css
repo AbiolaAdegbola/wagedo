@@ -575,7 +575,7 @@ top: 36px;
 --------------------------------------------------------------*/
 .about .content {
   /* background-color: #f6f9ff; */
-  padding: 40px;
+  padding: 5px;
 }
 
 .about h3 {
@@ -1771,15 +1771,16 @@ top: 36px;
 }
 
 .blog .entry {
-  padding: 30px;
+  padding: 8px;
   margin-bottom: 60px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .blog .entry .entry-img {
   max-height: 440px;
-  margin: -30px -30px 20px -30px;
+  margin: -8px;
   overflow: hidden;
+  margin-bottom: 8px;
 }
 
 .blog .entry .entry-title {
@@ -1944,7 +1945,7 @@ top: 36px;
 }
 
 .blog .entry-single {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .blog .blog-author {
@@ -2123,7 +2124,7 @@ top: 36px;
 }
 
 .blog .sidebar {
-  padding: 30px;
+  padding: 8px;
   margin: 0 0 60px 20px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }

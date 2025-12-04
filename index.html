@@ -33,53 +33,53 @@
 
 <body>
 
-<script>
-async function chargerActualites() {
-  try {
-    const response = await fetch('state_visiteur.php');
-    const result = await response.json();
-    if (result.success) {
-      console.log(result.message);
-    } else {
-      console.error("Erreur :", result.message);
+  <script>
+    async function chargerActualites() {
+      try {
+        const response = await fetch('state_visiteur.php');
+        const result = await response.json();
+        if (result.success) {
+          console.log(result.message);
+        } else {
+          console.error("Erreur :", result.message);
+        }
+      } catch (error) {
+        console.error("Erreur de connexion :", error);
+      }
     }
-  } catch (error) {
-    console.error("Erreur de connexion :", error);
-  }
-}
 
-chargerActualites();
-</script>
+    chargerActualites();
+  </script>
 
 
   <!-- 🔔 Bandeau d’actualités WAGEDO -->
-<div class="news-container">
-  <div class="news-title">📰 ACTUALITÉS WAGEDO</div>
-  <div class="news-marquee" id="newsMarquee">
-    <span>
-      🌱 WAGEDO lance un nouveau programme pour les jeunes entrepreneurs agricoles —
-      💡 Webinaire sur l’innovation durable, ce vendredi à 18h —
-      🤝 Nouveau partenariat stratégique avec l’ONG Terre Verte —
-      🌍 Campagne de reboisement prévue ce samedi à Abidjan —
-      📈 Les membres de WAGEDO bénéficient d’un espace collaboratif en ligne !
-    </span>
+  <div class="news-container">
+    <div class="news-title">📰 ACTUALITÉS WAGEDO</div>
+    <div class="news-marquee" id="newsMarquee">
+      <span>
+        🌱 WAGEDO lance un nouveau programme pour les jeunes entrepreneurs agricoles —
+        💡 Webinaire sur l’innovation durable, ce vendredi à 18h —
+        🤝 Nouveau partenariat stratégique avec l’ONG Terre Verte —
+        🌍 Campagne de reboisement prévue ce samedi à Abidjan —
+        📈 Les membres de WAGEDO bénéficient d’un espace collaboratif en ligne !
+      </span>
+    </div>
   </div>
-</div>
 
-<script>
-/* 💡 Option dynamique : les actualités peuvent venir d'un tableau JS */
-const newsList = [
-  "🌱 WAGEDO lance un programme de formation agricole pour 2025",
-  "💡 Webinaire sur l’innovation durable ce vendredi à 18h",
-  "🤝 Partenariat signé avec l’ONG Terre Verte",
-  "🌍 Reboisement communautaire à Abidjan ce samedi",
-  "📈 Espace collaboratif en ligne pour les membres de WAGEDO",
-  "🎓 Nouveau programme d’incubation pour les jeunes entrepreneurs"
-];
+  <script>
+    /* 💡 Option dynamique : les actualités peuvent venir d'un tableau JS */
+    const newsList = [
+      "🌱 WAGEDO lance un programme de formation agricole pour 2025",
+      "💡 Webinaire sur l’innovation durable ce vendredi à 18h",
+      "🤝 Partenariat signé avec l’ONG Terre Verte",
+      "🌍 Reboisement communautaire à Abidjan ce samedi",
+      "📈 Espace collaboratif en ligne pour les membres de WAGEDO",
+      "🎓 Nouveau programme d’incubation pour les jeunes entrepreneurs"
+    ];
 
-// Injection dynamique du contenu
-document.getElementById("newsMarquee").innerHTML = `<span>${newsList.join(" — ")}</span>`;
-</script>
+    // Injection dynamique du contenu
+    document.getElementById("newsMarquee").innerHTML = `<span>${newsList.join(" — ")}</span>`;
+  </script>
 
   <!-- ======= Header ======= -->
   <header id="header" class="header headerIndex fixed-top" style="background-color: white;">
@@ -100,8 +100,7 @@ document.getElementById("newsMarquee").innerHTML = `<span>${newsList.join(" — 
         <ul>
           <li><a class="nav-link scrollto active" href="index.html">Home</a></li>
           <li><a class="nav-link scrollto" href="about.html">About Us</a></li>
-          <li class="dropdown megamenu"><a href="#"><span>Areas of action</span> <i
-                class="bi bi-chevron-down"></i></a>
+          <li class="dropdown megamenu"><a href="#"><span>Areas of action</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li>
                 <a href="enr.html">Renewable Energy</a>
@@ -120,7 +119,6 @@ document.getElementById("newsMarquee").innerHTML = `<span>${newsList.join(" — 
           <li><a class="nav-link scrollto" href="projets.html">Projects / Events</a></li>
           </li>
           <li><a href="blog.html">News / Blog</a></li>
-          <!-- <li><a class="nav-link scrollto" href="ressources.html">Ressources</a></li> -->
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
           <li><a class="getstarted scrollto" href="impliquez-vous.html">Get involved</a></li>
         </ul>
@@ -254,53 +252,44 @@ document.getElementById("newsMarquee").innerHTML = `<span>${newsList.join(" — 
 
     <img src="assets/img/4-1.png" alt="" style="width: 100%;">
 
-    <!-- ======= Recent Blog Posts Section ======= -->
-    <section id="recent-blog-posts" class="recent-blog-posts">
+<!-- ======= Recent Blog Posts Section ======= -->
+<section id="recent-blog-posts" class="recent-blog-posts">
+  <div class="container" data-aos="fade-up">
+    <header class="section-header">
+      <h2>News / Blog</h2>
+      <p>Stay up to date with our news and inspiring shares</p>
+    </header>
 
-      <div class="container" data-aos="fade-up">
+    <div class="row" id="containerActualites"></div>
+    <ul class="pagination justify-content-center mt-4" id="pagination"></ul>
+  </div>
+</section>
 
-        <header class="section-header">
-          <h2>News / Blog</h2>
-          <p>Stay up to date with our news and inspiring shares</p>
-        </header>
+<style>
+  .post-box {
+    transition: transform 0.3s, box-shadow 0.3s;
+    background: #fff;
+    padding: 15px;
+  }
 
-        <div class="row">
+  .post-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
 
-          <div class="col-lg-4">
-            <div class="post-box">
-              <div class="post-img"><img src="assets/img/blog/blog-1.jpg" class="img-fluid" alt=""></div>
-              <span class="post-date">January 2025</span>
-              <h3 class="post-title">RENEWABLE ENERGY MONTH - LOME</h3>
-              <a href="blog-single.html" class="readmore stretched-link mt-auto"><span>Read more</span><i
-                  class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
+  .post-img img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
 
-          <div class="col-lg-4">
-            <div class="post-box">
-              <div class="post-img"><img src="assets/img/blog/blog-2.jpg" class="img-fluid" alt=""></div>
-              <span class="post-date">February 26, 2025</span>
-              <h3 class="post-title">RENEWABLE ENERGY MONTH - ABIDJAN</h3>
-              <a href="blog-single.html" class="readmore stretched-link mt-auto"><span>Read more</span><i
-                  class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4">
-            <div class="post-box">
-              <div class="post-img"><img src="assets/img/blog/blog-3.jpg" class="img-fluid" alt=""></div>
-              <span class="post-date">January, 2025</span>
-              <h3 class="post-title">WAGEDO PARTNERSHIP WITH JAE (Jeune Acteur de l'Énergie)</h3>
-              <a href="blog-single.html" class="readmore stretched-link mt-auto"><span>Read more</span><i
-                  class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section><!-- End Recent Blog Posts Section -->
+  .post-meta small {
+    display: block;
+    margin-bottom: 2px;
+  }
+</style>
 
     <!-- ======= Values Section ======= -->
     <section id="values" class="values">
@@ -354,82 +343,203 @@ document.getElementById("newsMarquee").innerHTML = `<span>${newsList.join(" — 
 
     </section><!-- End Values Section -->
 
-    <!-- ======= Services Section ======= -->
-    <section id="services" class="services">
+<!-- ======= Services Section ======= -->
+<section id="services" class="services">
+  <div class="container" data-aos="fade-up">
+    <header class="section-header">
+      <h2>Projects / Events</h2>
+      <p>Discover our initiatives and projects to be implemented</p>
+    </header>
 
-      <div class="container" data-aos="fade-up">
+    <div class="row gy-4" id="containerProjets"></div>
+  </div>
+</section>
 
-        <header class="section-header">
-          <h2>Projects / Events</h2>
-          <p>Discover our initiatives and projects to be implemented</p>
-        </header>
+<script>
+  const ProjetsModule = (() => {
+    let currentPage = 1;
+    const itemsPerPage = 6;
+    let projets = [];
 
-        <div class="row gy-4">
+    async function charger() {
+      const container = document.getElementById('containerProjets');
 
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="service-box blue">
-              <i class="ri-layout-grid-fill icon"></i>
-              <h5>Clean Cooking for All Project (CC4AP)</h3>
-                <p>The CC4AP promotes the adoption of improved eco-charcoal stoves to reduce indoor air pollution and deforestation, 
-                  while raising awareness among communities about the benefits of sustainable cooking solutions.</p>
-                <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
+      try {
+        const response = await fetch('get_projets.php');
+        const result = await response.json();
+
+        if (!result.success) {
+          container.innerHTML = `<p class="text-danger">Erreur : ${result.message}</p>`;
+          return;
+        }
+
+        projets = result.data;
+        if (projets.length === 0) {
+          container.innerHTML = "<p>Aucun projet disponible pour le moment.</p>";
+          return;
+        }
+
+        projets.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        afficherPage(currentPage);
+      } catch (error) {
+        console.error(error);
+        container.innerHTML = "<p class='text-danger'>Erreur de connexion au serveur.</p>";
+      }
+    }
+
+    function afficherPage(page) {
+      const container = document.getElementById('containerProjets');
+      container.innerHTML = '';
+
+      const start = (page - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      const pageData = projets.slice(start, end);
+
+        // ✅ Liste d’icônes variables (tu peux ajouter ou changer)
+  const icons = [
+    'ri-plant-line',
+    'ri-lightbulb-flash-line',
+    'ri-water-flash-line',
+    'ri-community-line',
+    'ri-seedling-line',
+    'ri-global-line',
+    'ri-leaf-line',
+    'ri-earth-line',
+    'ri-tools-line'
+  ];
+
+      pageData.forEach((projet, index) => {
+        const col = document.createElement('div');
+        col.className = 'col-lg-4 col-md-6 mb-4';
+        col.setAttribute('data-aos', 'fade-up');
+        col.setAttribute('data-aos-delay', index * 100);
+
+        // Sélection d’icône variable :
+    // Option 1 (cyclique)
+    const icon = icons[index % icons.length];
+
+        col.innerHTML = `
+          <div class="service-box post-box blue p-3 shadow-sm rounded text-center h-100">
+        <i class="${icon} icon mb-3" style="font-size: 2rem; color: #0d6efd;"></i>
+        <h5>${projet.titre}</h5>
+        <p style="text-align: justify">${(projet.contenu || projet.description || '').substring(0, 250)}...</p>
+        <a href="projet-single.html?titre=${encodeURIComponent(projet.titre)}&categorie=${projet.categorie}&id=${projet.id}" 
+          class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
+      </div>`;
+        container.appendChild(col);
+      });
+
+      AOS.refresh();
+    }
+
+    return { charger };
+  })();
+</script>
+
+<script>
+  const ActualitesModule = (() => {
+    let currentPage = 1;
+    const itemsPerPage = 6;
+    let actualites = [];
+
+    async function charger() {
+      const container = document.getElementById('containerActualites');
+      const pagination = document.getElementById('pagination');
+
+      try {
+        const response = await fetch('get_actualites_index.php');
+        const result = await response.json();
+
+        if (!result.success) {
+          container.innerHTML = `<p class="text-danger">Erreur : ${result.message}</p>`;
+          return;
+        }
+
+        actualites = result.data;
+        if (actualites.length === 0) {
+          container.innerHTML = "<p>Aucune actualité disponible pour le moment.</p>";
+          pagination.innerHTML = "";
+          return;
+        }
+
+        actualites.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        afficherPage(currentPage);
+        afficherPagination();
+      } catch (error) {
+        console.error(error);
+        container.innerHTML = "<p class='text-danger'>Erreur de connexion au serveur.</p>";
+      }
+    }
+
+    function afficherPage(page) {
+      const container = document.getElementById('containerActualites');
+      container.innerHTML = '';
+
+      const start = (page - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      const pageData = actualites.slice(start, end);
+
+      pageData.forEach((actu, index) => {
+        const image = actu.images?.[0] || 'assets/img/blog-1.jpg';
+
+        const col = document.createElement('div');
+        col.className = 'col-lg-4 mb-4';
+        col.setAttribute('data-aos', 'fade-up');
+        col.setAttribute('data-aos-delay', index * 100);
+
+        col.innerHTML = `
+          <div class="post-box shadow-sm rounded">
+            <div class="post-img"><img src="${image}" alt="Image actualité"></div>
+            <div class="post-meta mt-2" style="display: flex; align-item: center; gap: 10px">
+              <small class="text-muted"><i class="bi bi-person"></i> ${actu.auteur}</small>
+              <small class="text-muted"><i class="bi bi-clock"></i> ${new Date(actu.createdAt).toLocaleDateString()}</small>
+              <small class="text-muted"><i class="bi bi-folder"></i> ${actu.categorie}</small>
             </div>
-          </div>
+            <h3 class="post-title mt-2" style="font-size: 18px">
+              <a href="blog-single.html?titre=${encodeURIComponent(actu.titre)}&id=${actu.id}">${actu.titre}</a>
+            </h3>
+            <p style="text-align: justify">${actu.contenu.substring(0, 250)}...</p>
+            <a href="blog-single.html?titre=${encodeURIComponent(actu.titre)}&id=${actu.id}" class="readmore mt-2 d-inline-block">
+              Read more <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>`;
+        container.appendChild(col);
+      });
 
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="service-box orange">
-              <i class="ri-projector-line icon"></i>
-              <h5>Green Hydrogen Online Fellowship (GH-F) </h3>
-                <p>The GH-F offers interactive online training courses on green hydrogen technologies
-                      and promotes mentoring and networking among participants, experts, and researchers in the sector.</p>
-                <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
+      AOS.refresh();
+    }
 
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-            <div class="service-box green">
-              <i class="ri-layout-grid-fill icon"></i>
-              <h5>Rural Community Solar Electrification Project (RCSEP)</h3>
-                <p>The RCSEP aims to deploy solar microgrids in rural areas to ensure access to electricity, 
-                  while strengthening local capacities for the sustainable management and maintenance of the installed systems.</p>
-                <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
+    function afficherPagination() {
+      const pagination = document.getElementById('pagination');
+      pagination.innerHTML = '';
 
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-            <div class="service-box red">
-              <i class="ri-projector-2-fill icon"></i>
-              <h5>Clean Water Provision Project (CWaPP)</h3>
-                <p>The CWaPP will enable the installation of solar water pumps to ensure sustainable access to drinking water
-                      and to conduct hygiene and sanitation awareness campaigns within communities.</p>
-                <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
+      const totalPages = Math.ceil(actualites.length / itemsPerPage);
+      if (totalPages <= 1) return;
 
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="700">
-            <div class="service-box pink">
-              <i class="ri-projector-line icon"></i>
-              <h5>Collaboration and Partnership with International Organisations and NGOs</h5>
-              <p>The initiative aims to map energy stakeholders and establish strategic collaborative partnerships.</p>
-              <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
+      for (let i = 1; i <= totalPages; i++) {
+        const li = document.createElement('li');
+        li.className = `page-item ${i === currentPage ? 'active' : ''}`;
+        li.innerHTML = `<a href="#" class="page-link">${i}</a>`;
+        li.addEventListener('click', (e) => {
+          e.preventDefault();
+          currentPage = i;
+          afficherPage(currentPage);
+          afficherPagination();
+        });
+        pagination.appendChild(li);
+      }
+    }
 
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
-            <div class="service-box purple">
-              <i class="ri-projector-2-fill icon"></i>
-              <h5>Seeking funds and collaborations for the implementation our initiatives</h5>
-              <p>We are always seeking funding and partnerships to support the effective implementation and
-                scaling of our initiatives.</p>
-              <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
+    return { charger };
+  })();
 
-        </div>
+  // Charger les deux en parallèle
+  document.addEventListener('DOMContentLoaded', () => {
+    ProjetsModule.charger();
+    ActualitesModule.charger();
+  });
+</script>
 
-      </div>
-
-    </section><!-- End Services Section -->
 
     <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="portfolio">
@@ -611,7 +721,8 @@ document.getElementById("newsMarquee").innerHTML = `<span>${newsList.join(" — 
                 </h2>
                 <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
                   <div class="accordion-body">
-                    Our activities are open to everyone: members, partners, volunteers, and anyone interested in our topics.
+                    Our activities are open to everyone: members, partners, volunteers, and anyone interested in our
+                    topics.
                   </div>
                 </div>
               </div>
@@ -647,7 +758,8 @@ document.getElementById("newsMarquee").innerHTML = `<span>${newsList.join(" — 
                 </h2>
                 <div id="faq2-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
                   <div class="accordion-body">
-                    We offer workshops, conferences, training sessions, and collaborative meetings around our projects and themes.
+                    We offer workshops, conferences, training sessions, and collaborative meetings around our projects
+                    and themes.
                   </div>
                 </div>
               </div>
@@ -661,7 +773,8 @@ document.getElementById("newsMarquee").innerHTML = `<span>${newsList.join(" — 
                 </h2>
                 <div id="faq2-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
                   <div class="accordion-body">
-                    You can follow our website, our mailbox, our blog, and our social media accounts so you don't miss a thing.
+                    You can follow our website, our mailbox, our blog, and our social media accounts so you don't miss a
+                    thing.
                   </div>
                 </div>
               </div>
@@ -755,14 +868,18 @@ document.getElementById("newsMarquee").innerHTML = `<span>${newsList.join(" — 
                 <div class="col-md-12">
                   <textarea class="form-control" name="contenu" rows="6" placeholder="Message" required></textarea>
                 </div>
-                
-                  <input type="text" name="submitFormMessageVisiteur" style="display:none">
 
-              <div class="responseForm" style="background-color: red; color: white; text-align: center; padding: 10px; display: none;"></div>
-              <div class="responseFormSuccess" style="background-color: green; color: white; text-align: center; padding: 10px; display: none;"></div>
-                <div class="spinner-grow loadingBoutonForm containerDisplayNone" style="color: orange; display:none" role="status">
-                <span class="sr-only">Loading...</span>
-              </div>
+                <input type="text" name="submitFormMessageVisiteur" style="display:none">
+
+                <div class="responseForm"
+                  style="background-color: red; color: white; text-align: center; padding: 10px; display: none;"></div>
+                <div class="responseFormSuccess"
+                  style="background-color: green; color: white; text-align: center; padding: 10px; display: none;">
+                </div>
+                <div class="spinner-grow loadingBoutonForm containerDisplayNone" style="color: orange; display:none"
+                  role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
 
                 <div class="col-md-12 text-center">
                   <button type="submit" class="btn btn-primary submitFormMessageVisiteur">Send a message</button>
@@ -796,11 +913,14 @@ document.getElementById("newsMarquee").innerHTML = `<span>${newsList.join(" — 
               <input type="email" name="email" required><input type="submit" class="submitFormNewsletter">
               <input type="text" name="submitFormNewsletter" style="display:none;">
             </form>
-             <div class="responseFormNews" style="background-color: red; color: white; text-align: center; padding: 10px; display: none;"></div>
-              <div class="responseFormSuccessNews" style="background-color: green; color: white; text-align: center; padding: 10px; display: none;"></div>
-                <div class="spinner-grow loadingBoutonFormNews containerDisplayNone" style="color: orange; display:none" role="status">
-                <span class="sr-only">Loading...</span>
-              </div>
+            <div class="responseFormNews"
+              style="background-color: red; color: white; text-align: center; padding: 10px; display: none;"></div>
+            <div class="responseFormSuccessNews"
+              style="background-color: green; color: white; text-align: center; padding: 10px; display: none;"></div>
+            <div class="spinner-grow loadingBoutonFormNews containerDisplayNone" style="color: orange; display:none"
+              role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
           </div>
         </div>
       </div>
@@ -894,7 +1014,7 @@ document.getElementById("newsMarquee").innerHTML = `<span>${newsList.join(" — 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
-    <div class="gtranslate_wrapper"></div>
+  <div class="gtranslate_wrapper"></div>
   <script>window.gtranslateSettings = { "default_language": "en", "languages": ["en", "es", "pt", "fr"], "wrapper_selector": ".gtranslate_wrapper", "float_switcher_open_direction": "bottom", "alt_flags": { "en": "usa" } }</script>
   <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
 

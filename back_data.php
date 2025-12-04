@@ -10,7 +10,7 @@
     use PHPMailer\PHPMailer\Exception;
 
     //Load Composer's autoloader
-    require 'vendor/autoload.php';
+    require 'email/vendor/autoload.php';
     
     // require 'excel/vendor/autoload.php';
 
