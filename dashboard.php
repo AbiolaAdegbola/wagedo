@@ -423,7 +423,7 @@
                         </div>
                         <div class="ps-4">
                             <h6 class="mb-2">Appelez pour poser n’importe quelle question</h6>
-                            <h6 class="text-primary mb-0"><a href="tel:002250584850497" class="text-primary">+225 05 84 85 04 97</a></h6>
+                            <h6 class="text-primary mb-0"><a href="tel:0022500000000" class="text-primary">+225 00 00 00 00 00</a></h6>
                         </div>
                     </div>
                 </div>
@@ -434,7 +434,7 @@
                         </div>
                         <div class="ps-4">
                             <h6 class="mb-2">Envoyez un e-mail</h6>
-                            <h6 class="text-primary mb-0"><a href="mailto:info@greenagrovalley.org" class="text-primary">info@greenagrovalley.org</a></h6>
+                            <h6 class="text-primary mb-0"><a href="mailto:info@wagedo-h2.org" class="text-primary">info@wagedo-h2.org</a></h6>
                         </div>
                     </div>
                 </div>
@@ -444,7 +444,7 @@
                             <i class="fa fa-map-marker-alt text-white"></i>
                         </div>
                         <div class="ps-4">
-                            <h6 class="mb-2">Visitez notre bureau</h6>
+                            <h6 class="mb-2">Visitez nos locaux</h6>
                             <h6 class="text-primary mb-0">Côte d'ivoire, Abidjan</h6>
                         </div>
                     </div>
@@ -452,7 +452,7 @@
             </div>
             <div class="row g-5">
                 <div class="col-lg-6 wow slideInUp" data-wow-delay="0.6s" style="height: 300px;">
-                    <iframe class="position-relative rounded w-100 h-100" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15393.840208231646!2d-5.2420874!3d6.775513!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfb89780dfb68e07%3A0x1aa8587c6ea14584!2sEPP%20NANAN!5e1!3m2!1sfr!2sci!4v1715763809081!5m2!1sfr!2sci" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2499.4772579202804!2d6.829639092623757!3d51.21028325952526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b8cb9335e1bd4b%3A0xf7d122b86794412f!2sWohnungsgenossenschaft%20Dusseldorf-Ost%20e.%20G.%20(WOGEDO)!5e0!3m2!1sfr!2sci!4v1765889403864!5m2!1sfr!2sci" width="600" height="300px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <div class="col-lg-6 wow slideInUp" data-wow-delay="0.3s" style="height: 300px;">
                     <form id="connexionPage">

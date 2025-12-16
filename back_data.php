@@ -1,5 +1,6 @@
     <?php 
     session_start();
+    header('Content-Type: application/json');
     include 'connexionBdd.php';
 
 
@@ -211,34 +212,35 @@ try {
 
 //connexion page administration
 if (isset($_POST['envoyerFormConnexion'])) {
+    $email = trim(htmlspecialchars($_POST['email']));
+    $mdp = trim(htmlspecialchars($_POST['mdp']));
 
-    $email = htmlspecialchars($_POST['email']);
-    $mdp = htmlspecialchars($_POST['mdp']);
+    try {
+        $stmt = $bdd->prepare("SELECT * FROM connexion WHERE email = :email LIMIT 1");
+        $stmt->execute(['email' => $email]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $ins = $bdd->query('SELECT * FROM connexion');
-    $ins->execute();
-    
-    while($result = $ins->fetch()){
-        if($result['email'] === rtrim($email)){
-        
-        if($result['mdp'] === rtrim($mdp)){
-            
-            $_SESSION['admin'] = $result['nom'];
-            
-            echo "<script>window.location.href='dashboard.php';</script>";
-            
-        }else{
-            echo "Mot de passe n'existe pas";
-            break;
+        if (!$result) {
+            echo json_encode(['success' => false, 'message' => "Adresse e-mail non trouvée."]);
+            exit;
         }
-        
-    }else{
-        echo "Votre adresse mail n'existe pas";
-    }
-    }
-    
-}
 
+        if ($result['mdp'] === $mdp) { // 🔒 (Remplace par password_verify si hashé)
+            $_SESSION['admin'] = $result['nom'];
+            echo json_encode(['success' => true, 'redirect' => 'dashboard.php']);
+            exit;
+        } else {
+            echo json_encode(['success' => false, 'message' => "Mot de passe incorrect."]);
+            exit;
+        }
+    } catch (Exception $e) {
+        echo json_encode(['success' => false, 'message' => "Erreur serveur : " . $e->getMessage()]);
+        exit;
+    }
+} else {
+    echo json_encode(['success' => false, 'message' => "Formulaire non valide."]);
+    exit;
+}
 // Ajouter actualites
 if (isset($_POST['submitFormNewActualite'])) {
     $titre = trim(htmlspecialchars($_POST['title'] ?? ''));
