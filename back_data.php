@@ -3,7 +3,6 @@
     header('Content-Type: application/json');
     include 'connexionBdd.php';
 
-
     //Import PHPMailer classes into the global namespace
     //These must be at the top of your script, not inside a function
     use PHPMailer\PHPMailer\PHPMailer;
@@ -41,7 +40,7 @@ try {
     //Server settings
     // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
     $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'mail.wagedo-h2.org';                     //Set the SMTP server to send through
+    $mail->Host       = 'mail89.lwspanel.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     $mail->Username   = 'info@wagedo-h2.org';                     //SMTP username
     $mail->Password   = 'InfoWAGEDO@2025';                              //SMTP password
@@ -108,7 +107,7 @@ try {
     //Server settings
     // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
     $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'mail.wagedo-h2.org';                     //Set the SMTP server to send through
+    $mail->Host       = 'mail89.lwspanel.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     $mail->Username   = 'info@wagedo-h2.org';                     //SMTP username
     $mail->Password   = 'InfoWAGEDO@2025';                              //SMTP password
@@ -176,7 +175,7 @@ try {
     //Server settings
     // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
     $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'mail.wagedo-h2.org';                     //Set the SMTP server to send through
+    $mail->Host       = 'mail89.lwspanel.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     $mail->Username   = 'info@wagedo-h2.org';                     //SMTP username
     $mail->Password   = 'InfoWAGEDO@2025';                              //SMTP password
@@ -373,7 +372,7 @@ echo 'Votre inscription au newsletters de WAGEDO a été effectué avec succès.
     //Server settings
     // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
      $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'mail.wagedo-h2.org';                     //Set the SMTP server to send through
+    $mail->Host       = 'mail89.lwspanel.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     $mail->Username   = 'info@wagedo-h2.org';                     //SMTP username
     $mail->Password   = 'Abiola@2024';                               //SMTP password
