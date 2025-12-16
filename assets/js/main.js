@@ -604,7 +604,7 @@ if (submitFormNewsletter) {
         body: decodeURIComponent(params),
       });
       const data = await response.text();
-
+console.log("params", params)
       loading.classList.remove('containerDisplayInitial');
       loading.classList.add('containerDisplayNone');
       responseContainerSuccess.innerHTML = data;

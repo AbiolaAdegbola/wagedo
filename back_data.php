@@ -60,7 +60,7 @@ try {
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'NOUVEAU DONATEUR';
-    $mail->Body    = 'Hello WAGEDO, <br><br>Vous avez un nouveau donateur '.$nom.'<br><br><a src="https://wagedo-h2.org/dashboard.php">Voir le donateur</a>';
+    $mail->Body    = 'Hello WAGEDO, <br><br>Vous avez un nouveau donateur '.$nom.'<br><br><a href="https://wagedo-h2.org/dashboard.php">Voir le donateur</a>';
 // Set UTF-8 encoding
     $mail->CharSet = 'UTF-8';
     $mail->send();
@@ -127,7 +127,7 @@ try {
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'NOUVELLE DEMANDE DE MEMBRE';
-    $mail->Body    = 'Hello WAGEDO, <br><br>Vous avez une nouvelle demande de collaboration de '.$nom.' sur votre site web <br><br><a src="https://wagedo-h2.org/dashboard.php">Voir la demande</a>';
+    $mail->Body    = 'Hello WAGEDO, <br><br>Vous avez une nouvelle demande de collaboration de '.$nom.' sur votre site web <br><br><a href="https://wagedo-h2.org/dashboard.php">Voir la demande</a>';
 // Set UTF-8 encoding
     $mail->CharSet = 'UTF-8';
     $mail->send();
@@ -195,7 +195,7 @@ try {
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'NOUVELLE DEMANDE DE PARTENARIAT';
-    $mail->Body    = 'Hello WAGEDO, <br><br>Vous avez une nouvelle demande de partenariat de '.$nom.' dont l\'adresse mail '.$email.' et le numéro de téléphone '.$phone.' <br><br> <a src="https://wagedo-h2.org/dashboard.php">Voir la demande</a>';
+    $mail->Body    = 'Hello WAGEDO, <br><br>Vous avez une nouvelle demande de partenariat de '.$nom.' dont l\'adresse mail '.$email.' et le numéro de téléphone '.$phone.' <br><br> <a href="https://wagedo-h2.org/dashboard.php">Voir la demande</a>';
 // Set UTF-8 encoding
     $mail->CharSet = 'UTF-8';
     $mail->send();
@@ -236,10 +236,9 @@ if (isset($_POST['envoyerFormConnexion'])) {
         echo json_encode(['success' => false, 'message' => "Erreur serveur : " . $e->getMessage()]);
         exit;
     }
-} else {
-    echo json_encode(['success' => false, 'message' => "Formulaire non valide."]);
-    exit;
-}
+} 
+
+
 // Ajouter actualites
 if (isset($_POST['submitFormNewActualite'])) {
     $titre = trim(htmlspecialchars($_POST['title'] ?? ''));
@@ -360,7 +359,7 @@ echo 'Votre message a été envoyé avec succès.';
       if (isset($_POST['submitFormNewsletter'])) {
 
         $email = htmlspecialchars($_POST['email']);
-
+var_dump($email);
      $ins = $bdd->prepare('INSERT INTO newsletters(email, createdAt) VALUES(:email, NOW())');
 
       $ins->bindParam(':email', $email);
@@ -387,10 +386,7 @@ echo 'Votre inscription au newsletters de WAGEDO a été effectué avec succès.
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'NEWSLETTER WAGEDO';
     $mail->Body    = "
-    
     Bonjour,
-
- 
 <br><br>
 Nous vous remercions chaleureusement de vous être inscrit à notre newsletter et nous vous souhaitons la bienvenue chez WAGEDO ! Nous sommes ravis de vous compter parmi nos abonnés.<br><br>
 Envie d'en savoir plus sur WAGEDO ? Visitez notre page <a href='https://wagedo-h2.org/'>À propos</a>  pour découvrir notre mission, notre équipe et notre engagement.
@@ -419,7 +415,6 @@ L'équipe WAGEDO";
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     
 }
-
 
     }
 
