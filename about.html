@@ -5,9 +5,9 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>WAGEDO - A propos</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+<title>WAGEDO - About us</title>
+<meta content="WAGEDO is dedicated to promoting sustainable energy solutions across West Africa, focusing on renewable resources that support economic growth and environmental preservation." name="description">
+<meta content="WAGEDO, West Africa, green energy, renewable energy, sustainability, development, clean technology, solar energy, wind energy, hydropower, energy efficiency, climate change, environmental protection, carbon footprint, sustainable development goals, community empowerment, energy access" name="keywords">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -52,29 +52,27 @@
         <ul>
           <li><a class="nav-link scrollto" href="index.html">Home</a></li>
           <li><a class="nav-link scrollto active" href="about.html">About Us</a></li>
-          <li class="dropdown megamenu"><a href="#"><span>Areas of action</span> <i
-                class="bi bi-chevron-down"></i></a>
+          <li class="dropdown megamenu"><a href="#"><span>Areas of action</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li>
-                <a href="enr.html">Renewable Energy</a>
-                <a href="hydrogene_vert.html">Green Hydrogen</a>
+                <a href="categories.html?categorie=Renewable Energy and Energy Efficiency">Renewable Energy</a>
+                <a href="categories.html?categorie=Green Hydrogen">Green Hydrogen</a>
               </li>
               <li>
-                <a href="education.html">Education</a>
-                <a href="sensibilisation_climatique.html">Climate Awareness</a>
+                <a href="categories.html?categorie=Education">Education</a>
+                <a href="categories.html?categorie=Climate Awareness">Climate Awareness</a>
               </li>
               <li>
-                <a href="transition_energetique.html">Energy Transition</a>
-                <a href="protection_environnement.html">Environmental Protection</a>
+                <a href="categories.html?categorie=Energy Transition">Energy Transition</a>
+                <a href="categories.html?categorie=Environmental Protection">Environmental Protection</a>
               </li>
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="projets.html">Projects / Events</a></li>
           </li>
-          <li><a href="blog.html">News / Blog</a></li>
-          <!-- <li><a class="nav-link scrollto" href="ressources.html">Ressources</a></li> -->
+          <li><a class="nav-link scrollto" href="blog.html">News / Blog</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="getstarted scrollto" href="impliquez-vous.html">Get Involved</a></li>
+          <li><a class="getstarted scrollto" href="impliquez-vous.html">Get involved</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -191,13 +189,14 @@
 
               <h3 class="sidebar-title">Categories</h3>
               <div class="sidebar-item categories">
-                <ul>
-                  <li><a href="#">General <span>(25)</span></a></li>
-                  <li><a href="#">Lifestyle <span>(12)</span></a></li>
-                  <li><a href="#">Travel <span>(5)</span></a></li>
-                  <li><a href="#">Design <span>(22)</span></a></li>
-                  <li><a href="#">Creative <span>(8)</span></a></li>
-                  <li><a href="#">Educaion <span>(14)</span></a></li>
+                 <ul>
+                  <li><a href="categories.html?categorie=Renewable Energy and Energy Efficiency">Renewable Energy and Energy Efficiency </a></li>
+                  <li><a href="categories.html?categorie=Energy Transition">Energy Transition </a></li>
+                  <li><a href="categories.html?categorie=Climate Awareness">Climate Awareness</a></li>
+                  <li><a href="categories.html?categorie=Environmental Protection">Environmental Protection </a></li>
+                  <li><a href="categories.html?categorie=Green Hydrogen">Green Hydrogen</a></li>
+                  <li><a href="categories.html?categorie=Education">Education </a></li>
+                  <li><a href="categories.html?categorie=Autres">Autres </a></li>
                 </ul>
               </div><!-- End sidebar categories-->
 
@@ -212,20 +211,29 @@
 
   </main><!-- End #main -->
 
-   <!-- ======= Footer ======= -->
+  <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
 
     <div class="footer-newsletter">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-12 text-center">
-            <h4>Our Mailbox</h4>
+            <h4>Our mailbox</h4>
             <p>Get our latest news, projects, and events delivered straight to your inbox.</p>
           </div>
           <div class="col-lg-6">
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
+            <form id="submitFormNewsletter">
+              <input type="email" name="email" required><input type="submit" class="submitFormNewsletter">
+              <input type="text" name="submitFormNewsletter" style="display:none;">
             </form>
+            <div class="responseFormNews"
+              style="background-color: red; color: white; text-align: center; padding: 10px; display: none;"></div>
+            <div class="responseFormSuccessNews"
+              style="background-color: green; color: white; text-align: center; padding: 10px; display: none;"></div>
+            <div class="spinner-grow loadingBoutonFormNews containerDisplayNone" style="color: orange; display:none"
+              role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
           </div>
         </div>
       </div>
@@ -250,28 +258,28 @@
               <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
               <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
               <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+              <a href="https://www.linkedin.com/company/west-african-green-energy-development-organisation/" class="linkedin"><i class="bi bi-linkedin"></i></a>
             </div>
           </div>
 
           <div class="col-lg-2 col-6 footer-links">
-            <h4>Useful links</h4>
+            <h4>Liens utiles</h4>
             <ul>
               <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">About Us</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="about.html">About Us</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="#">Areas of action</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Projects / Events</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">News / Blog</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="projets.html">Projects / Events</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="blog.html">News / Blog</a></li>
             </ul>
           </div>
 
           <div class="col-lg-2 col-6 footer-links">
             <h4>Actions</h4>
-            <ul>              
+            <ul>
               <li><i class="bi bi-chevron-right"></i> <a href="#">Contact</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Get Involved</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Donation</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Partnership</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="impliquez-vous.html">Get Involved</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="faire-un-don.html">Make a donation</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="demande-partenariat.html">Partnership</a></li>
             </ul>
           </div>
 
@@ -281,7 +289,7 @@
               Banjul<br>
               The Gambia <br><br>
               <strong>Tel:</strong> +223 741 864 07<br>
-              <strong>Email:</strong> www.admin@wagedo.org<br>
+              <strong>Email:</strong> info@wagedo-h2.org<br>
             </p>
 
           </div>
@@ -299,7 +307,7 @@
         <!-- You can delete the links only if you purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/flexstart-bootstrap-startup-template/ -->
-        Designed by <a href="https://ivoirecodingcenter.com/" style="color: #0a7b2cbd;">Ivoire Coding Center</a>
+        Designed by <a href="https://www.linkedin.com/company/ivoire-coding-center/" style="color: #0a7b2cbd;">Ivoire Coding Center</a>
       </div>
     </div>
   </footer><!-- End Footer -->
