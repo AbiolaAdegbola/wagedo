@@ -55,31 +55,32 @@
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a class="nav-link scrollto" href="index.html">Accueil</a></li>
-                    <li><a class="nav-link scrollto" href="about.html">A propos</a></li>
-                    <li class="dropdown megamenu active"><a href="#"><span>Domaines d'action</span> <i
+                    <li><a class="nav-link scrollto" href="index.html">Home</a></li>
+                    <li><a class="nav-link scrollto" href="about.html">About Us</a></li>
+                    <li class="dropdown megamenu"><a href="#"><span>Areas of action</span> <i
                                 class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li>
-                                <a href="enr.html">Énergies renouvelables</a>
-                                <a href="hydrogene_vert.html">Hydrogène vert</a>
+                                <a href="categories.html?categorie=Renewable Energy and Energy Efficiency">Renewable
+                                    Energy</a>
+                                <a href="categories.html?categorie=Green Hydrogen">Green Hydrogen</a>
                             </li>
                             <li>
-                                <a href="education.html">Éducation</a>
-                                <a href="sensibilisation_climatique.html">Sensibilisation climatique</a>
+                                <a href="categories.html?categorie=Education">Education</a>
+                                <a href="categories.html?categorie=Climate Awareness">Climate Awareness</a>
                             </li>
                             <li>
-                                <a href="transition_energetique.html">Transition énergétique</a>
-                                <a href="protection_environnement.html">Protection de l’environnement</a>
+                                <a href="categories.html?categorie=Energy Transition">Energy Transition</a>
+                                <a href="categories.html?categorie=Environmental Protection">Environmental
+                                    Protection</a>
                             </li>
                         </ul>
                     </li>
-                    <li><a class="nav-link scrollto" href="projets.html">Projets / Events</a></li>
+                    <li><a class="nav-link scrollto" href="projets.html">Projects / Events</a></li>
                     </li>
-                    <li><a href="blog.html">Actualités / Blog</a></li>
-                    <!-- <li><a class="nav-link scrollto" href="ressources.html">Ressources</a></li> -->
+                    <li><a class="nav-link scrollto" href="blog.html">News / Blog</a></li>
                     <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-                    <li><a class="getstarted scrollto" href="impliquez-vous.html">Impliquez-vous</a></li>
+                    <li><a class="getstarted scrollto active" href="impliquez-vous.html">Get involved</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
@@ -95,10 +96,10 @@
 
                 <ol>
                     <li><a href="index.html">Accueil</a></li>
-                    <li><a href="impliquez-vous.html">Impliquez-vous</a></li>
-                    <li>Demande de partenariat</li>
+                    <li><a href="impliquez-vous.html">Get involved</a></li>
+                    <li>Partnership request</li>
                 </ol>
-                <h2>Demande de partenariat</h2>
+                <h2>Partnership request</h2>
 
             </div>
         </section><!-- End Breadcrumbs -->
@@ -114,13 +115,14 @@
                         <article class="entry entry-single">
 
                             <h2 class="entry-title">
-                                <a href="#">🤝 Demande de Partenariat avec WAGEDO</a>
+                                <a href="#">🤝 Partnership request
+                                    Partnership request with WAGEDO</a>
                             </h2>
                             <div class="blog-comments">
 
                                 <div class="reply-form">
-                                    <h4>Leave a Reply</h4>
-                                    <p>Your email address will not be published. Required fields are marked * </p>
+                                    <!-- <h4>Leave a Reply</h4> -->
+                                    <!-- <p>Your email address will not be published. Required fields are marked * </p> -->
                                     <form id="submitFormPartenariat">
                                         <div class="row">
                                             <div class="col-md-6 form-group">
@@ -151,58 +153,56 @@
 
                                         <div class="col-md-12 form-group">
                                             <div class="form-group">
-                                                <label for="type_partenariat"><strong>Type de
-                                                        partenariat</strong></label>
+                                                <label for="type_partenariat"><strong>Type of
+                                                        Partnership</strong></label>
                                                 <select name="type_partenariat" id="type_partenariat"
                                                     class="form-control" required>
-                                                    <option value="">Veuillez choisir le type de partenariat
+                                                    <option value="">Please choose the type of partnership</option>
+                                                    <option value="technique">Technical Partnership</option>
+                                                    <option value="financier">Financial Partnership</option>
+                                                    <option value="institutionnel">Institutional Partnership</option>
+                                                    <option value="strategique">Strategic Partnership</option>
+                                                    <option value="formation">Partnership for Training and Capacity
+                                                        Building</option>
+                                                    <option value="projet">Partnership for Project Implementation
                                                     </option>
-                                                    <option value="technique">Partenariat technique</option>
-                                                    <option value="financier">Partenariat financier</option>
-                                                    <option value="institutionnel">Partenariat institutionnel
+                                                    <option value="recherche">Scientific/Research and Innovation
+                                                        Partnership</option>
+                                                    <option value="commercial">Commercial Partnership</option>
+                                                    <option value="communication">Media and Communication Partnership
                                                     </option>
-                                                    <option value="strategique">Partenariat stratégique</option>
-                                                    <option value="formation">Partenariat pour la formation et le
-                                                        renforcement des capacités</option>
-                                                    <option value="projet">Partenariat pour la mise en œuvre de
-                                                        projets</option>
-                                                    <option value="recherche">Partenariat scientifique / recherche
-                                                        et innovation</option>
-                                                    <option value="commercial">Partenariat commercial</option>
-                                                    <option value="communication">Partenariat média et communication
+                                                    <option value="communautaire">Community/Associative Partnership
                                                     </option>
-                                                    <option value="communautaire">Partenariat communautaire /
-                                                        associatif</option>
-                                                    <option value="rse">Partenariat RSE (Responsabilité Sociétale
-                                                        des Entreprises)</option>
-                                                    <option value="mecenat">Mécénat ou parrainage</option>
-                                                    <option value="logistique">Partenariat logistique ou matériel
+                                                    <option value="rse">CSR Partnership (Corporate Social
+                                                        Responsibility)</option>
+                                                    <option value="mecenat">Sponsorship or Patronage</option>
+                                                    <option value="logistique">Logistical or Material Partnership
                                                     </option>
-                                                    <option value="autre">Autre type de partenariat</option>
+                                                    <option value="autre">Other type of partnership</option>
                                                 </select>
                                             </div>
 
-                                            <!-- Champ caché qui s’affiche si "autre" est sélectionné -->
+                                            <!-- Hidden field that appears if "other" is selected -->
                                             <div class="form-group" id="autrePartenariatDiv"
                                                 style="display: none; margin-top: 10px;">
-                                                <label for="autre_partenariat"><strong>Précisez votre
-                                                        partenariat</strong></label>
+                                                <label for="autre_partenariat"><strong>Please specify your
+                                                        partnership</strong></label>
                                                 <input type="text" id="autre_partenariat" name="autre_partenariat"
                                                     class="form-control"
-                                                    placeholder="Décrivez le type de partenariat que vous proposez..." />
+                                                    placeholder="Describe the type of partnership you propose..." />
                                             </div>
 
                                             <script>
-                                                // Sélection des éléments
+                                                // Selecting elements
                                                 const selectPartenariat = document.getElementById("type_partenariat");
                                                 const autreDiv = document.getElementById("autrePartenariatDiv");
 
-                                                // Événement quand la valeur du select change
+                                                // Event when the value of the select changes
                                                 selectPartenariat.addEventListener("change", function () {
                                                     if (this.value === "autre") {
-                                                        autreDiv.style.display = "block"; // Affiche le champ
+                                                        autreDiv.style.display = "block"; // Show the field
                                                     } else {
-                                                        autreDiv.style.display = "none"; // Cache le champ
+                                                        autreDiv.style.display = "none"; // Hide the field
                                                     }
                                                 });
                                             </script>
@@ -225,13 +225,19 @@
                                             </div>
                                         </div>
 
-                                         <div class="responseForm" style="background-color: red; color: white; text-align: center; padding: 10px; display: none;"></div>
-                                                     <div class="responseFormSuccess" style="background-color: green; color: white; text-align: center; padding: 10px; display: none;"></div>
-                                                        <div class="spinner-grow loadingBoutonForm containerDisplayNone" style="color: orange; display:none" role="status">
-                                                        <span class="sr-only">Loading...</span>
-                                                     </div>
+                                        <div class="responseForm"
+                                            style="background-color: red; color: white; text-align: center; padding: 10px; display: none;">
+                                        </div>
+                                        <div class="responseFormSuccess"
+                                            style="background-color: green; color: white; text-align: center; padding: 10px; display: none;">
+                                        </div>
+                                        <div class="spinner-grow loadingBoutonForm containerDisplayNone"
+                                            style="color: orange; display:none" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
 
-                                        <button type="submit" class="btn btn-primary submitFormPartenariat">ENVOYER</button>
+                                        <button type="submit"
+                                            class="btn btn-primary submitFormPartenariat">ENVOYER</button>
 
                                     </form>
 
@@ -245,35 +251,32 @@
 
                     <div class="col-lg-4">
                         <p style="text-align: justify;">
-                            WAGEDO est une initiative engagée dans la promotion du développement durable, de
-                            l’innovation sociale et de l’autonomisation économique à travers des projets à fort impact
-                            communautaire.
-                            Nous croyons que les grands changements naissent de <strong>la collaboration</strong>, et
-                            c’est pourquoi nous invitons les organisations, entreprises, institutions et acteurs du
-                            développement à <strong>devenir partenaires</strong> de WAGEDO.
+                            WAGEDO is an initiative committed to promoting sustainable development, social innovation,
+                            and economic empowerment through impactful community projects.
+                            We believe that significant changes arise from <strong>collaboration</strong>, which is why
+                            we invite organizations, businesses, institutions, and development actors to <strong>become
+                                partners</strong> of WAGEDO.
                             <br><br>
-                            En rejoignant notre réseau de partenaires, vous contribuez à :
+                            By joining our network of partners, you contribute to:
                         <ul>
-                            <li>🌍 Renforcer l’impact social à travers des actions concrètes sur le terrain.</li>
-                            <li>💡 Soutenir l’innovation locale dans les domaines de l’agriculture, de l’éducation, de
-                                la technologie et de l’environnement.</li>
-                            <li>🤝 Créer des synergies durables entre acteurs publics et privés.</li>
-                            <li>📈 Valoriser votre engagement sociétal à travers des projets visibles et mesurables.
+                            <li>Strengthening social impact through concrete actions on the ground.</li>
+                            <li>Supporting local innovation in agriculture, education, technology, and the environment.
                             </li>
+                            <li>Creating sustainable synergies between public and private stakeholders.</li>
+                            <li>Enhancing your social commitment through visible and measurable projects.</li>
                         </ul>
 
-                        Nous sommes ouverts à différents types de partenariats :
+                        We are open to different types of partnerships:
 
                         <ul>
-                            <li>Partenariats techniques (accompagnement, formation, expertise)</li>
-                            <li>Partenariats financiers (soutien aux projets, bourses, mécénat)</li>
-                            <li>Partenariats institutionnels et stratégiques</li>
+                            <li>Technical partnerships (support, training, expertise)</li>
+                            <li>Financial partnerships (project support, grants, sponsorship)</li>
+                            <li>Institutional and strategic partnerships</li>
                         </ul>
 
-                        ✨ Ensemble, bâtissons un avenir durable et solidaire avec WAGEDO.
+                        Together, let’s build a sustainable and supportive future with WAGEDO.
                         <br>
-                        Pour toute collaboration ou proposition, veuillez remplir notre formulaire de demande de
-                        partenariat.
+                        For any collaboration or proposal, please fill out our partnership request form.
                         </p>
                     </div>
 
@@ -284,6 +287,7 @@
 
     </main><!-- End #main -->
 
+
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
 
@@ -291,13 +295,24 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-12 text-center">
-                        <h4>Our Newsletter</h4>
-                        <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+                        <h4>Our mailbox</h4>
+                        <p>Get our latest news, projects, and events delivered straight to your inbox.</p>
                     </div>
                     <div class="col-lg-6">
-                        <form action="" method="post">
-                            <input type="email" name="email"><input type="submit" value="Subscribe">
+                        <form id="submitFormNewsletter">
+                            <input type="email" name="email" required><input type="submit" class="submitFormNewsletter">
+                            <input type="text" name="submitFormNewsletter" style="display:none;">
                         </form>
+                        <div class="responseFormNews"
+                            style="background-color: red; color: white; text-align: center; padding: 10px; display: none;">
+                        </div>
+                        <div class="responseFormSuccessNews"
+                            style="background-color: green; color: white; text-align: center; padding: 10px; display: none;">
+                        </div>
+                        <div class="spinner-grow loadingBoutonFormNews containerDisplayNone"
+                            style="color: orange; display:none" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -309,48 +324,54 @@
                     <div class="col-lg-5 col-md-12 footer-info">
                         <a href="index.html" class="logo d-flex align-items-center">
                             <img src="assets/img/logo.png" alt="">
-                            <span>FlexStart</span>
+                            <div style="margin-top: 12px;">
+                                <span style="color: #0a7b2b;">WAGEDO</span>
+                                <div
+                                    style="font-size: 11px; text-align: justify; margin-top: 14px; margin-left: 4px; color: black;">
+                                    <div>West African Green Energy</div>
+                                    <div style="margin-top: 12px;">Development Organisation</div>
+                                </div>
+                            </div>
                         </a>
-                        <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita
-                            valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+                        <p>Hydrogen Green Economy Driver for a Sustainable Future</p>
                         <div class="social-links mt-3">
                             <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                             <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
                             <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                            <a href="https://www.linkedin.com/company/west-african-green-energy-development-organisation/"
+                                class="linkedin"><i class="bi bi-linkedin"></i></a>
                         </div>
                     </div>
 
                     <div class="col-lg-2 col-6 footer-links">
-                        <h4>Useful Links</h4>
+                        <h4>Liens utiles</h4>
                         <ul>
                             <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-                            <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
-                            <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
-                            <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
-                            <li><i class="bi bi-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="about.html">About Us</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="#">Areas of action</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="projets.html">Projects / Events</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="blog.html">News / Blog</a></li>
                         </ul>
                     </div>
 
                     <div class="col-lg-2 col-6 footer-links">
-                        <h4>Our Services</h4>
+                        <h4>Actions</h4>
                         <ul>
-                            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>
-                            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>
-                            <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>
-                            <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>
-                            <li><i class="bi bi-chevron-right"></i> <a href="#">Graphic Design</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="#">Contact</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="impliquez-vous.html">Get Involved</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="faire-un-don.html">Make a donation</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="demande-partenariat.html">Partnership</a>
+                            </li>
                         </ul>
                     </div>
 
                     <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
                         <h4>Contact Us</h4>
                         <p>
-                            A108 Adam Street <br>
-                            New York, NY 535022<br>
-                            United States <br><br>
-                            <strong>Phone:</strong> +1 5589 55488 55<br>
-                            <strong>Email:</strong> info@example.com<br>
+                            Banjul<br>
+                            The Gambia <br><br>
+                            <strong>Tel:</strong> +223 741 864 07<br>
+                            <strong>Email:</strong> info@wagedo-h2.org<br>
                         </p>
 
                     </div>
@@ -361,14 +382,15 @@
 
         <div class="container">
             <div class="copyright">
-                &copy; Copyright <strong><span>FlexStart</span></strong>. All Rights Reserved
+                &copy; Copyright <strong><span style="color: #0a7b2b;">WAGEDO</span></strong>. All Rights Reserved
             </div>
             <div class="credits">
                 <!-- All the links in the footer should remain intact. -->
                 <!-- You can delete the links only if you purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/flexstart-bootstrap-startup-template/ -->
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                Designed by <a href="https://www.linkedin.com/company/ivoire-coding-center/"
+                    style="color: #0a7b2cbd;">Ivoire Coding Center</a>
             </div>
         </div>
     </footer><!-- End Footer -->

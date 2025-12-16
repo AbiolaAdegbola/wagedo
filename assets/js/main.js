@@ -286,8 +286,8 @@ if (header) {
   });
 
   /**
-   * Animation on scroll
-   */
+  * Animation on scroll
+  */
   function aos_init() {
     AOS.init({
       duration: 1000,
@@ -343,7 +343,6 @@ if (formConnexion) {
     }
   });
 }
-
 
 // faire un don
 const submitFaireDon = document.querySelector('#submitFaireDon');
@@ -468,8 +467,6 @@ if (submitFormPartenariat) {
   });
 }
 
-
-
 //  Message des visiteurs
 const submitFormMessageVisiteur = document.querySelector('#submitFormMessageVisiteur');
 if (submitFormMessageVisiteur) {
@@ -580,8 +577,6 @@ if (submitFormNewActualite) {
     }
   });
 }
-
-
 
 // inscription au newsletters
 const submitFormNewsletter = document.querySelector('#submitFormNewsletter');
