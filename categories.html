@@ -5,9 +5,9 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>Projets - WAGEDO</title>
-<meta content="WAGEDO is dedicated to promoting sustainable energy solutions across West Africa, focusing on renewable resources that support economic growth and environmental preservation." name="description">
-<meta content="WAGEDO, West Africa, green energy, renewable energy, sustainability, development, clean technology, solar energy, wind energy, hydropower, energy efficiency, climate change, environmental protection, carbon footprint, sustainable development goals, community empowerment, energy access" name="keywords">
+  <title>WAGEDO - Categories</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -50,29 +50,31 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto" href="index.html">Home</a></li>
-          <li><a class="nav-link scrollto" href="about.html">About Us</a></li>
-          <li class="dropdown megamenu"><a href="#"><span>Areas of action</span> <i class="bi bi-chevron-down"></i></a>
+          <li><a class="nav-link scrollto" href="index.html">Accueil</a></li>
+          <li><a class="nav-link scrollto" href="about.html">A propos</a></li>
+          <li class="dropdown megamenu active"><a href="#"><span>Domaines d'action</span> <i
+                class="bi bi-chevron-down"></i></a>
             <ul>
               <li>
-                <a href="categories.html?categorie=Renewable Energy and Energy Efficiency">Renewable Energy</a>
-                <a href="categories.html?categorie=Green Hydrogen">Green Hydrogen</a>
+                <a href="enr.html">Énergies renouvelables</a>
+                <a href="hydrogene_vert.html">Hydrogène vert</a>
               </li>
               <li>
-                <a href="categories.html?categorie=Education">Education</a>
-                <a href="categories.html?categorie=Climate Awareness">Climate Awareness</a>
+                <a href="education.html">Éducation</a>
+                <a href="sensibilisation_climatique.html">Sensibilisation climatique</a>
               </li>
               <li>
-                <a href="categories.html?categorie=Energy Transition">Energy Transition</a>
-                <a href="categories.html?categorie=Environmental Protection">Environmental Protection</a>
+                <a href="transition_energetique.html">Transition énergétique</a>
+                <a href="protection_environnement.html">Protection de l’environnement</a>
               </li>
             </ul>
           </li>
-          <li><a class="nav-link scrollto active" href="projets.html">Projects / Events</a></li>
+          <li><a class="nav-link scrollto" href="projets.html">Projets / Events</a></li>
           </li>
-          <li><a class="nav-link scrollto" href="blog.html">News / Blog</a></li>
+          <li><a href="blog.html" class="nav-link scrollto">Actualités / Blog</a></li>
+          <!-- <li><a class="nav-link scrollto" href="ressources.html">Ressources</a></li> -->
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="getstarted scrollto" href="impliquez-vous.html">Get involved</a></li>
+          <li><a class="getstarted scrollto" href="impliquez-vous.html">Impliquez-vous</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -89,9 +91,9 @@
 
         <ol>
           <li><a href="index.html">Accueil</a></li>
-          <li>Projets</li>
+          <li>catégorie</li>
         </ol>
-        <h2>Projets</h2>
+        <h2 id="categorie"></h2>
 
       </div>
     </section><!-- End Breadcrumbs -->
@@ -105,7 +107,7 @@
           <div class="col-lg-8 entries">
 
             <div class="containerActualites" id="containerActualites">
-              <p>⏳ Chargement des Projets...</p>
+              <p>⏳ Chargement des catégories...</p>
             </div>
 
             <!-- Bloc de pagination -->
@@ -118,12 +120,12 @@
               const itemsPerPage = 10;
               let actualites = [];
 
-              async function chargerActualites() {
+              async function chargerActualites(categorie) {
                 const container = document.getElementById('containerActualites');
                 const pagination = document.getElementById('pagination');
 
                 try {
-                  const response = await fetch('get_projets.php');
+                  const response = await fetch(`get_categories.php?categorie=${categorie}`);
                   const result = await response.json();
 
                   if (!result.success) {
@@ -134,7 +136,7 @@
                   actualites = result.data;
 
                   if (actualites.length === 0) {
-                    container.innerHTML = "<p>Aucun projet disponible pour le moment.</p>";
+                    container.innerHTML = "<p>Aucun catégorie disponible pour le moment.</p>";
                     pagination.innerHTML = "";
                     return;
                   }
@@ -158,18 +160,21 @@
                 const pageData = actualites.slice(start, end);
 
                 pageData.forEach(actu => {
-                  // const image = actu.images && actu.images.length > 0
-                  //   ? actu.images[0]
-                  //   : 'assets/img/blog-1.jpg';
+                  const image = actu.images && actu.images.length > 0
+                    ? actu.images[0]
+                    : 'assets/img/blog-1.jpg';
 
                   const card = document.createElement('article');
                   card.className = 'entry';
                   card.innerHTML = `
-        
+        <div class="entry-img">
+          <img src="${image}" alt="Image actualité" class="img-fluid" style="border-radius:10px;">
+        </div>
 
         <h2 class="entry-title">
-          <a href="projet-single.html?categorie=${actu.categorie}&titre=${actu.titre}&id=${actu.id}">${actu.titre}</a>
+          <a href="blog-single.html?categorie=${actu.categorie}&titre=${actu.titre}&id=${actu.id}">${actu.titre}</a>
         </h2>
+
         <div class="entry-meta">
           <ul>
             <li class="d-flex align-items-center"><i class="bi bi-person"></i> ${actu.auteur}</li>
@@ -181,7 +186,7 @@
         <div class="entry-content">
           <p>${actu.contenu.substring(0, 250)}...</p>
           <div class="read-more">
-            <a href="projet-single.html?categorie=${actu.categorie}&titre=${actu.titre}&id=${actu.id}">Lire la suite →</a>
+            <a href="blog-single.html?categorie=${actu.categorie}&titre=${actu.titre}&id=${actu.id}">Lire la suite →</a>
           </div>
         </div>
       `;
@@ -211,7 +216,11 @@
                 }
               }
 
-              chargerActualites();
+                            // Récupération de l'ID du devis depuis l'URL
+const categorie = new URLSearchParams(window.location.search).get("categorie");
+const categorieHtml = document.getElementById('categorie');
+                categorieHtml.innerHTML = categorie;
+              chargerActualites(categorie);
             </script>
 
           </div><!-- End blog entries list -->
