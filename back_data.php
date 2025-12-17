@@ -17,7 +17,7 @@
 
     if (isset($_POST['submitFaireDon'])) {
 
-        // var_dump( $_POST['submitFaireDon']);
+        var_dump( $_POST['submitFaireDon']);
         $nom = htmlspecialchars($_POST['name']);
         $email = htmlspecialchars($_POST['email']);
         $pays = htmlspecialchars($_POST['pays']);
@@ -78,7 +78,7 @@ try {
     // Nous rejoindre
       if (isset($_POST['submitRejoindreWagedo'])) {
 
-        // var_dump( $_POST['submitFaireDon']);
+        var_dump( $_POST['submitFaireDon']);
         $nom = htmlspecialchars($_POST['name']);
         $email = htmlspecialchars($_POST['email']);
         $pays = htmlspecialchars($_POST['pays']);
@@ -359,7 +359,7 @@ echo 'Votre message a été envoyé avec succès.';
       if (isset($_POST['submitFormNewsletter'])) {
 
         $email = htmlspecialchars($_POST['email']);
-var_dump($email);
+// var_dump($email);
      $ins = $bdd->prepare('INSERT INTO newsletters(email, createdAt) VALUES(:email, NOW())');
 
       $ins->bindParam(':email', $email);
@@ -374,7 +374,7 @@ echo 'Votre inscription au newsletters de WAGEDO a été effectué avec succès.
     $mail->Host       = 'mail89.lwspanel.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     $mail->Username   = 'info@wagedo-h2.org';                     //SMTP username
-    $mail->Password   = 'Abiola@2024';                               //SMTP password
+    $mail->Password   = 'InfoWAGEDO@2025';                               //SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
     $mail->Port       = 465;                                     //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
@@ -408,7 +408,7 @@ L'équipe WAGEDO";
     $mail->CharSet = 'UTF-8';
 
     $mail->send();
-    echo 'Message envoyé avec succès';
+    // echo 'Message envoyé avec succès';
 
 } catch (Exception $e) {
 

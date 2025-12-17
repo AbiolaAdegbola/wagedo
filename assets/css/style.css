@@ -1814,12 +1814,12 @@ top: 36px;
 }
 
 .blog .entry .entry-meta ul li+li {
-  padding-left: 20px;
+  padding-left: 10px;
 }
 
 .blog .entry .entry-meta i {
-  font-size: 16px;
-  margin-right: 8px;
+  font-size: 14px;
+  margin-right: 5px;
   line-height: 0;
 }
 
