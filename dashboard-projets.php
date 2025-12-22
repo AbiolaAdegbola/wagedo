@@ -61,7 +61,7 @@
               <i class="bi bi-eye"></i>
             </a>
             <!-- ✅ ajout de data-id -->
-            <span class="delete_article" data-id="<?= $result['id']; ?>" style="color:red; font-size:15px; cursor:pointer;">
+            <span class="delete_projet" data-id="<?= $result['id']; ?>" style="color:red; font-size:15px; cursor:pointer;">
               <i class="bi bi-trash"></i>
             </span>
           </td>

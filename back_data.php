@@ -64,7 +64,7 @@ try {
 // Set UTF-8 encoding
     $mail->CharSet = 'UTF-8';
     $mail->send();
-    echo 'Message envoyé avec succès';
+    // echo 'Message envoyé avec succès';
 
         } catch (Exception $e) {
         
@@ -74,11 +74,9 @@ try {
 
     }
 
-
     // Nous rejoindre
       if (isset($_POST['submitRejoindreWagedo'])) {
 
-        var_dump( $_POST['submitFaireDon']);
         $nom = htmlspecialchars($_POST['name']);
         $email = htmlspecialchars($_POST['email']);
         $pays = htmlspecialchars($_POST['pays']);
@@ -131,7 +129,7 @@ try {
 // Set UTF-8 encoding
     $mail->CharSet = 'UTF-8';
     $mail->send();
-    echo 'Message envoyé avec succès';
+    // echo 'Message envoyé avec succès';
 
         } catch (Exception $e) {
         
@@ -199,7 +197,7 @@ try {
 // Set UTF-8 encoding
     $mail->CharSet = 'UTF-8';
     $mail->send();
-    echo 'Message envoyé avec succès';
+    // echo 'Message envoyé avec succès';
 
         } catch (Exception $e) {
         
