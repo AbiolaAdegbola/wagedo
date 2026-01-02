@@ -42,14 +42,14 @@ try {
     $mail->isSMTP();                                            //Send using SMTP
     $mail->Host       = 'mail89.lwspanel.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'info@wagedo-h2.org';                     //SMTP username
-    $mail->Password   = 'InfoWAGEDO@2025';                              //SMTP password
+    $mail->Username   = 'contact@wagedo-h2.org';                     //SMTP username
+    $mail->Password   = 'Contact@2025';                              //SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
-    $mail->setFrom('info@wagedo-h2.org', 'WAGEDO');
-    $mail->addAddress('info@wagedo-h2.org', "");  
+    $mail->setFrom('contact@wagedo-h2.org', 'WAGEDO');
+    $mail->addAddress('contact@wagedo-h2.org', "");  
      // $mail->AddCC('appessika.koffi@wagedo-h2.org', ' '); 
     // $mail->addAddress('abiole68@gmail.com', ' ');     //Add a recipient
     // $mail->addAddress('ellen@example.com');               //Name is optional
@@ -107,14 +107,14 @@ try {
     $mail->isSMTP();                                            //Send using SMTP
     $mail->Host       = 'mail89.lwspanel.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'info@wagedo-h2.org';                     //SMTP username
-    $mail->Password   = 'InfoWAGEDO@2025';                              //SMTP password
+    $mail->Username   = 'contact@wagedo-h2.org';                     //SMTP username
+    $mail->Password   = 'Contact@2025';                              //SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
-    $mail->setFrom('info@wagedo-h2.org', 'WAGEDO');
-    $mail->addAddress('info@wagedo-h2.org', "");  
+    $mail->setFrom('contact@wagedo-h2.org', 'WAGEDO');
+    $mail->addAddress('contact@wagedo-h2.org', "");  
      // $mail->AddCC('appessika.koffi@wagedo-h2.org', ' '); 
     // $mail->addAddress('abiole68@gmail.com', ' ');     //Add a recipient
     // $mail->addAddress('ellen@example.com');               //Name is optional
@@ -175,14 +175,14 @@ try {
     $mail->isSMTP();                                            //Send using SMTP
     $mail->Host       = 'mail89.lwspanel.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'info@wagedo-h2.org';                     //SMTP username
-    $mail->Password   = 'InfoWAGEDO@2025';                              //SMTP password
+    $mail->Username   = 'contact@wagedo-h2.org';                     //SMTP username
+    $mail->Password   = 'Contact@2025';                              //SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
-    $mail->setFrom('info@wagedo-h2.org', 'WAGEDO');
-    $mail->addAddress('info@wagedo-h2.org', "");  
+    $mail->setFrom('contact@wagedo-h2.org', 'WAGEDO');
+    $mail->addAddress('contact@wagedo-h2.org', "");  
      // $mail->AddCC('appessika.koffi@wagedo-h2.org', ' '); 
     // $mail->addAddress('abiole68@gmail.com', ' ');     //Add a recipient
     // $mail->addAddress('ellen@example.com');               //Name is optional
@@ -245,9 +245,9 @@ if (isset($_POST['submitFormNewActualite'])) {
     $contenu = $_POST['contenu'] ?? '';
     $nameTable = trim(htmlspecialchars($_POST['submitFormNewActualite'] ?? ''));
 
-    if ($categorie === "Autres") {
-        $categorie = trim(htmlspecialchars($_POST['autre_categorie'] ?? ''));
-    }
+    // if ($categorie === "Autres") {
+    //     $categorie = trim(htmlspecialchars($_POST['autre_categorie'] ?? ''));
+    // }
 
     $uploadDir = __DIR__ . '/assets/img/blog/';
     if (!is_dir($uploadDir)) {
@@ -371,13 +371,13 @@ echo 'Votre inscription au newsletters de WAGEDO a été effectué avec succès.
      $mail->isSMTP();                                            //Send using SMTP
     $mail->Host       = 'mail89.lwspanel.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'info@wagedo-h2.org';                     //SMTP username
-    $mail->Password   = 'InfoWAGEDO@2025';                               //SMTP password
+    $mail->Username   = 'contact@wagedo-h2.org';                     //SMTP username
+    $mail->Password   = 'Contact@2025';                               //SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
     $mail->Port       = 465;                                     //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     // //Recipients
-    $mail->setFrom('info@wagedo-h2.org', 'WAGEDO');
+    $mail->setFrom('contact@wagedo-h2.org', 'WAGEDO');
     $mail->addAddress($email, ' ');     //Add a recipient
 
     //Content
@@ -392,7 +392,7 @@ Envie d'en savoir plus sur WAGEDO ? Visitez notre page <a href='https://wagedo-h
  <br><br>
 Nous serions ravis d'échanger avec vous. Si vous avez des questions ou des suggestions, n'hésitez pas à nous contacter :
 <br><br>
-Email : <a href='mailto:info@wagedo-h2.org'>info@wagedo-h2.org</a>
+Email : <a href='mailto:contact@wagedo-h2.org'>contact@wagedo-h2.org</a>
 Merci encore pour votre inscription et votre confiance. Nous sommes impatients de partager avec vous les dernières nouvelles.
 
  <br><br>
