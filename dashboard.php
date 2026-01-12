@@ -226,6 +226,10 @@
     <i class="fas fa-tachometer-alt"></i> Dashboard
   </a>
 
+    <a href="#" class="clickBoutonDashboard clickBoutonDashboard10 DashboardBouton" data-id="10">
+    <i class="fas fa-list"></i> Headlines
+  </a>
+
   <a href="#" class="clickBoutonDashboard clickBoutonDashboard2 DashboardBouton" data-id="2">
     <i class="fas fa-newspaper"></i> New Blogs
   </a>

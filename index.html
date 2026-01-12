@@ -64,15 +64,28 @@
     </div>
   </div>
 
-  <script>
-    /* 💡 Option dynamique : les actualités peuvent venir d'un tableau JS */
-    const newsList = [
-      "WAGEDO info"
-    ];
+<script>
+  // Fonction asynchrone pour charger les actualités
+  async function loadNews() {
+    try {
+      // On récupère les données depuis le fichier PHP
+      const response = await fetch('get_a_la_une.php');
+      if (!response.ok) throw new Error('Erreur réseau');
 
-    // Injection dynamique du contenu
-    document.getElementById("newsMarquee").innerHTML = `<span>${newsList.join(" — ")}</span>`;
-  </script>
+      // On suppose que le fichier PHP renvoie du JSON (ex: ["WAGEDO info", "Nouvelle annonce", "Programme 2026"])
+      const newsList = await response.json();
+// console.log("newsList", newsList)
+      // Injection dynamique dans le conteneur
+      const marquee = document.getElementById("newsMarquee");
+      marquee.innerHTML = `<span>${newsList.data.join(" — ")}</span>`;
+    } catch (error) {
+      console.error("Erreur lors du chargement des actualités :", error);
+    }
+  }
+
+  // Lancer la fonction après chargement de la page
+  document.addEventListener("DOMContentLoaded", loadNews);
+</script>
 
   <!-- ======= Header ======= -->
   <header id="header" class="header headerIndex fixed-top" style="background-color: white;">

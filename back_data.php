@@ -351,7 +351,6 @@
         echo 'Votre message a été envoyé avec succès.';
     }
 
-
     // Opportunity
     if (isset($_POST['submitFormNewOpportunity'])) {
 
@@ -367,6 +366,21 @@
         $ins->execute();
 
         echo 'Nouvelle opportunité ajoutée avec succès.';
+    }
+
+        // A LA UNE
+    if (isset($_POST['submitFormNewALaUne'])) {
+
+        $auteur = htmlspecialchars($_POST['auteur']);
+        $titre = htmlspecialchars($_POST['titre']);
+
+        $ins = $bdd->prepare('INSERT INTO alaune(titre, auteur, createdAt) VALUES(:titre, :auteur, NOW())');
+
+        $ins->bindParam(':auteur', $auteur);
+        $ins->bindParam(':titre', $titre);
+        $ins->execute();
+
+        echo 'Nouvelle a la une ajoutée avec succès.';
     }
 
     // newsletters
