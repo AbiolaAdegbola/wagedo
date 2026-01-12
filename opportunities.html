@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>WAGEDO - Blogs</title>
+  <title>WAGEDO - Opportunities</title>
   <meta
     content="WAGEDO is dedicated to promoting sustainable energy solutions across West Africa, focusing on renewable resources that support economic growth and environmental preservation."
     name="description">
@@ -58,7 +58,7 @@
           <li><a class="nav-link scrollto" href="index.html">Home</a></li>
           <li><a class="nav-link scrollto" href="about.html">About Us</a></li>
           <li><a class="nav-link scrollto" href="projets.html">Projects</a></li>
-          <li><a class="nav-link scrollto active" href="blog.html"> News / Resources</a></li>
+          <li><a class="nav-link scrollto" href="blog.html"> News / Resources</a></li>
           <li class="dropdown megamenu">
             <a href="#"><span>Areas of action</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
@@ -77,7 +77,7 @@
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="getstarted scrollto" href="impliquez-vous.html">Get involved</a></li>
+          <li><a class="getstarted scrollto active" href="impliquez-vous.html">Get involved</a></li>
           
         </ul>
         <div class="gtranslate_wrapper"></div>
@@ -98,9 +98,10 @@
 
         <ol>
           <li><a href="index.html">Home</a></li>
-          <li>News</li>
+          <li><a href="impliquez-vous.html">Get involved</a></li>
+          <li>Opportunities</li>
         </ol>
-        <h2>Blog</h2>
+        <h2></h2>
 
       </div>
     </section><!-- End Breadcrumbs -->
@@ -114,7 +115,7 @@
           <div class="col-lg-10 entries">
 
             <div class="containerActualites" id="containerActualites">
-              <p>⏳ blog loading...</p>
+              <p>⏳ opportunities loading...</p>
             </div>
 
             <!-- Bloc de pagination -->
@@ -132,7 +133,7 @@
                 const pagination = document.getElementById('pagination');
 
                 try {
-                  const response = await fetch('get_actualites.php');
+                  const response = await fetch('get_opportunities.php');
                   const result = await response.json();
 
                   if (!result.success) {
@@ -143,7 +144,7 @@
                   actualites = result.data;
 
                   if (actualites.length === 0) {
-                    container.innerHTML = "<p>Aucune actualité disponible pour le moment.</p>";
+                    container.innerHTML = "<p>Aucune opportunité disponible pour le moment.</p>";
                     pagination.innerHTML = "";
                     return;
                   }
@@ -167,19 +168,12 @@
                 const pageData = actualites.slice(start, end);
 
                 pageData.forEach(actu => {
-                  const image = actu.images && actu.images.length > 0
-                    ? actu.images[0]
-                    : 'assets/img/blog-1.jpg';
 
                   const card = document.createElement('article');
                   card.className = 'entry';
                   card.innerHTML = `
-        <div class="entry-img">
-          <img src="${image}" alt="Image actualité" class="img-fluid" style="border-radius:10px;">
-        </div>
-
         <h2 class="entry-title">
-          <a href="blog-single.html?categorie=${actu.categorie}&titre=${actu.titre}&id=${actu.id}">${actu.titre}</a>
+          <a href="opportunities-single.html?categorie=${actu.categorie}&titre=${actu.titre}&id=${actu.id}">${actu.titre}</a>
         </h2>
 
         <div class="entry-meta">

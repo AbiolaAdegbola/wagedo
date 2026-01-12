@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>WAGEDO - West African Green Energy Development Organisation</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <script src="https://cdn.tiny.cloud/1/6s21dq0092rknlz0uwpxh5v65jch8pjiakkxee2oc0uwxuwe/tinymce/6/tinymce.min.js"
+        referrerpolicy="origin"></script>
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <div class="gtranslate_wrapper"></div>
+    <script>window.gtranslateSettings = { "default_language": "en", "languages": ["en", "es", "pt", "fr"], "wrapper_selector": ".gtranslate_wrapper", "float_switcher_open_direction": "bottom", "alt_flags": { "en": "usa" } }</script>
+    <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+
+</head>
+
+<body>
+
+    <main id="main">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs" style="margin-top: 0;">
+            <div class="container">
+
+                <ol>
+                    <li><a href="dashboard.php">Dashboard</a></li>
+                    <li>Opportunity</li>
+                </ol>
+                <h2>Opportunity</h2>
+            </div>
+        </section><!-- End Breadcrumbs -->
+
+        <!-- ======= Blog Single Section ======= -->
+        <section id="blog" class="blog">
+            <div class="container" data-aos="fade-up">
+
+                <div class="row">
+
+                    <div class="col-lg-8 entries">
+
+                        <article class="entry entry-single">
+
+                            <h2 class="entry-title">
+                                <a href="#">New Opportunity sur WAGEDO</a>
+                            </h2>
+                            <div class="blog-comments">
+
+                                <div class="reply-form">
+                                    <!-- <h4>Leave a Reply</h4>
+                                    <p>Your email address will not be published. Required fields are marked * </p> -->
+                                    <form id="submitFormNewOpportunity" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div class="col-md-6 form-group">
+                                                <label for="type_auteur"><strong>Auteur</strong></label>
+                                                <input name="auteur" type="text" id="type_auteur" class="form-control"
+                                                    placeholder="Your Name auteur*" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col form-group">
+                                                <textarea name="titre" class="form-control"
+                                                    placeholder="Ajouter le titre d'actualité" required></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col form-group">
+                                                <textarea name="contenu" class="form-control" id="contenu"
+                                                    placeholder="Description de l'actualité"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <!-- Place the first <script> tag in your HTML's <head> -->
+                                        <script
+                                            src="https://cdn.tiny.cloud/1/6s21dq0092rknlz0uwpxh5v65jch8pjiakkxee2oc0uwxuwe/tinymce/8/tinymce.min.js"
+                                            referrerpolicy="origin" crossorigin="anonymous"></script>
+
+                                        <!-- Place the following <script> and <textarea> tags your HTML's <body> -->
+                                        <script>
+                                            tinymce.init({
+                                                selector: '#contenu',
+                                                plugins: [
+                                                    // Core editing features
+                                                    // 'ai'
+                                                ],
+                                                toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+                                                tinycomments_mode: 'embedded',
+                                                tinycomments_author: 'Author name',
+                                                mergetags_list: [
+                                                    { value: 'First.Name', title: 'First Name' },
+                                                    { value: 'Email', title: 'Email' },
+                                                ],
+                                                ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
+                                                uploadcare_public_key: 'f92d4a40368f3e153482',
+                                            });
+                                        </script>
+
+                                        <input name="submitFormNewOpportunity" value="opportunity" type="text"
+                                            style="display: none;">
+
+                                        <div class="responseForm"
+                                            style="background-color: red; color: white; text-align: center; padding: 10px; display: none;">
+                                        </div>
+                                        <div class="responseFormSuccess"
+                                            style="background-color: green; color: white; text-align: center; padding: 10px; display: none;">
+                                        </div>
+                                        <div class="spinner-grow loadingBoutonForm containerDisplayNone"
+                                            style="color: orange; display:none" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+
+                                        <button type="submit"
+                                            class="btn btn-primary submitFormNewOpportunity">ENVOYER</button>
+
+                                    </form>
+
+                                </div>
+
+                            </div>
+
+                        </article><!-- End blog entry -->
+
+                    </div><!-- End blog entries list -->
+
+                    <div class="col-lg-4">
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Blog Single Section -->
+
+    </main><!-- End #main -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

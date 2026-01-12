@@ -5,14 +5,9 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>WAGEDO - Blogs</title>
-  <meta
-    content="WAGEDO is dedicated to promoting sustainable energy solutions across West Africa, focusing on renewable resources that support economic growth and environmental preservation."
-    name="description">
-  <meta
-    content="WAGEDO, West Africa, green energy, renewable energy, sustainability, development, clean technology, solar energy, wind energy, hydropower, energy efficiency, climate change, environmental protection, carbon footprint, sustainable development goals, community empowerment, energy access"
-    name="keywords">
-
+<title>Opportunities - WAGEDO</title>
+<meta content="WAGEDO is dedicated to promoting sustainable energy solutions across West Africa, focusing on renewable resources that support economic growth and environmental preservation." name="description">
+<meta content="WAGEDO, West Africa, green energy, renewable energy, sustainability, development, clean technology, solar energy, wind energy, hydropower, energy efficiency, climate change, environmental protection, carbon footprint, sustainable development goals, community empowerment, energy access" name="keywords">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -58,7 +53,7 @@
           <li><a class="nav-link scrollto" href="index.html">Home</a></li>
           <li><a class="nav-link scrollto" href="about.html">About Us</a></li>
           <li><a class="nav-link scrollto" href="projets.html">Projects</a></li>
-          <li><a class="nav-link scrollto active" href="blog.html"> News / Resources</a></li>
+          <li><a class="nav-link scrollto" href="blog.html"> News / Resources</a></li>
           <li class="dropdown megamenu">
             <a href="#"><span>Areas of action</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
@@ -77,7 +72,7 @@
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="getstarted scrollto" href="impliquez-vous.html">Get involved</a></li>
+          <li><a class="getstarted scrollto active" href="impliquez-vous.html">Get involved</a></li>
           
         </ul>
         <div class="gtranslate_wrapper"></div>
@@ -89,7 +84,6 @@
     </div>
   </header><!-- End Header -->
 
-
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
@@ -98,14 +92,15 @@
 
         <ol>
           <li><a href="index.html">Home</a></li>
-          <li>News</li>
+          <li><a href="impliquez-vous.html">Get involved</a></li>
+          <li>Opportunities</li>
         </ol>
-        <h2>Blog</h2>
+        <h2></h2>
 
       </div>
     </section><!-- End Breadcrumbs -->
 
-    <!-- ======= Blog Section ======= -->
+    <!-- ======= Blog Single Section ======= -->
     <section id="blog" class="blog">
       <div class="container" data-aos="fade-up">
 
@@ -113,13 +108,9 @@
 
           <div class="col-lg-10 entries">
 
-            <div class="containerActualites" id="containerActualites">
-              <p>⏳ blog loading...</p>
-            </div>
 
-            <!-- Bloc de pagination -->
-            <div class="blog-pagination">
-              <ul class="justify-content-center" id="pagination"></ul>
+            <div class="containerActualites" id="containerActualites">
+              <p>⏳ Chargement des opportunities...</p>
             </div>
 
             <script>
@@ -127,12 +118,12 @@
               const itemsPerPage = 10;
               let actualites = [];
 
-              async function chargerActualites() {
+              async function chargerActualites(id_article) {
                 const container = document.getElementById('containerActualites');
-                const pagination = document.getElementById('pagination');
 
                 try {
-                  const response = await fetch('get_actualites.php');
+                  const response = await fetch(`get_opportunities_single.php?id=${id_article}`);
+                  
                   const result = await response.json();
 
                   if (!result.success) {
@@ -142,14 +133,12 @@
 
                   actualites = result.data;
 
-                  if (actualites.length === 0) {
-                    container.innerHTML = "<p>Aucune actualité disponible pour le moment.</p>";
-                    pagination.innerHTML = "";
+                  if ([actualites].length === 0) {
+                    container.innerHTML = "<p>Aucune opportunity disponible pour le moment.</p>";
                     return;
                   }
 
                   afficherPage(currentPage);
-                  afficherPagination();
 
                 } catch (error) {
                   console.error(error);
@@ -164,37 +153,27 @@
                 // Pagination des actualités
                 const start = (page - 1) * itemsPerPage;
                 const end = start + itemsPerPage;
-                const pageData = actualites.slice(start, end);
+                const pageData = [actualites].slice(start, end);
 
                 pageData.forEach(actu => {
-                  const image = actu.images && actu.images.length > 0
-                    ? actu.images[0]
-                    : 'assets/img/blog-1.jpg';
 
                   const card = document.createElement('article');
-                  card.className = 'entry';
+                  card.className = 'entry entry-single';
                   card.innerHTML = `
-        <div class="entry-img">
-          <img src="${image}" alt="Image actualité" class="img-fluid" style="border-radius:10px;">
-        </div>
 
         <h2 class="entry-title">
-          <a href="blog-single.html?categorie=${actu.categorie}&titre=${actu.titre}&id=${actu.id}">${actu.titre}</a>
+          <a href="#">${actu.titre}</a>
         </h2>
 
         <div class="entry-meta">
           <ul>
             <li class="d-flex align-items-center"><i class="bi bi-person"></i> ${actu.auteur}</li>
             <li class="d-flex align-items-center"><i class="bi bi-clock"></i> ${new Date(actu.createdAt).toLocaleDateString()}</li>
-            <li class="d-flex align-items-center"><i class="bi bi-folder"></i> ${actu.categorie}</li>
           </ul>
         </div>
 
         <div class="entry-content">
-          <p>${actu.contenu.substring(0, 250)}...</p>
-          <div class="read-more">
-            <a href="blog-single.html?categorie=${actu.categorie}&titre=${actu.titre}&id=${actu.id}">Lire la suite →</a>
-          </div>
+          <p>${actu.contenu}</p>
         </div>
       `;
                   container.appendChild(card);
@@ -204,55 +183,18 @@
                 container.scrollIntoView({ behavior: 'smooth' });
               }
 
-              function afficherPagination() {
-                const pagination = document.getElementById('pagination');
-                pagination.innerHTML = '';
-
-                const totalPages = Math.ceil(actualites.length / itemsPerPage);
-
-                for (let i = 1; i <= totalPages; i++) {
-                  const li = document.createElement('li');
-                  li.innerHTML = `<a href="#" ${i === currentPage ? 'class="active"' : ''}>${i}</a>`;
-                  li.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    currentPage = i;
-                    afficherPage(currentPage);
-                    afficherPagination();
-                  });
-                  pagination.appendChild(li);
-                }
-              }
-
-              chargerActualites();
+              // Récupération de l'ID du devis depuis l'URL
+const id_article = new URLSearchParams(window.location.search).get("id");
+// console.log("window.location.search", window.location.search)
+              chargerActualites(id_article);
             </script>
 
           </div><!-- End blog entries list -->
 
-          <!-- <div class="col-lg-4">
-
-            <div class="sidebar">
-              <h3 class="sidebar-title">Categories</h3>
-              <div class="sidebar-item categories">
-                <ul>
-                  <li><a href="categories.html?categorie=Renewable Energy and Energy Efficiency">Renewable Energy and
-                      Energy Efficiency </a></li>
-                  <li><a href="categories.html?categorie=Energy Transition">Energy Transition </a></li>
-                  <li><a href="categories.html?categorie=Climate Awareness">Climate Awareness</a></li>
-                  <li><a href="categories.html?categorie=Environmental Protection">Environmental Protection </a></li>
-                  <li><a href="categories.html?categorie=Green Hydrogen">Green Hydrogen</a></li>
-                  <li><a href="categories.html?categorie=Education">Education </a></li>
-                  <li><a href="categories.html?categorie=Autres">Autres </a></li>
-                </ul>
-              </div>
-
-            </div>
-
-          </div> -->
-
         </div>
 
       </div>
-    </section><!-- End Blog Section -->
+    </section><!-- End Blog Single Section -->
 
   </main><!-- End #main -->
 
@@ -359,9 +301,7 @@
       </div>
     </div>
   </footer><!-- End Footer -->
-
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-      class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>

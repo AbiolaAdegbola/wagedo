@@ -21,7 +21,7 @@ Ajouter une nouvelle actualité
 </a> -->
 
 <div class="card" style="width: 100%">
-<h3>Liste des personnes qui veulent rejoindre WAGEDO</h3>
+<h3>List of people who want to join WAGEDO</h3>
 
 <table class="table">
     <thead>
@@ -29,10 +29,10 @@ Ajouter une nouvelle actualité
         <th>#</th>
         <th>Nom</th>
         <th>E-mail</th>
-        <th>Téléphone</th>
+        <th>Phone</th>
         <th>Profesion</th>
-        <th>Pays</th>
-        <th>Ville</th>
+        <th>Country</th>
+        <th>City</th>
         <th>Raison</th>
         <th>Date</th>
       </tr>

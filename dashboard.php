@@ -227,7 +227,7 @@
   </a>
 
   <a href="#" class="clickBoutonDashboard clickBoutonDashboard2 DashboardBouton" data-id="2">
-    <i class="fas fa-newspaper"></i> Actualités
+    <i class="fas fa-newspaper"></i> New Blogs
   </a>
 
   <a href="#" class="clickBoutonDashboard clickBoutonDashboard3 DashboardBouton" data-id="3">
@@ -235,15 +235,19 @@
   </a>
 
   <a href="#" class="clickBoutonDashboard clickBoutonDashboard4 DashboardBouton" data-id="4">
-    <i class="fas fa-handshake"></i> Demande de partenariat
+    <i class="fas fa-handshake"></i> Partnership request
   </a>
 
   <a href="#" class="clickBoutonDashboard clickBoutonDashboard5 DashboardBouton" data-id="5">
-    <i class="fas fa-donate"></i> Donateurs
+    <i class="fas fa-donate"></i> Donors
   </a>
 
   <a href="#" class="clickBoutonDashboard clickBoutonDashboard6 DashboardBouton" data-id="6">
-    <i class="fas fa-users"></i> Rejoindre la communauté
+    <i class="fas fa-users"></i> Join the community
+  </a>
+
+  <a href="#" class="clickBoutonDashboard clickBoutonDashboard9 DashboardBouton" data-id="9">
+    <i class="fas fa-users"></i> New opportunity
   </a>
 
   <a href="#" class="clickBoutonDashboard clickBoutonDashboard7 DashboardBouton" data-id="7">
@@ -251,12 +255,12 @@
   </a>
 
   <a href="#" class="clickBoutonDashboard clickBoutonDashboard8 DashboardBouton" data-id="8">
-    <i class="fas fa-comments"></i> Message visiteur
+    <i class="fas fa-comments"></i> Visitor message
   </a>
 
   <div class="upgrade">
     <button>
-      <a href="deconnexion.php"><i class="fas fa-door-open"></i> Déconnexion</a>
+      <a href="deconnexion.php"><i class="fas fa-door-open"></i> Logout</a>
     </button>
   </div>
 </div>
@@ -418,41 +422,41 @@
             <div class="row g-5 mb-5">
                 <div class="col-lg-4">
                     <div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.1s">
-                        <div class="bg-secondary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
+                        <div class="bg-success d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px; background-color:#0a7b2b">
                             <i class="fa fa-phone-alt text-white"></i>
                         </div>
                         <div class="ps-4">
                             <h6 class="mb-2">Appelez pour poser n’importe quelle question</h6>
-                            <h6 class="text-primary mb-0"><a href="tel:0022500000000" class="text-primary">+225 00 00 00 00 00</a></h6>
+                            <h6 class="text-primary mb-0"><a href="tel:22374186407" class="text-primary">+223 741 864 07</a></h6>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.4s">
-                        <div class="bg-secondary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
+                        <div class="bg-success d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
                             <i class="fa fa-envelope-open text-white"></i>
                         </div>
                         <div class="ps-4">
                             <h6 class="mb-2">Envoyez un e-mail</h6>
-                            <h6 class="text-primary mb-0"><a href="mailto:info@wagedo-h2.org" class="text-primary">info@wagedo-h2.org</a></h6>
+                            <h6 class="text-primary mb-0"><a href="mailto:contact@wagedo-h2.org" class="text-primary">contact@wagedo-h2.org</a></h6>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.8s">
-                        <div class="bg-secondary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
+                        <div class="bg-success d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
                             <i class="fa fa-map-marker-alt text-white"></i>
                         </div>
                         <div class="ps-4">
                             <h6 class="mb-2">Visitez nos locaux</h6>
-                            <h6 class="text-primary mb-0">Côte d'ivoire, Abidjan</h6>
+                            <h6 class="text-primary mb-0">Banjul, The Gambia</h6>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row g-5">
                 <div class="col-lg-6 wow slideInUp" data-wow-delay="0.6s" style="height: 300px;">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2499.4772579202804!2d6.829639092623757!3d51.21028325952526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b8cb9335e1bd4b%3A0xf7d122b86794412f!2sWohnungsgenossenschaft%20Dusseldorf-Ost%20e.%20G.%20(WOGEDO)!5e0!3m2!1sfr!2sci!4v1765889403864!5m2!1sfr!2sci" width="600" height="300px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62090.28098758431!2d-16.6551335!3d13.4344381!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec299672266a1db%3A0x746784540528da06!2sKanifing%2C%20Gambie!5e0!3m2!1sfr!2sci!4v1768208054220!5m2!1sfr!2sci" width="600" height="300px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <div class="col-lg-6 wow slideInUp" data-wow-delay="0.3s" style="height: 300px;">
                     <form id="connexionPage">
@@ -473,7 +477,7 @@
                             </div>
                             
                             <div class="col-12">
-                                <button class="btn btn-secondary w-100 py-3 envoyerFormConnexion" type="submit">connexion</button>
+                                <button class="btn btn-success w-100 py-3 envoyerFormConnexion" type="submit">connexion</button>
                             </div>
                         </div>
                     </form>
