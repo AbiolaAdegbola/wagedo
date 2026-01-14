@@ -173,21 +173,20 @@
                   card.className = 'entry';
                   card.innerHTML = `
         <h2 class="entry-title">
-          <a href="opportunities-single.html?categorie=${actu.categorie}&titre=${actu.titre}&id=${actu.id}">${actu.titre}</a>
+          <a href="opportunities-single.html?auteur=${actu.auteur}&titre=${actu.titre}&id=${actu.id}">${actu.titre}</a>
         </h2>
 
         <div class="entry-meta">
           <ul>
             <li class="d-flex align-items-center"><i class="bi bi-person"></i> ${actu.auteur}</li>
             <li class="d-flex align-items-center"><i class="bi bi-clock"></i> ${new Date(actu.createdAt).toLocaleDateString()}</li>
-            <li class="d-flex align-items-center"><i class="bi bi-folder"></i> ${actu.categorie}</li>
           </ul>
         </div>
 
         <div class="entry-content">
           <p>${actu.contenu.substring(0, 250)}...</p>
           <div class="read-more">
-            <a href="blog-single.html?categorie=${actu.categorie}&titre=${actu.titre}&id=${actu.id}">Lire la suite →</a>
+            <a href="blog-single.html?auteur=${actu.auteur}&titre=${actu.titre}&id=${actu.id}">Lire la suite →</a>
           </div>
         </div>
       `;

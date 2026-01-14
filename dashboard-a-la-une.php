@@ -30,6 +30,7 @@ Ajouter une nouvelle info à la une
         <th>auteur</th>
         <th>informations</th>
         <th>Date</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -40,11 +41,16 @@ Ajouter une nouvelle info à la une
      while ($result = $data->fetch()) {
        ?>
    
-      <tr class="success onclickDetailModal" style="font-size: 12px" data-id="<?php echo($result['id'].'@]'."alaune"); ?>">
-        <td width="30px"><?php echo($u); ?></td>
-        <td width="190px" style="text-transform: capitalize;"><?php echo($result['auteur']); ?></td>
-        <td width="20%"><?php echo($result['titre']); ?></td>
-        <td width="120px"><?php if($result['createdAt']){ $da = explode(' ', $result['createdAt']); $d = explode('-', $da[0]); echo($d[2].'-'.$d[1].'-'.$d[0]);}  ?></td>
+      <tr class="success" style="font-size: 12px" data-id="<?php echo($result['id'].'@]'."alaune"); ?>">
+        <td width="3px" class="onclickDetailModal"><?php echo($u); ?></td>
+        <td width="190px" class="onclickDetailModal" style="text-transform: capitalize;"><?php echo($result['auteur']); ?></td>
+        <td width="20%" class="onclickDetailModal"><?php echo($result['titre']); ?></td>
+        <td width="120px" class="onclickDetailModal"><?php if($result['createdAt']){ $da = explode(' ', $result['createdAt']); $d = explode('-', $da[0]); echo($d[2].'-'.$d[1].'-'.$d[0]);}  ?></td>
+        <td>
+          <span class="delete_a_la_une" data-id="<?= $result['id']; ?>" style="color:red; font-size:15px; cursor:pointer;">
+              <i class="bi bi-trash"></i>
+            </span>
+        </td>
       </tr>
       
      <?php $u++; } $data->closeCursor(); ?> 

@@ -356,7 +356,7 @@
 
         $auteur = htmlspecialchars($_POST['auteur']);
         $titre = htmlspecialchars($_POST['titre']);
-        $contenu = htmlspecialchars($_POST['contenu']);
+        $contenu = $_POST['contenu'] ?? '';
 
         $ins = $bdd->prepare('INSERT INTO opportunity(titre, auteur, contenu, createdAt) VALUES(:titre, :auteur, :contenu, NOW())');
 

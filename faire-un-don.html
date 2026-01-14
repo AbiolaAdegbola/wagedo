@@ -148,10 +148,10 @@
                         <select name="mode_paiement" id="mode_paiement" class="form-control" required>
                           <option value="">Please choose your payment method</option>
                           <option value="orange">Orange Money</option>
-                          <option value="mtn">MTN Money</option>
-                          <option value="moov">Moov Money</option>
+                          <!-- <option value="mtn">MTN Money</option> -->
+                          <!-- <option value="moov">Moov Money</option> -->
                           <option value="wave">Wave</option>
-                          <option value="card">Credit Card</option>
+                          <!-- <option value="card">Credit Card</option> -->
                         </select>
                       </div>
                     </div>
@@ -170,35 +170,35 @@
                       const paymentInfos = {
                         orange: {
                           logo: "./assets/img/icons/orange-money.png",
-                          qrCode: "./assets/img/icons/qr.png", // URL du QR code
+                          // qrCode: "./assets/img/icons/qr.png", // URL du QR code
                           data: [
-                            { name: "ADEGBOLA ABIOLA MANSOUROU", country: "Ivory Coast", phone: "+225 01 41 87 05 79" },
+                            { name: "Bintou TRAORE", country: "Mali", phone: "+223 79 85 66 06" },
                           ]
                         },
                         mtn: {
                           logo: "./assets/img/icons/mtn.jpg",
-                          qrCode: "./assets/img/icons/qr.png", // URL du QR code
+                          // qrCode: "./assets/img/icons/qr.png", // URL du QR code
                           data: [
                             { name: "KOFFI YAO", country: "Ivory Coast", phone: "+225 05 55 55 55 55" },
                           ]
                         },
                         moov: {
                           logo: "./assets/img/icons/Moov-Money.webp",
-                          qrCode: "./assets/img/icons/qr.png", // URL du QR code
+                          // qrCode: "./assets/img/icons/qr.png", // URL du QR code
                           data: [
-                            { name: "TRAORE AMADOU", country: "Ivory Coast", phone: "+225 07 77 77 77 77" },
+                            { name: "Bintou TRAORE", country: "Mali", phone: "+223 79 85 66 06" },
                           ]
                         },
                         wave: {
                           logo: "./assets/img/icons/wave.png",
-                          qrCode: "./assets/img/icons/qr.png", // URL du QR code
+                          // qrCode: "./assets/img/icons/qr.png", // URL du QR code
                           data: [
-                            { name: "ADEGBOLA ABIOLA MANSOUROU", country: "Ivory Coast", phone: "+225 01 41 87 05 79" },
+                            { name: "Bintou TRAORE", country: "Mali", phone: "+223 79 85 66 06" },
                           ]
                         },
                         card: {
                           logo: "./assets/img/icons/carte bank.webp",
-                          qrCode: "./assets/img/icons/qr.png", // URL du QR code
+                          // qrCode: "./assets/img/icons/qr.png", // URL du QR code
                           data: [
                             { name: "WAGEDO Service", country: "Ivory Coast", phone: "Secure card payment" },
                           ]
@@ -228,10 +228,7 @@
                                     <div><strong>Phone:</strong> ${item.phone}</div>
                                 </div>
                             `).join('')}
-                            <div>
-                                <strong>QR Code:</strong>
-                                <img src="${qrCode}" alt="QR Code for ${mode}" style="width: 100px; height: 100px;">
-                            </div>
+                           
                             <div class="responseForm" style="background-color: red; color: white; text-align: center; padding: 10px; display: none;"></div>
                             <div class="responseFormSuccess" style="background-color: green; color: white; text-align: center; padding: 10px; display: none;"></div>
                             <div class="spinner-grow loadingBoutonForm containerDisplayNone" style="color: orange; display:none" role="status">
