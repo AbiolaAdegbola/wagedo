@@ -105,9 +105,40 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="index.html">Home</a></li>
-          <li><a class="nav-link scrollto" href="about.html">About Us</a></li>
-          <li><a class="nav-link scrollto" href="projets.html">Projects</a></li>
-          <li><a class="nav-link scrollto" href="blog.html"> News / Resources</a></li>
+          <!-- <li><a class="nav-link scrollto" href="about.html">About Us</a></li> -->
+          <li class="dropdown megamenu">
+            <a href="#"><span>About Us</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li>
+                <a href="about.html">Overview</a>
+                <a href="organisation_structure.html">Organisational Structure</a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown megamenu">
+            <a href="#"><span>Projects</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li>
+                <a href="projets.html">Ongoing project</a>
+                <a href="projets.html">Project completed</a>
+              </li>
+            </ul>
+          </li>
+          <!-- <li><a class="nav-link scrollto" href="projets.html">Projects</a></li> -->
+           <li class="dropdown megamenu">
+            <a href="#"><span>News / Resources</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li>
+                <a href="blog.html">News</a>
+                <a href="blog.html">Resources</a>
+              </li>
+              <li>
+                <a href="blog.html">Gallery/Multimedia</a>
+                <!-- <a href="blog.html">Resources</a> -->
+              </li>
+            </ul>
+          </li>
+          <!-- <li><a class="nav-link scrollto" href="blog.html"> News / Resources</a></li> -->
           <li class="dropdown megamenu">
             <a href="#"><span>Areas of action</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
@@ -199,13 +230,16 @@
     <section id="values" class="values">
 
       <div class="container" data-aos="fade-up">
-
+ <header class="section-header">
+          <h2>Areas of action</h2>
+          <!-- <p>Stay up to date with our news and inspiring shares</p> -->
+        </header>
         <div class="row">
 
           <div class="col-lg-3 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="200">
             <div class="box">
               <img src="assets/img/values-1.png" alt="">
-              <h3>Renewable Energy and Energy Efficiency</h3>
+              <h3 style="color: black;">Renewable Energy and Energy Efficiency</h3>
               <div class="text-center text-lg-start moreBox">
                 <a href="categories.html?categorie=Renewable Energy and Energy Efficiency"
                   class="d-inline-flex align-items-center justify-content-center align-self-center">
@@ -219,7 +253,7 @@
           <div class="col-lg-3 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="400">
             <div class="box">
               <img src="assets/img/values-2.png" class="img-fluid" alt="">
-              <h3>Energy Transition</h3>
+              <h3 style="color: black;">Energy Transition</h3>
               <div class="text-center text-lg-start moreBox">
                 <a href="categories.html?categorie=Energy Transition"
                   class="d-inline-flex align-items-center justify-content-center align-self-center">
@@ -233,7 +267,7 @@
           <div class="col-lg-3 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="600">
             <div class="box">
               <img src="assets/img/values-3.jpg" class="img-fluid" alt="">
-              <h3>Education</h3>
+              <h3 style="color: black;">Education</h3>
               <div class="text-center text-lg-start moreBox">
                 <a href="categories.html?categorie=Education"
                   class="d-inline-flex align-items-center justify-content-center align-self-center">
@@ -247,7 +281,62 @@
           <div class="col-lg-3 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="800">
             <div class="box">
               <img src="assets/img/values-4.png" class="img-fluid" alt="">
-              <h3>Environmental Protection</h3>
+              <h3 style="color: black;">Environmental Protection</h3>
+              <div class="text-center text-lg-start moreBox">
+                <a href="categories.html?categorie=Autres"
+                  class="d-inline-flex align-items-center justify-content-center align-self-center">
+                  <span style="color: black;">Learn more</span>
+                  <i class="bi bi-arrow-right" style="color: black;"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- End Values Section -->
+
+        <!-- ======= Values Section ======= -->
+    <section id="values" class="values">
+
+      <div class="container" data-aos="fade-up">
+
+        <div class="row">
+
+          <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="200">
+            <div class="box">
+              <img src="assets/img/energy.jpg" alt="">
+              <h3 style="color: black;">Climate Awareness</h3>
+              <div class="text-center text-lg-start moreBox">
+                <a href="categories.html?categorie=Climate Awareness"
+                  class="d-inline-flex align-items-center justify-content-center align-self-center">
+                  <span style="color: black;">Learn more</span>
+                  <i class="bi bi-arrow-right" style="color: black;"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="400">
+            <div class="box">
+              <img src="assets/img/values-6.jpg" class="img-fluid" alt="">
+              <h3 style="color: black;">Green Hydrogen</h3>
+              <div class="text-center text-lg-start moreBox">
+                <a href="categories.html?categorie=Green Hydrogen"
+                  class="d-inline-flex align-items-center justify-content-center align-self-center">
+                  <span style="color: black;">Learn more</span>
+                  <i class="bi bi-arrow-right" style="color: black;"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="600">
+            <div class="box">
+              <img src="assets/img/values-7.jpg" class="img-fluid" alt="">
+              <h3 style="color: black;">Autres</h3>
               <div class="text-center text-lg-start moreBox">
                 <a href="categories.html?categorie=Autres"
                   class="d-inline-flex align-items-center justify-content-center align-self-center">
@@ -304,61 +393,6 @@
         margin-bottom: 2px;
       }
     </style>
-
-    <!-- ======= Values Section ======= -->
-    <section id="values" class="values">
-
-      <div class="container" data-aos="fade-up">
-
-        <div class="row">
-
-          <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="200">
-            <div class="box">
-              <img src="assets/img/energy.jpg" alt="">
-              <h3>Climate Awareness</h3>
-              <div class="text-center text-lg-start moreBox">
-                <a href="categories.html?categorie=Climate Awareness"
-                  class="d-inline-flex align-items-center justify-content-center align-self-center">
-                  <span style="color: black;">Learn more</span>
-                  <i class="bi bi-arrow-right" style="color: black;"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="400">
-            <div class="box">
-              <img src="assets/img/values-6.jpg" class="img-fluid" alt="">
-              <h3>Green Hydrogen</h3>
-              <div class="text-center text-lg-start moreBox">
-                <a href="categories.html?categorie=Green Hydrogen"
-                  class="d-inline-flex align-items-center justify-content-center align-self-center">
-                  <span style="color: black;">Learn more</span>
-                  <i class="bi bi-arrow-right" style="color: black;"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="600">
-            <div class="box">
-              <img src="assets/img/values-7.jpg" class="img-fluid" alt="">
-              <h3>Autres</h3>
-              <div class="text-center text-lg-start moreBox">
-                <a href="categories.html?categorie=Autres"
-                  class="d-inline-flex align-items-center justify-content-center align-self-center">
-                  <span style="color: black;">Learn more</span>
-                  <i class="bi bi-arrow-right" style="color: black;"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section><!-- End Values Section -->
 
     <!-- ======= Services Section ======= -->
     <section id="services" class="services">
@@ -659,15 +693,15 @@
 
         <div class="clients-slider swiper">
           <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide"><img src="assets/img/clients/client-1.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-2.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-3.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-4.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-5.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-6.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-7.png" class="img-fluid" alt=""></div>
+            <!-- <div class="swiper-slide"><img src="assets/img/clients/client-1.png" class="img-fluid" alt=""></div> -->
+            <!-- <div class="swiper-slide"><img src="assets/img/clients/client-2.png" class="img-fluid" alt=""></div> -->
+            <!-- <div class="swiper-slide"><img src="assets/img/clients/client-3.png" class="img-fluid" alt=""></div> -->
+            <!-- <div class="swiper-slide"><img src="assets/img/clients/client-4.png" class="img-fluid" alt=""></div> -->
+            <!-- <div class="swiper-slide"><img src="assets/img/clients/client-5.png" class="img-fluid" alt=""></div> -->
+            <!-- <div class="swiper-slide"><img src="assets/img/clients/client-6.png" class="img-fluid" alt=""></div> -->
+            <!-- <div class="swiper-slide"><img src="assets/img/clients/client-7.png" class="img-fluid" alt=""></div> -->
             <!-- <div class="swiper-slide"><img src="assets/img/clients/client-8.png" class="img-fluid" alt=""></div> -->
-            <div class="swiper-slide"><img src="assets/img/clients/client-9.png" class="img-fluid" alt=""></div>
+            <!-- <div class="swiper-slide"><img src="assets/img/clients/client-9.png" class="img-fluid" alt=""></div> -->
             <!-- <div class="swiper-slide"><img src="assets/img/clients/client-10.png" class="img-fluid" alt=""></div> -->
           </div>
           <div class="swiper-pagination"></div>
@@ -880,7 +914,7 @@
                 <div class="info-box">
                   <i class="bi bi-clock"></i>
                   <h3>Open Hours</h3>
-                  <p>Lundi - Vendredi<br>9:00 - 17:00</p>
+                  <p>Monday - Friday<br>9:00 - 17:00</p>
                 </div>
               </div>
             </div>
@@ -920,7 +954,7 @@
                 </div>
 
                 <div class="col-md-12 text-center">
-                  <button type="submit" class="btn btn-primary submitFormMessageVisiteur">Send a message</button>
+                  <button type="submit" class="btn btn-success submitFormMessageVisiteur">Send a message</button>
                 </div>
 
               </div>
