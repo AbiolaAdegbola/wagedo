@@ -64,28 +64,28 @@
     </div>
   </div>
 
-<script>
-  // Fonction asynchrone pour charger les actualités
-  async function loadNews() {
-    try {
-      // On récupère les données depuis le fichier PHP
-      const response = await fetch('get_a_la_une.php');
-      if (!response.ok) throw new Error('Erreur réseau');
+  <script>
+    // Fonction asynchrone pour charger les actualités
+    async function loadNews() {
+      try {
+        // On récupère les données depuis le fichier PHP
+        const response = await fetch('get_a_la_une.php');
+        if (!response.ok) throw new Error('Erreur réseau');
 
-      // On suppose que le fichier PHP renvoie du JSON (ex: ["WAGEDO info", "Nouvelle annonce", "Programme 2026"])
-      const newsList = await response.json();
-// console.log("newsList", newsList)
-      // Injection dynamique dans le conteneur
-      const marquee = document.getElementById("newsMarquee");
-      marquee.innerHTML = `<span>${newsList.data.join(" — ")}</span>`;
-    } catch (error) {
-      console.error("Erreur lors du chargement des actualités :", error);
+        // On suppose que le fichier PHP renvoie du JSON (ex: ["WAGEDO info", "Nouvelle annonce", "Programme 2026"])
+        const newsList = await response.json();
+        // console.log("newsList", newsList)
+        // Injection dynamique dans le conteneur
+        const marquee = document.getElementById("newsMarquee");
+        marquee.innerHTML = `<span>${newsList.data.join(" — ")}</span>`;
+      } catch (error) {
+        console.error("Erreur lors du chargement des actualités :", error);
+      }
     }
-  }
 
-  // Lancer la fonction après chargement de la page
-  document.addEventListener("DOMContentLoaded", loadNews);
-</script>
+    // Lancer la fonction après chargement de la page
+    document.addEventListener("DOMContentLoaded", loadNews);
+  </script>
 
   <!-- ======= Header ======= -->
   <header id="header" class="header headerIndex fixed-top" style="background-color: white;">
@@ -125,16 +125,13 @@
             </ul>
           </li>
           <!-- <li><a class="nav-link scrollto" href="projets.html">Projects</a></li> -->
-           <li class="dropdown megamenu">
+          <li class="dropdown megamenu">
             <a href="#"><span>News / Resources</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li>
                 <a href="blog.html">News</a>
                 <a href="blog.html">Resources</a>
-              </li>
-              <li>
                 <a href="blog.html">Gallery/Multimedia</a>
-                <!-- <a href="blog.html">Resources</a> -->
               </li>
             </ul>
           </li>
@@ -230,7 +227,7 @@
     <section id="values" class="values">
 
       <div class="container" data-aos="fade-up">
- <header class="section-header">
+        <header class="section-header">
           <h2>Areas of action</h2>
           <!-- <p>Stay up to date with our news and inspiring shares</p> -->
         </header>
@@ -298,7 +295,7 @@
 
     </section><!-- End Values Section -->
 
-        <!-- ======= Values Section ======= -->
+    <!-- ======= Values Section ======= -->
     <section id="values" class="values">
 
       <div class="container" data-aos="fade-up">
@@ -900,7 +897,7 @@
                     Djeneba Fane, Secretary General <br>
                     +223 74186407, djeneba.fane@wagedo-h2.org
                   </p>
-                  
+
                 </div>
               </div>
               <div class="col-md-6">
@@ -1015,9 +1012,9 @@
             </a>
             <p>Hydrogen Green Economy Driver for a Sustainable Future</p>
             <div class="social-links mt-3">
-              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+              <!-- <a href="#" class="twitter"><i class="bi bi-twitter"></i></a> -->
+              <a href="https://web.facebook.com/people/West-African-Green-Energy-Development-Organisation/61583404858134/" class="facebook"><i class="bi bi-facebook"></i></a>
+              <!-- <a href="#" class="instagram"><i class="bi bi-instagram"></i></a> -->
               <a href="https://www.linkedin.com/company/west-african-green-energy-development-organisation/"
                 class="linkedin"><i class="bi bi-linkedin"></i></a>
             </div>

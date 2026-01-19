@@ -51,9 +51,37 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto" href="index.html">Home</a></li>
-          <li><a class="nav-link scrollto" href="about.html">About Us</a></li>
-          <li><a class="nav-link scrollto" href="projets.html">Projects</a></li>
-          <li><a class="nav-link scrollto" href="blog.html"> News / Resources</a></li>
+          <!-- <li><a class="nav-link scrollto" href="about.html">About Us</a></li> -->
+          <li class="dropdown megamenu">
+            <a href="#"><span>About Us</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li>
+                <a href="about.html">Overview</a>
+                <a href="organisation_structure.html">Organisational Structure</a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown megamenu">
+            <a href="#"><span>Projects</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li>
+                <a href="projets.html">Ongoing project</a>
+                <a href="projets.html">Project completed</a>
+              </li>
+            </ul>
+          </li>
+          <!-- <li><a class="nav-link scrollto" href="projets.html">Projects</a></li> -->
+          <li class="dropdown megamenu">
+            <a href="#"><span>News / Resources</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li>
+                <a href="blog.html">News</a>
+                <a href="blog.html">Resources</a>
+                <a href="blog.html">Gallery/Multimedia</a>
+              </li>
+            </ul>
+          </li>
+          <!-- <li><a class="nav-link scrollto" href="blog.html"> News / Resources</a></li> -->
           <li class="dropdown megamenu">
             <a href="#"><span>Areas of action</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
@@ -72,12 +100,12 @@
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="getstarted scrollto active" href="impliquez-vous.html">Get involved</a></li>
-          
+          <li><a class="getstarted scrollto" href="impliquez-vous.html">Get involved</a></li>
+
         </ul>
         <div class="gtranslate_wrapper"></div>
-<script>window.gtranslateSettings = {"default_language":"en","languages":["en","fr","it","es","pt"],"wrapper_selector":".gtranslate_wrapper","flag_size":24}</script>
-<script src="https://cdn.gtranslate.net/widgets/latest/popup.js" defer></script>
+        <script>window.gtranslateSettings = { "default_language": "en", "languages": ["en", "fr", "it", "es", "pt"], "wrapper_selector": ".gtranslate_wrapper", "flag_size": 24 }</script>
+        <script src="https://cdn.gtranslate.net/widgets/latest/popup.js" defer></script>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>
 
@@ -210,7 +238,8 @@ const id_article = new URLSearchParams(window.location.search).get("id");
           </div>
           <div class="col-lg-6">
             <form id="submitFormNewsletter">
-              <input type="email" name="email" required><input type="submit" value="Subscribe" class="submitFormNewsletter">
+              <input type="email" name="email" required><input type="submit" value="Subscribe"
+                class="submitFormNewsletter">
               <input type="text" name="submitFormNewsletter" style="display:none;">
             </form>
             <div class="responseFormNews"
@@ -242,9 +271,9 @@ const id_article = new URLSearchParams(window.location.search).get("id");
             </a>
             <p>Hydrogen Green Economy Driver for a Sustainable Future</p>
             <div class="social-links mt-3">
-              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+              <!-- <a href="#" class="twitter"><i class="bi bi-twitter"></i></a> -->
+              <a href="https://web.facebook.com/people/West-African-Green-Energy-Development-Organisation/61583404858134/" class="facebook"><i class="bi bi-facebook"></i></a>
+              <!-- <a href="#" class="instagram"><i class="bi bi-instagram"></i></a> -->
               <a href="https://www.linkedin.com/company/west-african-green-energy-development-organisation/"
                 class="linkedin"><i class="bi bi-linkedin"></i></a>
             </div>
@@ -286,7 +315,8 @@ const id_article = new URLSearchParams(window.location.search).get("id");
       </div>
     </div>
 
-    <div class="container" style="display: flex; align-items: center; gap: 10px; justify-content: center; align-content: center; padding-top: 13px;">
+    <div class="container"
+      style="display: flex; align-items: center; gap: 10px; justify-content: center; align-content: center; padding-top: 13px;">
       <div class="copyright">
         &copy; Copyright <strong><span style="color: #0a7b2b;">WAGEDO</span></strong>. All Rights Reserved
       </div>
@@ -301,6 +331,7 @@ const id_article = new URLSearchParams(window.location.search).get("id");
       </div>
     </div>
   </footer><!-- End Footer -->
+
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
