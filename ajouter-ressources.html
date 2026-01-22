@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="utf-8">
@@ -25,8 +25,7 @@
     <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-    <script src="https://cdn.tiny.cloud/1/6s21dq0092rknlz0uwpxh5v65jch8pjiakkxee2oc0uwxuwe/tinymce/6/tinymce.min.js"
-        referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/6s21dq0092rknlz0uwpxh5v65jch8pjiakkxee2oc0uwxuwe/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
@@ -47,11 +46,9 @@
 
                 <ol>
                     <li><a href="dashboard.php">Dashboard</a></li>
-                    <!-- <li><a href="impliquez-vous.html">Impliquez-vous</a></li> -->
-                    <li>Projets</li>
+                    <li>Resources</li>
                 </ol>
-                <h2>Projets</h2>
-
+                <h2>Resources</h2>
             </div>
         </section><!-- End Breadcrumbs -->
 
@@ -66,14 +63,14 @@
                         <article class="entry entry-single">
 
                             <h2 class="entry-title">
-                                <a href="#">New projet sur WAGEDO</a>
+                                <a href="#">New Resources WAGEDO</a>
                             </h2>
                             <div class="blog-comments">
 
                                 <div class="reply-form">
                                     <!-- <h4>Leave a Reply</h4>
                                     <p>Your email address will not be published. Required fields are marked * </p> -->
-                                    <form id="submitFormNewActualite" enctype="multipart/form-data">
+                                    <form id="submitFormNewRessource" enctype="multipart/form-data">
                                         <div class="row">
                                             <div class="col-md-6 form-group">
                                                 <label for="type_auteur"><strong>Auteur</strong></label>
@@ -83,7 +80,8 @@
                                             <div class="col-md-6 form-group">
                                                 <label for="categorie"><strong>Catégorie</strong></label>
                                                 <select name="categorie" id="categorie" class="form-control" required>
-                                                    <option value="">Veuillez choisir le type de catégorie</option>
+                                                    <option value="">Veuillez choisir le type de catégorie
+                                                    </option>
                                                     <option>Renewable Energy and Energy Efficiency</option>
                                                     <option>Energy Transition</option>
                                                     <option>Environmental Protection</option>
@@ -110,7 +108,7 @@
 
                                                 // Événement quand la valeur du select change
                                                 selectPartenariat.addEventListener("change", function () {
-                                                    if (this.value === "autre") {
+                                                    if (this.value === "Autres") {
                                                         autreDiv.style.display = "block"; // Affiche le champ
                                                     } else {
                                                         autreDiv.style.display = "none"; // Cache le champ
@@ -122,26 +120,16 @@
 
                                         <div class="row">
                                             <div class="col form-group">
-                                                <label for="etat"><strong>Titre du projet</strong></label>
                                                 <textarea name="title" class="form-control"
-                                                    placeholder="Ajouter le titre d'actualité" required></textarea>
+                                                    placeholder="Ajouter le titre de la ressource" required></textarea>
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="etat"><strong>Etat du projet</strong></label>
-                                            <select name="etat" id="etat" class="form-control" required>
-                                                <option value="">Veuillez choisir l'état du projet</option>
-                                                <option value="0">En cours</option>
-                                                <option value="1">Terminé</option>
-                                            </select>
-                                        </div>
-
                                         <div class="row">
-                                            <label for="images"><strong>Ajouter des images</strong></label>
+                                            <label for="images"><strong>Ajouter des documents</strong></label>
                                             <div class="col form-group">
                                                 <input type="file" id="images" name="images[]" class="form-control"
-                                                    accept="image/*" multiple required
+                                                   accept=".pdf,.doc,.docx,.xls,.xlsx,image/*"  multiple required
                                                     onchange="previewImages(event)" />
                                             </div>
                                         </div>
@@ -218,7 +206,7 @@
                                         <div class="row">
                                             <div class="col form-group">
                                                 <textarea name="contenu" class="form-control" id="contenu"
-                                                    placeholder="Description de l'actualité"></textarea>
+                                                    placeholder="Description de la ressource"></textarea>
                                             </div>
                                         </div>
 
@@ -233,7 +221,7 @@
                                                 selector: '#contenu',
                                                 plugins: [
                                                     // Core editing features
-                                                    // 'ai'
+                                                //    'ai'
                                                 ],
                                                 toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
                                                 tinycomments_mode: 'embedded',
@@ -247,8 +235,7 @@
                                             });
                                         </script>
 
-                                        <input name="submitFormNewActualite" value="projets" type="text"
-                                            style="display: none;">
+                                        <input name="submitFormNewRessource" value="ressource" type="text" style="display: none;">
 
                                         <div class="responseForm"
                                             style="background-color: red; color: white; text-align: center; padding: 10px; display: none;">
@@ -261,8 +248,7 @@
                                             <span class="sr-only">Loading...</span>
                                         </div>
 
-                                        <button type="submit"
-                                            class="btn btn-primary submitFormNewActualite">ENVOYER</button>
+                                        <button type="submit" class="btn btn-primary submitFormNewRessource">ENVOYER</button>
 
                                     </form>
 

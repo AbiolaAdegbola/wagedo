@@ -308,14 +308,17 @@
         $imagesJSON = json_encode($imagePaths, JSON_UNESCAPED_SLASHES);
 
         if ($nameTable === "projets") {
-            $ins = $bdd->prepare('INSERT INTO projets (titre, images, auteur, categorie, contenu, createdAt) 
-                          VALUES (:titre, :images, :auteur, :categorie, :contenu, NOW())');
+            $etat = trim(htmlspecialchars($_POST['etat'] ?? ''));
+
+            $ins = $bdd->prepare('INSERT INTO projets (titre, images, auteur, categorie, contenu, etat, createdAt) 
+                          VALUES (:titre, :images, :auteur, :categorie, :contenu, :etat, NOW())');
             $ins->execute([
                 ':titre' => $titre,
                 ':images' => $imagesJSON,
                 ':auteur' => $auteur,
                 ':categorie' => $categorie,
-                ':contenu' => $contenu
+                ':contenu' => $contenu,
+                ':etat' => $etat
             ]);
             echo '<div style="color: green;">✅ Votre projet a été publié avec succès.</div>';
         } else {
@@ -368,7 +371,7 @@
         echo 'Nouvelle opportunité ajoutée avec succès.';
     }
 
-        // A LA UNE
+    // A LA UNE
     if (isset($_POST['submitFormNewALaUne'])) {
 
         $auteur = htmlspecialchars($_POST['auteur']);
@@ -445,18 +448,130 @@ L'équipe WAGEDO";
     }
 
 
-    if (isset($_POST['etat'])) {
-        $id = htmlspecialchars($_POST['id']);
-        $etat = htmlspecialchars($_POST['etat']);
-        $numeroDevis = htmlspecialchars($_POST['numeroDevis']);
-        $dateEnvoieDevis = htmlspecialchars($_POST['dateEnvoieDevis']);
-        $agent = htmlspecialchars($_POST['agent']);
+    // ✅ Ajouter une nouvelle ressource (images + documents)
+    if (isset($_POST['submitFormNewRessource'])) {
+        var_dump($_POST['submitFormNewRessource']);
+        $titre = trim(htmlspecialchars($_POST['title'] ?? ''));
+        $auteur = trim(htmlspecialchars($_POST['auteur'] ?? ''));
+        $categorie = trim(htmlspecialchars($_POST['categorie'] ?? ''));
+        $contenu = $_POST['contenu'] ?? '';
+        $nameTable = trim(htmlspecialchars($_POST['submitFormNewRessource'] ?? ''));
 
-        $update = $bdd->prepare('UPDATE devis SET agent=:agent, etat=:etat, numeroDevis=:numeroDevis, dateFin=:dateFin WHERE id =:id');
+        $uploadDir = __DIR__ . '/assets/img/ressources/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
+
+        $filePaths = [];
+
+        // ✅ Gestion multi-fichiers
+        if (!empty($_FILES['fichiers']['name'][0])) {
+            $files = [];
+            foreach ($_FILES['fichiers'] as $key => $values) {
+                foreach ((array)$values as $i => $value) {
+                    $files[$i][$key] = $value;
+                }
+            }
+
+            // ✅ Extensions autorisées (images + documents)
+            $allowedExt = [
+                // Images
+                'jpg',
+                'jpeg',
+                'png',
+                'gif',
+                'webp',
+                'bmp',
+                'svg',
+                'avif',
+                'heic',
+                // Documents
+                'pdf',
+                'doc',
+                'docx',
+                'xls',
+                'xlsx',
+                'txt'
+            ];
+
+            // ✅ Types MIME autorisés
+            $allowedMime = [
+                // Images
+                'image/jpeg',
+                'image/png',
+                'image/gif',
+                'image/webp',
+                'image/bmp',
+                'image/svg+xml',
+                'image/avif',
+                'image/heic',
+                // PDF
+                'application/pdf',
+                // Word
+                'application/msword',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                // Excel
+                'application/vnd.ms-excel',
+                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                // Texte
+                'text/plain'
+            ];
+
+            foreach ($files as $file) {
+                if ($file['error'] !== UPLOAD_ERR_OK) continue;
+
+                $fileName = basename($file['name']);
+                $fileTmp = $file['tmp_name'];
+                $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+
+                $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                $mime = finfo_file($finfo, $fileTmp);
+                finfo_close($finfo);
+
+                if (in_array($fileExt, $allowedExt) && in_array($mime, $allowedMime)) {
+                    // ✅ Nom unique et sécurisé
+                    $cleanName = preg_replace('/[^a-zA-Z0-9_-]/', '_', pathinfo($fileName, PATHINFO_FILENAME));
+                    $newFileName = uniqid($cleanName . '_', true) . '.' . $fileExt;
+                    $targetFile = $uploadDir . $newFileName;
+
+                    if (move_uploaded_file($fileTmp, $targetFile)) {
+                        // Pour les images, vérifier qu'elles sont valides
+                        if (in_array($fileExt, ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp', 'svg', 'avif', 'heic'])) {
+                            if (!@getimagesize($targetFile)) {
+                                unlink($targetFile);
+                                continue;
+                            }
+                        }
+
+                        // ✅ Stocker le chemin relatif
+                        $filePaths[] = 'assets/img/ressources/' . $newFileName;
+                    }
+                }
+            }
+        }
+
+        $filesJSON = json_encode($filePaths, JSON_UNESCAPED_SLASHES);
+
+        // ✅ Insertion en base de données
+        $ins = $bdd->prepare('INSERT INTO ressource (titre, images, auteur, categorie, contenu, createdAt) 
+                          VALUES (:titre, :images, :auteur, :categorie, :contenu, NOW())');
+        $ins->execute([
+            ':titre' => $titre,
+            ':images' => $filesJSON,
+            ':auteur' => $auteur,
+            ':categorie' => $categorie,
+            ':contenu' => $contenu
+        ]);
+
+        echo '<div style="color: green;">✅ Votre ressource a été publiée avec succès.</div>';
+    }
+
+    if (isset($_POST['etat_projet'])) {
+        $id = htmlspecialchars($_POST['id']);
+        $etat = htmlspecialchars($_POST['etat_projet']);
+
+        $update = $bdd->prepare('UPDATE projets SET etat=:etat WHERE id =:id');
         $update->bindParam(':etat', $etat);
-        $update->bindParam(':agent', $agent);
-        $update->bindParam(':numeroDevis', $numeroDevis);
-        $update->bindParam(':dateFin', $dateEnvoieDevis);
         $update->bindParam(':id', $id);
         $update->execute();
     }

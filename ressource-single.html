@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>Projets - WAGEDO</title>
+<title>Blogs - WAGEDO</title>
 <meta content="WAGEDO is dedicated to promoting sustainable energy solutions across West Africa, focusing on renewable resources that support economic growth and environmental preservation." name="description">
 <meta content="WAGEDO, West Africa, green energy, renewable energy, sustainability, development, clean technology, solar energy, wind energy, hydropower, energy efficiency, climate change, environmental protection, carbon footprint, sustainable development goals, community empowerment, energy access" name="keywords">
 
@@ -112,7 +112,6 @@
     </div>
   </header><!-- End Header -->
 
-
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
@@ -120,15 +119,16 @@
       <div class="container">
 
         <ol>
-          <li><a href="index.html">Accueil</a></li>
-          <li>Projets</li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="blog.html">News / Blog</a></li>
+          <li></li>
         </ol>
-        <h2 id="titrePage"></h2>
+        <h2></h2>
 
       </div>
     </section><!-- End Breadcrumbs -->
 
-    <!-- ======= Blog Section ======= -->
+    <!-- ======= Blog Single Section ======= -->
     <section id="blog" class="blog">
       <div class="container" data-aos="fade-up">
 
@@ -136,13 +136,9 @@
 
           <div class="col-lg-10 entries">
 
-            <div class="containerActualites" id="containerActualites">
-              <p>⏳ Chargement des Projets...</p>
-            </div>
 
-            <!-- Bloc de pagination -->
-            <div class="blog-pagination">
-              <ul class="justify-content-center" id="pagination"></ul>
+            <div class="containerActualites" id="containerActualites">
+              <p>⏳ Chargement des actualités...</p>
             </div>
 
             <script>
@@ -150,12 +146,11 @@
               const itemsPerPage = 10;
               let actualites = [];
 
-              async function chargerActualites(etat_projet) {
+              async function chargerActualites(id_article) {
                 const container = document.getElementById('containerActualites');
-                const pagination = document.getElementById('pagination');
 
                 try {
-                  const response = await fetch(`get_projets.php?etat=${etat_projet}`);
+                  const response = await fetch(`get_ressource_single.php?id=${id_article}`);
                   
                   const result = await response.json();
 
@@ -166,14 +161,12 @@
 
                   actualites = result.data;
 
-                  if (actualites.length === 0) {
-                    container.innerHTML = "<p>Aucun projet disponible pour le moment.</p>";
-                    pagination.innerHTML = "";
+                  if ([actualites].length === 0) {
+                    container.innerHTML = "<p>Aucune ressource disponible pour le moment.</p>";
                     return;
                   }
 
                   afficherPage(currentPage);
-                  afficherPagination();
 
                 } catch (error) {
                   console.error(error);
@@ -188,21 +181,24 @@
                 // Pagination des actualités
                 const start = (page - 1) * itemsPerPage;
                 const end = start + itemsPerPage;
-                const pageData = actualites.slice(start, end);
+                const pageData = [actualites].slice(start, end);
 
                 pageData.forEach(actu => {
-                  // const image = actu.images && actu.images.length > 0
-                  //   ? actu.images[0]
-                  //   : 'assets/img/blog-1.jpg';
+                  const image = actu.images && actu.images.length > 0
+                    ? actu.images[0]
+                    : 'assets/img/blog-1.jpg';
 
                   const card = document.createElement('article');
-                  card.className = 'entry';
+                  card.className = 'entry entry-single';
                   card.innerHTML = `
-        
+        <div class="entry-img">
+          <a href="https://wagedo-h2.org/assets/docs/${image}" data-gall="portfolioGallery" title="${actu.titre}">Voir la ressource</a>
+        </div>
 
         <h2 class="entry-title">
-          <a href="projet-single.html?categorie=${actu.categorie}&titre=${actu.titre}&id=${actu.id}">${actu.titre}</a>
+          <a href="#">${actu.titre}</a>
         </h2>
+
         <div class="entry-meta">
           <ul>
             <li class="d-flex align-items-center"><i class="bi bi-person"></i> ${actu.auteur}</li>
@@ -212,10 +208,7 @@
         </div>
 
         <div class="entry-content">
-          <p>${actu.contenu.substring(0, 250)}...</p>
-          <div class="read-more">
-            <a href="projet-single.html?categorie=${actu.categorie}&titre=${actu.titre}&id=${actu.id}">Lire la suite →</a>
-          </div>
+          <p>${actu.contenu}</p>
         </div>
       `;
                   container.appendChild(card);
@@ -225,33 +218,10 @@
                 container.scrollIntoView({ behavior: 'smooth' });
               }
 
-              function afficherPagination() {
-                const pagination = document.getElementById('pagination');
-                pagination.innerHTML = '';
-
-                const totalPages = Math.ceil(actualites.length / itemsPerPage);
-
-                for (let i = 1; i <= totalPages; i++) {
-                  const li = document.createElement('li');
-                  li.innerHTML = `<a href="#" ${i === currentPage ? 'class="active"' : ''}>${i}</a>`;
-                  li.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    currentPage = i;
-                    afficherPage(currentPage);
-                    afficherPagination();
-                  });
-                  pagination.appendChild(li);
-                }
-              }
-
               // Récupération de l'ID du devis depuis l'URL
-              const etat_projet = new URLSearchParams(window.location.search).get("etat");
-
-              chargerActualites(etat_projet);
-
-              const titrePage = document.getElementById("titrePage")
-              titrePage.innerHTML = etat_projet==="Nouveau"?"Ongoing project" : "Project completed"
-
+const id_article = new URLSearchParams(window.location.search).get("id");
+// console.log("window.location.search", window.location.search)
+              chargerActualites(id_article);
             </script>
 
           </div><!-- End blog entries list -->
@@ -259,7 +229,7 @@
         </div>
 
       </div>
-    </section><!-- End Blog Section -->
+    </section><!-- End Blog Single Section -->
 
   </main><!-- End #main -->
 
@@ -369,8 +339,7 @@
     </div>
   </footer><!-- End Footer -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-      class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>

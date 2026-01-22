@@ -51,7 +51,7 @@
     .sidebar a {
       text-decoration: none;
       color: #4a4a4a;
-      padding: 10px;
+      padding: 5px;
       display: flex;
       align-items: center;
       border-radius: 5px;
@@ -232,6 +232,10 @@
 
   <a href="#" class="clickBoutonDashboard clickBoutonDashboard2 DashboardBouton" data-id="2">
     <i class="fas fa-newspaper"></i> New Blogs
+  </a>
+
+    <a href="#" class="clickBoutonDashboard clickBoutonDashboard11 DashboardBouton" data-id="11">
+    <i class="fas fa-file"></i> New Ressources
   </a>
 
   <a href="#" class="clickBoutonDashboard clickBoutonDashboard3 DashboardBouton" data-id="3">
@@ -559,6 +563,45 @@
       alert("Une erreur est survenue.");
     }
   });
+
+
+  // Suppression d'un ressource
+  document.addEventListener("click", async (e) => {
+    // Vérifie si le bouton cliqué a la classe "delete_ressource" ou son icône interne
+    const deleteBtn = e.target.closest(".delete_ressource");
+    if (!deleteBtn) return;
+
+    e.preventDefault();
+
+    const id_article = deleteBtn.getAttribute("data-id");
+    const ligneArticle = deleteBtn.closest("tr");
+
+    if (!id_article) return alert("ID article introuvable.");
+
+    if (!confirm("Voulez-vous vraiment supprimer cet article ?")) return;
+
+    try {
+      const response = await fetch("delete_ressource.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({ id: id_article }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        ligneArticle.style.transition = "opacity 0.5s ease";
+        ligneArticle.style.opacity = "0";
+        setTimeout(() => ligneArticle.remove(), 500);
+      } else {
+        alert(result.message || "Erreur lors de la suppression.");
+      }
+    } catch (error) {
+      console.error("Erreur :", error);
+      alert("Une erreur est survenue.");
+    }
+  });
+
 
     // Suppression d'un projet
   document.addEventListener("click", async (e) => {

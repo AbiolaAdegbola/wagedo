@@ -8,7 +8,7 @@ if (isset($_POST['modalDetail'])) {
 	$table = htmlspecialchars($_POST['table']);
 
 	// ✅ Liste blanche des tables autorisées
-	$allowedTables = ['donateur', 'actualite', 'partenariat', 'projet', "message_visiteur", 'nous_rejoindre', "alaune"];
+	$allowedTables = ['donateur', 'actualite', 'partenariat', 'projets', "message_visiteur", 'nous_rejoindre', "alaune"];
 
 	if (!in_array($table, $allowedTables)) {
 		die('Table non autorisée');
@@ -22,7 +22,7 @@ if (isset($_POST['modalDetail'])) {
 
 	$result = $cursor->fetch(PDO::FETCH_ASSOC);
 
-	if ($table !== "message_visiteur" && $table !== "alaune") {
+	if ($table !== "message_visiteur" && $table !== "alaune" && $table !== "projets") {
 ?>
 
 		<div class="container" style="color: black; position: relative;">
@@ -119,5 +119,67 @@ if (isset($_POST['modalDetail'])) {
 							</div>
 
 
-					<?php }
+					<?php } elseif ($table === "projets") {
+		?>
+
+			<div class="container" style="color: black; position: relative;">
+
+			<div style="position: absolute; right:40px; top:-20px">
+				<div>Etat du projet</div>
+				<select id="etat_projet" style="padding: 8px;" data-id="<?php echo($result['id']); ?>">
+					<option value="<?php echo($result['etat']); ?>"><?php echo($result['etat'] === '0' ? 'En cours' : 'Terminé'); ?></option>
+					<option value="0">En cours</option>
+					<option value="1">Terminé</option>
+				</select>
+			</div>
+
+			<div>
+				<a href="projet-single.html?categorie=<?= urlencode($result['categorie']); ?>&titre=<?= urlencode($result['titre']); ?>&id=<?= $result['id']; ?>" style="color:blue; font-size:15px; margin-right:10px">
+              <i class="bi bi-eye"></i> Voir le projet complet
+            </a>
+            <!-- ✅ ajout de data-id -->
+            <span class="delete_projet" data-id="<?= $result['id']; ?>" style="color:red; font-size:15px; cursor:pointer;">
+              <i class="bi bi-trash"></i> Supprimer le projet
+            </span>
+			</div>
+
+				<i class="fa fa-user" style="font-size: 35px;"></i>
+				<div class="d-flex align-items-center" style="text-transform: capitalize;">Auteur : <h4 style="margin-left: 20px;"><?php echo ($result['auteur']); ?></h4>
+				</div>
+				</div>
+				<div class="d-flex align-items-center">Titre : <h4 style="margin-left: 20px;"><?php echo ($result['titre']); ?></h4>
+				</div>
+
+				<div style="margin-top: 20px; ">
+
+					<div style="margin-top: 20px; ">
+						<strong style="font-size: 18px">contenu du projet :</strong><br>
+						<div><?php echo ($result['contenu']); ?></div>
+					</div>
+				</div>
+
+				<?php }
 			} ?>
+
+
+<script type="text/javascript">
+ 	   $('#etat_projet').change('click', function(e){
+      e.preventDefault()
+      
+      var id = $(this).data("id")
+      var etat_projet = $("#etat_projet").val()
+      
+      $.ajax({
+      type: 'POST',
+      url: 'back_data.php',
+      data: {id: id, etat_projet: etat_projet},
+
+      success: function(response) {
+        
+        // $('.demandeLivrePopUpEnvoyer').html(response);
+        
+      }
+    });
+      
+  })
+ </script>

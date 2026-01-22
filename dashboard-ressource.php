@@ -17,12 +17,12 @@
   }
 </style>
 
-<a href="ajouter-projet.html" class="boutonAjouter">
-  Ajouter un nouveau projet
+<a href="ajouter-ressources.html" class="boutonAjouter">
+  Ajouter une nouvelle ressource
 </a>
 
 <div class="card" style="width: 100%">
-  <h3>Liste des projets WAGEDO</h3>
+  <h3>Liste des ressources WAGEDO</h3>
 
   <table class="table">
     <thead>
@@ -32,17 +32,17 @@
         <th>Titre</th>
         <th>Auteur</th>
         <th>Date</th>
-        <th>Etat</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
       <?php 
         include 'connexionBdd.php';
-        $data = $bdd->query('SELECT * FROM projets ORDER BY id DESC');
+        $data = $bdd->query('SELECT * FROM ressource ORDER BY id DESC');
         $u = 1;
         while ($result = $data->fetch()) {
       ?>
-        <tr class="success onclickDetailModal" style="font-size: 12px; cursor: normal"  data-id="<?php echo($result['id'].'@]'."projets"); ?>">
+        <tr class="success" style="font-size: 12px; cursor: normal">
           <td width="30px"><?= $u; ?></td>
           <td width="100px" style="text-transform: capitalize;"><?= htmlspecialchars($result['categorie']); ?></td>
           <td><?= htmlspecialchars($result['titre']); ?></td>
@@ -57,13 +57,16 @@
             ?>
           </td>
           <td width="100px">
-            <?php
-              if ($result['etat'] === '0') {
-                echo('En cours');
-              }else{
-                echo('Terminé');
-              }
-            ?>
+            <a href="ressource-single.html?categorie=<?= urlencode($result['categorie']); ?>&titre=<?= urlencode($result['titre']); ?>&id=<?= $result['id']; ?>" style="color:blue; font-size:15px; margin-right:10px">
+              <i class="bi bi-eye"></i>
+            </a>
+            <!-- <a href="ajouter-actualite.html?categorie=<?= urlencode($result['categorie']); ?>&titre=<?= urlencode($result['titre']); ?>&id=<?= $result['id']; ?>" style="color:orange; font-size:15px; margin-right:10px">
+              <i class="bi bi-pencil"></i>
+            </a> -->
+            <!-- ✅ ajout de data-id -->
+            <span class="delete_ressource" data-id="<?= $result['id']; ?>" style="color:red; font-size:15px; cursor:pointer;">
+              <i class="bi bi-trash"></i>
+            </span>
           </td>
         </tr>
       <?php $u++; } $data->closeCursor(); ?>
