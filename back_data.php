@@ -296,7 +296,7 @@
                     if (move_uploaded_file($fileTmp, $targetFile)) {
                         // Vérifie si l’image est valide (évite scripts déguisés)
                         if (@getimagesize($targetFile)) {
-                            $imagePaths[] = 'assets/img/blog/' . $newFileName;
+                            $imagePaths[] = '/assets/img/blog/' . $newFileName;
                         } else {
                             unlink($targetFile);
                         }
@@ -447,10 +447,9 @@ L'équipe WAGEDO";
         }
     }
 
-
     // ✅ Ajouter une nouvelle ressource (images + documents)
     if (isset($_POST['submitFormNewRessource'])) {
-        var_dump($_POST['submitFormNewRessource']);
+        // var_dump($_POST['submitFormNewRessource']);
         $titre = trim(htmlspecialchars($_POST['title'] ?? ''));
         $auteur = trim(htmlspecialchars($_POST['auteur'] ?? ''));
         $categorie = trim(htmlspecialchars($_POST['categorie'] ?? ''));
@@ -544,7 +543,7 @@ L'équipe WAGEDO";
                         }
 
                         // ✅ Stocker le chemin relatif
-                        $filePaths[] = 'assets/img/ressources/' . $newFileName;
+                        $filePaths[] = '/assets/img/ressources/' . $newFileName;
                     }
                 }
             }
