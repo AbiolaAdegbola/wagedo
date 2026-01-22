@@ -203,11 +203,11 @@
                   card.className = 'entry';
                   card.innerHTML = `
         <div class="entry-img">
-          <a href="https://wagedo-h2.org/assets/img/${image}" data-gall="portfolioGallery" title="${actu.titre}">Voir la ressource</a>
+          <a href="${image}" data-gall="portfolioGallery" title="${actu.titre}">Voir la ressource</a>
         </div>
 
         <h2 class="entry-title">
-          <a href="blog-single.html?categorie=${actu.categorie}&titre=${actu.titre}&id=${actu.id}">${actu.titre}</a>
+          <a href="ressource-single.html?categorie=${actu.categorie}&titre=${actu.titre}&id=${actu.id}">${actu.titre}</a>
         </h2>
 
         <div class="entry-meta">
@@ -221,7 +221,7 @@
         <div class="entry-content">
           <p>${actu.contenu.substring(0, 250)}...</p>
           <div class="read-more">
-            <a href="blog-single.html?categorie=${actu.categorie}&titre=${actu.titre}&id=${actu.id}">Lire la suite →</a>
+            <a href="ressource-single.html?categorie=${actu.categorie}&titre=${actu.titre}&id=${actu.id}">Lire la suite →</a>
           </div>
         </div>
       `;

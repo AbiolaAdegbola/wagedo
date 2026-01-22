@@ -412,7 +412,7 @@
           const container = document.getElementById('containerProjets');
 
           try {
-            const response = await fetch('get_projets.php');
+            const response = await fetch('get_projets_index.php');
             const result = await response.json();
 
             if (!result.success) {
