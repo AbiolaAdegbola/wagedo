@@ -1375,6 +1375,69 @@ section {
   padding: 0;
 }
 
+/* ✅ Style pour uniformiser la hauteur des médias */
+.portfolio-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.portfolio-wrap img {
+  width: 100%;
+  height: 220px; /* 🔹 Hauteur fixe pour toutes les images */
+  object-fit: cover; /* 🔹 Coupe l’image proprement sans la déformer */
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.portfolio-wrap:hover img {
+  transform: scale(1.05); /* Effet au survol */
+}
+
+.portfolio-wrap img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .portfolio-wrap img {
+    height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio-wrap img {
+    height: 170px;
+  }
+}
+
+/* ✅ Uniformiser la hauteur de toutes les images du slider */
+.portfolio-details-slider .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px; /* 🔹 hauteur fixe à ajuster selon ton design */
+  background: #f9f9f9; /* optionnel : fond neutre si image ne remplit pas tout */
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.portfolio-details-slider .swiper-slide img {
+  height: 100%;
+  width: auto;
+  object-fit: cover; /* 🔹 garde les proportions sans étirer */
+  border-radius: 10px;
+  display: block;
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .portfolio-details-slider .swiper-slide {
+    height: 250px;
+  }
+}
+
 /*--------------------------------------------------------------
 # Testimonials
 --------------------------------------------------------------*/

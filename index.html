@@ -582,7 +582,7 @@
 
     </section><!-- End Portfolio Section -->
 
-    <script>
+<script>
 document.addEventListener("DOMContentLoaded", async () => {
   const container = document.querySelector(".portfolio-container");
 
@@ -595,24 +595,20 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
-    // Vider le conteneur
     container.innerHTML = "";
 
-    // Boucler sur les ressources
     result.data.forEach((item) => {
       if (!item.images || item.images.length === 0) return;
 
-      item.images.forEach((imagePath) => {
-        // ✅ Création du bloc HTML pour chaque image
         const col = document.createElement("div");
         col.className = "col-lg-4 col-md-6 portfolio-item filter-web";
         col.innerHTML = `
           <div class="portfolio-wrap" data-aos="fade-up" data-aos-delay="100">
-            <img src="${imagePath}" class="img-fluid" alt="${item.titre}">
+            <img src="${item.images[0]}" alt="${item.titre}">
             <div class="portfolio-info">
               <h4 style="font-size: 13px;">${item.titre}</h4>
               <div class="portfolio-links">
-                <a href="${imagePath}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="${item.titre}">
+                <a href="${item.images[0]}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="${item.titre}">
                   <i class="bi bi-plus"></i>
                 </a>
                 <a href="media-single.html?id=${item.id}" title="More Details">
@@ -623,24 +619,13 @@ document.addEventListener("DOMContentLoaded", async () => {
           </div>
         `;
         container.appendChild(col);
-      });
     });
 
-    // ✅ Important : attendre que le DOM ait fini d'injecter les images
     setTimeout(() => {
-      // 🔹 Réinitialiser AOS (animations au scroll)
-      if (typeof AOS !== "undefined") {
-        AOS.refresh();
-      }
-
-      // 🔹 Réinitialiser le Lightbox
-      if (typeof GLightbox !== "undefined") {
-        GLightbox({ selector: ".portfolio-lightbox" });
-      }
-
-      // 🔹 Réinitialiser Isotope (grille responsive)
+      if (typeof AOS !== "undefined") AOS.refresh();
+      if (typeof GLightbox !== "undefined") GLightbox({ selector: ".portfolio-lightbox" });
       if (typeof Isotope !== "undefined") {
-        const iso = new Isotope(container, {
+        new Isotope(container, {
           itemSelector: ".portfolio-item",
           layoutMode: "fitRows"
         });
@@ -653,6 +638,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 </script>
+
 
     <!-- ======= Clients Section ======= -->
     <section id="clients" class="clients">
