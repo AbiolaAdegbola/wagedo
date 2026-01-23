@@ -266,6 +266,10 @@
     <i class="fas fa-comments"></i> Visitor message
   </a>
 
+  <a href="#" class="clickBoutonDashboard clickBoutonDashboard12 DashboardBouton" data-id="12">
+    <i class="fas fa-image"></i> New Media
+  </a>
+
   <div class="upgrade">
     <button>
       <a href="deconnexion.php"><i class="fas fa-door-open"></i> Logout</a>
@@ -692,6 +696,43 @@
 
     try {
       const response = await fetch("delete_a_la_une.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({ id: id_article }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        ligneArticle.style.transition = "opacity 0.5s ease";
+        ligneArticle.style.opacity = "0";
+        setTimeout(() => ligneArticle.remove(), 500);
+      } else {
+        alert(result.message || "Erreur lors de la suppression.");
+      }
+    } catch (error) {
+      console.error("Erreur :", error);
+      alert("Une erreur est survenue.");
+    }
+  });
+
+      // Suppression d'un media
+  document.addEventListener("click", async (e) => {
+    // Vérifie si le bouton cliqué a la classe "delete_article" ou son icône interne
+    const deleteBtn = e.target.closest(".delete_media");
+    if (!deleteBtn) return;
+
+    e.preventDefault();
+
+    const id_article = deleteBtn.getAttribute("data-id");
+    const ligneArticle = deleteBtn.closest("tr");
+
+    if (!id_article) return alert("ID media introuvable.");
+
+    if (!confirm("Voulez-vous vraiment supprimer cet media ?")) return;
+
+    try {
+      const response = await fetch("delete_media.php", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams({ id: id_article }),

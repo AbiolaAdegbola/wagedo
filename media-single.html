@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>WAGEDO - Gallery / Multimedia</title>
+  <title>WAGEDO - West African Green Energy Development Organisation</title>
   <meta
     content="WAGEDO is dedicated to promoting sustainable energy solutions across West Africa, focusing on renewable resources that support economic growth and environmental preservation."
     name="description">
@@ -115,107 +115,109 @@
 
     </div>
   </header><!-- End Header -->
-
   <main id="main">
 
-    <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio" style="margin-top: 90px;">
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
 
-      <div class="container" data-aos="fade-up">
-
-        <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
-
-    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/lome/1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4 style="font-size: 13px;">WAGEDO RENEWABLE ENERGY MONTH LOME</h4>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/lome/1.jpg" data-gallery="portfolioGallery" class="portfokio-lightbox"
-                    title="WAGEDO RENEWABLE ENERGY MONTH LOME"><i class="bi bi-plus"></i></a>
-                  <a href="WAGEDO RENEWABLE ENERGY MONTH LOME.html" title="More Details"><i class="bi bi-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li>Galery / Espace multimedia</li>
+        </ol>
+        <h2></h2>
 
       </div>
+    </section><!-- End Breadcrumbs -->
 
-    </section><!-- End Portfolio Section -->
-
-<script>
-document.addEventListener("DOMContentLoaded", async () => {
-  const container = document.querySelector(".portfolio-container");
-
-  try {
-    const response = await fetch("get_media.php");
-    const result = await response.json();
-
-    if (!result.success || !Array.isArray(result.data)) {
-      container.innerHTML = "<p style='color:red'>Erreur de chargement des médias.</p>";
-      return;
-    }
-
-    // Vider le conteneur
-    container.innerHTML = "";
-
-    // Boucler sur les ressources
-    result.data.forEach((item) => {
-      if (!item.images || item.images.length === 0) return;
-
-      item.images.forEach((imagePath) => {
-        // ✅ Création du bloc HTML pour chaque image
-        const col = document.createElement("div");
-        col.className = "col-lg-4 col-md-6 portfolio-item filter-web";
-        col.innerHTML = `
-          <div class="portfolio-wrap" data-aos="fade-up" data-aos-delay="100">
-            <img src="${imagePath}" class="img-fluid" alt="${item.titre}">
-            <div class="portfolio-info">
-              <h4 style="font-size: 13px;">${item.titre}</h4>
-              <div class="portfolio-links">
-                <a href="${imagePath}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="${item.titre}">
-                  <i class="bi bi-plus"></i>
-                </a>
-                <a href="media-single.html?id=${item.id}" title="More Details">
-                  <i class="bi bi-link"></i>
-                </a>
-              </div>
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-8">
+            <div class="portfolio-details-slider swiper">
+              <div class="swiper-wrapper align-items-center"></div>
+              <div class="swiper-pagination"></div>
             </div>
           </div>
-        `;
-        container.appendChild(col);
+
+          <div class="col-lg-4">
+            <div class="portfolio-info">
+              <h3>Project information</h3>
+              <ul></ul>
+            </div>
+            <div class="portfolio-description">
+              <h2></h2>
+              <p style="text-align: justify;"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Portfolio Details Section -->
+
+
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        // 🔹 1. Récupérer l'ID dans l'URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const mediaId = urlParams.get("id");
+
+        if (!mediaId) {
+          document.querySelector("#portfolio-details").innerHTML = "<p style='color:red;'>❌ Aucun média sélectionné.</p>";
+          return;
+        }
+
+        try {
+          // 🔹 2. Charger les données depuis le serveur
+          const response = await fetch(`get_media_single.php?id=${mediaId}`);
+          const result = await response.json();
+
+          if (!result.success) {
+            document.querySelector("#portfolio-details").innerHTML = "<p style='color:red;'>Erreur de chargement des détails.</p>";
+            return;
+          }
+
+          const item = result.data;
+          const slider = document.querySelector(".portfolio-details-slider .swiper-wrapper");
+          const title = document.querySelector(".portfolio-description h2");
+          const description = document.querySelector(".portfolio-description p");
+          const infoList = document.querySelector(".portfolio-info ul");
+
+          // 🔹 3. Remplir les images du slider
+          slider.innerHTML = "";
+          item.images.forEach(imgPath => {
+            const slide = document.createElement("div");
+            slide.className = "swiper-slide";
+            slide.innerHTML = `<img src="${imgPath}" alt="${item.titre}">`;
+            slider.appendChild(slide);
+          });
+
+          // 🔹 4. Remplir les infos du projet
+          infoList.innerHTML = `
+      <li><strong>Date</strong>: ${new Date(item.createdAt).toLocaleDateString()}</li>
+    `;
+
+          // 🔹 5. Mettre le titre et le contenu
+          title.textContent = item.titre;
+          description.innerHTML = item.contenu;
+
+          // 🔹 6. Réinitialiser le slider Swiper
+          if (typeof Swiper !== "undefined") {
+            new Swiper(".portfolio-details-slider", {
+              speed: 400,
+              loop: true,
+              autoplay: { delay: 5000 },
+              pagination: { el: ".swiper-pagination", clickable: true }
+            });
+          }
+
+        } catch (error) {
+          console.error("Erreur :", error);
+          document.querySelector("#portfolio-details").innerHTML = "<p style='color:red;'>Erreur de connexion au serveur.</p>";
+        }
       });
-    });
-
-    // ✅ Important : attendre que le DOM ait fini d'injecter les images
-    setTimeout(() => {
-      // 🔹 Réinitialiser AOS (animations au scroll)
-      if (typeof AOS !== "undefined") {
-        AOS.refresh();
-      }
-
-      // 🔹 Réinitialiser le Lightbox
-      if (typeof GLightbox !== "undefined") {
-        GLightbox({ selector: ".portfolio-lightbox" });
-      }
-
-      // 🔹 Réinitialiser Isotope (grille responsive)
-      if (typeof Isotope !== "undefined") {
-        const iso = new Isotope(container, {
-          itemSelector: ".portfolio-item",
-          layoutMode: "fitRows"
-        });
-      }
-    }, 300);
-
-  } catch (error) {
-    console.error("Erreur lors du chargement :", error);
-    container.innerHTML = "<p style='color:red'>Erreur de connexion au serveur.</p>";
-  }
-});
-</script>
+    </script>
 
 
   </main><!-- End #main -->

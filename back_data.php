@@ -1,5 +1,12 @@
     <?php
     session_start();
+
+    ini_set('upload_max_filesize', '200M');
+ini_set('post_max_size', '210M');
+ini_set('max_execution_time', 300);
+ini_set('memory_limit', '512M');
+
+
     header('Content-Type: application/json');
     include 'connexionBdd.php';
 
@@ -230,7 +237,6 @@
         }
     }
 
-
     // Ajouter actualites
     if (isset($_POST['submitFormNewActualite'])) {
         $titre = trim(htmlspecialchars($_POST['title'] ?? ''));
@@ -296,7 +302,7 @@
                     if (move_uploaded_file($fileTmp, $targetFile)) {
                         // Vérifie si l’image est valide (évite scripts déguisés)
                         if (@getimagesize($targetFile)) {
-                            $imagePaths[] = '/assets/img/blog/' . $newFileName;
+                            $imagePaths[] = 'assets/img/blog/' . $newFileName;
                         } else {
                             unlink($targetFile);
                         }
@@ -448,227 +454,213 @@ L'équipe WAGEDO";
     }
 
     // ✅ Ajouter une nouvelle ressource (images + documents)
-    // if (isset($_POST['submitFormNewRessource'])) {
-    //     // var_dump($_POST['submitFormNewRessource']);
-    //     $titre = trim(htmlspecialchars($_POST['title'] ?? ''));
-    //     $auteur = trim(htmlspecialchars($_POST['auteur'] ?? ''));
-    //     $categorie = trim(htmlspecialchars($_POST['categorie'] ?? ''));
-    //     $contenu = $_POST['contenu'] ?? '';
-    //     $nameTable = trim(htmlspecialchars($_POST['submitFormNewRessource'] ?? ''));
+    if (isset($_POST['submitFormNewRessource'])) {
 
-    //     $uploadDir = __DIR__ . '/assets/img/ressources/';
-    //     if (!is_dir($uploadDir)) {
-    //         mkdir($uploadDir, 0777, true);
-    //     }
+        $titre = trim(htmlspecialchars($_POST['title'] ?? ''));
+        $auteur = trim(htmlspecialchars($_POST['auteur'] ?? ''));
+        $categorie = trim(htmlspecialchars($_POST['categorie'] ?? ''));
+        $contenu = $_POST['contenu'] ?? '';
+        $nameTable = trim(htmlspecialchars($_POST['submitFormNewRessource'] ?? ''));
 
-    //     $filePaths = [];
+        // ✅ Chemin absolu du dossier d’upload
+        $uploadDir = __DIR__ . '/assets/img/ressources/';
 
-    //     // ✅ Gestion multi-fichiers
-    //     if (!empty($_FILES['fichiers']['name'][0])) {
-    //         $files = [];
-    //         foreach ($_FILES['fichiers'] as $key => $values) {
-    //             foreach ((array)$values as $i => $value) {
-    //                 $files[$i][$key] = $value;
-    //             }
-    //         }
-
-    //         // ✅ Extensions autorisées (images + documents)
-    //         $allowedExt = [
-    //             // Images
-    //             'jpg',
-    //             'jpeg',
-    //             'png',
-    //             'gif',
-    //             'webp',
-    //             'bmp',
-    //             'svg',
-    //             'avif',
-    //             'heic',
-    //             // Documents
-    //             'pdf',
-    //             'doc',
-    //             'docx',
-    //             'xls',
-    //             'xlsx',
-    //             'txt'
-    //         ];
-
-    //         // ✅ Types MIME autorisés
-    //         $allowedMime = [
-    //             // Images
-    //             'image/jpeg',
-    //             'image/png',
-    //             'image/gif',
-    //             'image/webp',
-    //             'image/bmp',
-    //             'image/svg+xml',
-    //             'image/avif',
-    //             'image/heic',
-    //             // PDF
-    //             'application/pdf',
-    //             // Word
-    //             'application/msword',
-    //             'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-    //             // Excel
-    //             'application/vnd.ms-excel',
-    //             'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-    //             // Texte
-    //             'text/plain'
-    //         ];
-
-    //         foreach ($files as $file) {
-    //             if ($file['error'] !== UPLOAD_ERR_OK) continue;
-
-    //             $fileName = basename($file['name']);
-    //             $fileTmp = $file['tmp_name'];
-    //             $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-
-    //             $finfo = finfo_open(FILEINFO_MIME_TYPE);
-    //             $mime = finfo_file($finfo, $fileTmp);
-    //             finfo_close($finfo);
-
-    //             if (in_array($fileExt, $allowedExt) && in_array($mime, $allowedMime)) {
-    //                 // ✅ Nom unique et sécurisé
-    //                 $cleanName = preg_replace('/[^a-zA-Z0-9_-]/', '_', pathinfo($fileName, PATHINFO_FILENAME));
-    //                 $newFileName = uniqid($cleanName . '_', true) . '.' . $fileExt;
-    //                 $targetFile = $uploadDir . $newFileName;
-
-    //                 if (move_uploaded_file($fileTmp, $targetFile)) {
-    //                     // Pour les images, vérifier qu'elles sont valides
-    //                     if (in_array($fileExt, ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp', 'svg', 'avif', 'heic'])) {
-    //                         if (!@getimagesize($targetFile)) {
-    //                             unlink($targetFile);
-    //                             continue;
-    //                         }
-    //                     }
-
-    //                     // ✅ Stocker le chemin relatif
-    //                     $filePaths[] = '/assets/img/ressources/' . $newFileName;
-    //                 }
-    //             }
-    //         }
-    //     }
-
-    //     $filesJSON = json_encode($filePaths, JSON_UNESCAPED_SLASHES);
-
-    //     // ✅ Insertion en base de données
-    //     $ins = $bdd->prepare('INSERT INTO ressource (titre, images, auteur, categorie, contenu, createdAt) 
-    //                       VALUES (:titre, :images, :auteur, :categorie, :contenu, NOW())');
-    //     $ins->execute([
-    //         ':titre' => $titre,
-    //         ':images' => $filesJSON,
-    //         ':auteur' => $auteur,
-    //         ':categorie' => $categorie,
-    //         ':contenu' => $contenu
-    //     ]);
-
-    //     echo '<div style="color: green;">✅ Votre ressource a été publiée avec succès.</div>';
-    // }
-
-// ✅ Ajouter une nouvelle ressource (images + documents)
-if (isset($_POST['submitFormNewRessource'])) {
-
-    $titre = trim(htmlspecialchars($_POST['title'] ?? ''));
-    $auteur = trim(htmlspecialchars($_POST['auteur'] ?? ''));
-    $categorie = trim(htmlspecialchars($_POST['categorie'] ?? ''));
-    $contenu = $_POST['contenu'] ?? '';
-    $nameTable = trim(htmlspecialchars($_POST['submitFormNewRessource'] ?? ''));
-
-    // ✅ Chemin absolu du dossier d’upload
-    $uploadDir = __DIR__ . '/assets/img/ressources/';
-
-    // Vérifier ou créer le dossier
-    if (!is_dir($uploadDir)) {
-        if (!mkdir($uploadDir, 0777, true)) {
-            die("❌ Impossible de créer le dossier : $uploadDir");
-        }
-    }
-
-    $filePaths = [];
-
-    // ✅ Gestion multi-fichiers
-    if (!empty($_FILES['fichiers']['name'][0])) {
-        $files = [];
-        foreach ($_FILES['fichiers'] as $key => $values) {
-            foreach ((array)$values as $i => $value) {
-                $files[$i][$key] = $value;
+        // Vérifier ou créer le dossier
+        if (!is_dir($uploadDir)) {
+            if (!mkdir($uploadDir, 0777, true)) {
+                die("❌ Impossible de créer le dossier : $uploadDir");
             }
         }
 
-        // ✅ Extensions autorisées
-        $allowedExt = [
-            'jpg','jpeg','png','gif','webp','bmp','svg','avif','heic',
-            'pdf','doc','docx','xls','xlsx','txt'
-        ];
+        $filePaths = [];
 
-        // ✅ Types MIME autorisés
-        $allowedMime = [
-            'image/jpeg','image/png','image/gif','image/webp','image/bmp','image/svg+xml','image/avif','image/heic',
-            'application/pdf',
-            'application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-            'application/vnd.ms-excel','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-            'text/plain'
-        ];
+        // ✅ Gestion multi-fichiers
+        if (!empty($_FILES['fichiers']['name'][0])) {
+            $files = [];
+            foreach ($_FILES['fichiers'] as $key => $values) {
+                foreach ((array)$values as $i => $value) {
+                    $files[$i][$key] = $value;
+                }
+            }
 
-        foreach ($files as $file) {
-            if ($file['error'] !== UPLOAD_ERR_OK) continue;
+            // ✅ Extensions autorisées
+            $allowedExt = [
+                'jpg',
+                'jpeg',
+                'png',
+                'gif',
+                'webp',
+                'bmp',
+                'svg',
+                'avif',
+                'heic',
+                'pdf',
+                'doc',
+                'docx',
+                'xls',
+                'xlsx',
+                'txt'
+            ];
 
-            $fileName = basename($file['name']);
-            $fileTmp = $file['tmp_name'];
-            $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+            // ✅ Types MIME autorisés
+            $allowedMime = [
+                'image/jpeg',
+                'image/png',
+                'image/gif',
+                'image/webp',
+                'image/bmp',
+                'image/svg+xml',
+                'image/avif',
+                'image/heic',
+                'application/pdf',
+                'application/msword',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'application/vnd.ms-excel',
+                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                'text/plain'
+            ];
 
-            // Vérification du type MIME
-            $finfo = finfo_open(FILEINFO_MIME_TYPE);
-            $mime = finfo_file($finfo, $fileTmp);
-            finfo_close($finfo);
+            foreach ($files as $file) {
+                if ($file['error'] !== UPLOAD_ERR_OK) continue;
 
-            if (in_array($fileExt, $allowedExt) && in_array($mime, $allowedMime)) {
-                $cleanName = preg_replace('/[^a-zA-Z0-9_-]/', '_', pathinfo($fileName, PATHINFO_FILENAME));
-                $newFileName = uniqid($cleanName . '_', true) . '.' . $fileExt;
-                $targetFile = $uploadDir . $newFileName;
+                $fileName = basename($file['name']);
+                $fileTmp = $file['tmp_name'];
+                $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
-                // ✅ Sauvegarde du fichier
-                if (move_uploaded_file($fileTmp, $targetFile)) {
+                // Vérification du type MIME
+                $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                $mime = finfo_file($finfo, $fileTmp);
+                finfo_close($finfo);
 
-                    // Vérifier les images valides
-                    if (in_array($fileExt, ['jpg','jpeg','png','gif','webp','bmp','svg','avif','heic'])) {
-                        if (!@getimagesize($targetFile)) {
+                if (in_array($fileExt, $allowedExt) && in_array($mime, $allowedMime)) {
+                    $cleanName = preg_replace('/[^a-zA-Z0-9_-]/', '_', pathinfo($fileName, PATHINFO_FILENAME));
+                    $newFileName = uniqid($cleanName . '_', true) . '.' . $fileExt;
+                    $targetFile = $uploadDir . $newFileName;
+
+                    // ✅ Sauvegarde du fichier
+                    if (move_uploaded_file($fileTmp, $targetFile)) {
+
+                        // Vérifier les images valides
+                        if (in_array($fileExt, ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp', 'svg', 'avif', 'heic'])) {
+                            if (!@getimagesize($targetFile)) {
+                                unlink($targetFile);
+                                continue;
+                            }
+                        }
+
+                        // ✅ Chemin relatif (pour affichage web)
+                        $filePaths[] = 'assets/img/ressources/' . $newFileName;
+                    } else {
+                        echo "<div style='color:red;'>❌ Erreur lors du déplacement du fichier : $fileName</div>";
+                    }
+                } else {
+                    echo "<div style='color:red;'>❌ Fichier non autorisé : $fileName ($mime)</div>";
+                }
+            }
+        }
+
+        // ✅ Encodage JSON des fichiers
+        $filesJSON = json_encode($filePaths, JSON_UNESCAPED_SLASHES);
+
+        // ✅ Insertion dans la base de données
+        $ins = $bdd->prepare('INSERT INTO ressource (titre, images, auteur, categorie, contenu, createdAt) 
+                          VALUES (:titre, :images, :auteur, :categorie, :contenu, NOW())');
+        $success = $ins->execute([
+            ':titre' => $titre,
+            ':images' => $filesJSON,
+            ':auteur' => $auteur,
+            ':categorie' => $categorie,
+            ':contenu' => $contenu
+        ]);
+
+        if ($success) {
+            echo '<div style="color: green;">✅ Votre ressource a été publiée avec succès.</div>';
+        } else {
+            echo '<div style="color: red;">❌ Erreur lors de l’enregistrement en base de données.</div>';
+        }
+    }
+
+
+
+    // Ajouter actualites
+    if (isset($_POST['submitFormNewMedia'])) {
+        $titre = trim(htmlspecialchars($_POST['title'] ?? ''));
+        $contenu = $_POST['contenu'] ?? '';
+        $nameTable = trim(htmlspecialchars($_POST['submitFormNewMedia'] ?? ''));
+
+        $uploadDir = __DIR__ . '/assets/img/media/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
+
+        $imagePaths = [];
+
+        // ✅ Gestion multi-fichiers
+        if (!empty($_FILES['images']['name'][0])) {
+            // Uniformiser le tableau des fichiers
+            $files = [];
+            foreach ($_FILES['images'] as $key => $values) {
+                foreach ((array)$values as $i => $value) {
+                    $files[$i][$key] = $value;
+                }
+            }
+
+            // ✅ Extensions autorisées + nouveaux formats
+            $allowedExt = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp', 'svg', 'avif', 'heic'];
+
+            foreach ($files as $file) {
+                if ($file['error'] !== UPLOAD_ERR_OK) continue;
+
+                $fileName = basename($file['name']);
+                $fileTmp = $file['tmp_name'];
+                $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+
+                // Vérification du type MIME par sécurité
+                $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                $mime = finfo_file($finfo, $fileTmp);
+                finfo_close($finfo);
+
+                $allowedMime = [
+                    'image/jpeg',
+                    'image/png',
+                    'image/gif',
+                    'image/webp',
+                    'image/bmp',
+                    'image/svg+xml',
+                    'image/avif',
+                    'image/heic'
+                ];
+
+                if (in_array($fileExt, $allowedExt) && in_array($mime, $allowedMime)) {
+                    // Nom unique + nettoyage du nom original
+                    $cleanName = preg_replace('/[^a-zA-Z0-9_-]/', '_', pathinfo($fileName, PATHINFO_FILENAME));
+                    $newFileName = uniqid($cleanName . '_', true) . '.' . $fileExt;
+                    $targetFile = $uploadDir . $newFileName;
+
+                    // Déplacement du fichier
+                    if (move_uploaded_file($fileTmp, $targetFile)) {
+                        // Vérifie si l’image est valide (évite scripts déguisés)
+                        if (@getimagesize($targetFile)) {
+                            $imagePaths[] = 'assets/img/media/' . $newFileName;
+                        } else {
                             unlink($targetFile);
-                            continue;
                         }
                     }
-
-                    // ✅ Chemin relatif (pour affichage web)
-                    $filePaths[] = 'assets/img/ressources/' . $newFileName;
-                } else {
-                    echo "<div style='color:red;'>❌ Erreur lors du déplacement du fichier : $fileName</div>";
                 }
-            } else {
-                echo "<div style='color:red;'>❌ Fichier non autorisé : $fileName ($mime)</div>";
             }
         }
+
+        $imagesJSON = json_encode($imagePaths, JSON_UNESCAPED_SLASHES);
+
+        $ins = $bdd->prepare('INSERT INTO media (titre, images, contenu, createdAt) 
+                          VALUES (:titre, :images, :contenu, NOW())');
+        $ins->execute([
+            ':titre' => $titre,
+            ':images' => $imagesJSON,
+            ':contenu' => $contenu
+        ]);
+        echo '<div style="color: green;">✅ Votre article a été publié avec succès.</div>';
     }
-
-    // ✅ Encodage JSON des fichiers
-    $filesJSON = json_encode($filePaths, JSON_UNESCAPED_SLASHES);
-
-    // ✅ Insertion dans la base de données
-    $ins = $bdd->prepare('INSERT INTO ressource (titre, images, auteur, categorie, contenu, createdAt) 
-                          VALUES (:titre, :images, :auteur, :categorie, :contenu, NOW())');
-    $success = $ins->execute([
-        ':titre' => $titre,
-        ':images' => $filesJSON,
-        ':auteur' => $auteur,
-        ':categorie' => $categorie,
-        ':contenu' => $contenu
-    ]);
-
-    if ($success) {
-        echo '<div style="color: green;">✅ Votre ressource a été publiée avec succès.</div>';
-    } else {
-        echo '<div style="color: red;">❌ Erreur lors de l’enregistrement en base de données.</div>';
-    }
-}
 
 
 

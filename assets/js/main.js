@@ -822,4 +822,73 @@ if (submitFormNewALaUne) {
   });
 }
 
+// ajouter ressource
+const submitFormNewMedia = document.querySelector('#submitFormNewMedia');
+if (submitFormNewMedia) {
+  submitFormNewMedia.addEventListener('submit', async (e) => {
+    e.preventDefault();
+ // ⚡ Important : synchroniser TinyMCE avec le <textarea>
+  tinymce.triggerSave();
+    const formData = new FormData(submitFormNewMedia);
+
+    const loading = document.querySelector('.loadingBoutonForm');
+    const envoyerForm = document.querySelector('.submitFormNewMedia');
+    const responseContainer = document.querySelector('.responseForm');
+    const responseContainerSuccess = document.querySelector('.responseFormSuccess');
+
+    // Loader visible
+    loading.classList.remove('containerDisplayNone');
+    loading.classList.add('containerDisplayInitial');
+    envoyerForm.classList.add('containerDisplayNone');
+
+    try {
+      const response = await fetch('back_data.php', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.text();
+
+      // Cacher le loader
+      loading.classList.remove('containerDisplayInitial');
+      loading.classList.add('containerDisplayNone');
+
+      // Afficher la réponse succès
+      responseContainerSuccess.innerHTML = data;
+      responseContainerSuccess.style.display = 'initial';
+
+      // ✅ Réinitialiser le formulaire après succès
+      submitFormNewMedia.reset();
+
+      // vider TinyMCE aussi
+    tinymce.get('contenu').setContent('');
+
+      // ✅ Si tu as un conteneur d'aperçu d’images (prévisualisation)
+      const previewContainer = document.getElementById('preview-container');
+      if (previewContainer) previewContainer.innerHTML = '';
+
+      // ✅ Réafficher le bouton d’envoi
+      envoyerForm.classList.remove('containerDisplayNone');
+
+      // ✅ Masquer le message succès après quelques secondes (optionnel)
+      setTimeout(() => {
+        responseContainerSuccess.style.display = 'none';
+        responseContainerSuccess.innerHTML = '';
+      }, 4000);
+
+    } catch (error) {
+      console.error('Erreur de connexion :', error);
+
+      loading.classList.remove('containerDisplayInitial');
+      loading.classList.add('containerDisplayNone');
+
+      responseContainer.innerHTML = "<p>❌ Erreur de connexion au serveur.</p>";
+      responseContainer.style.display = 'initial';
+
+      // Réafficher le bouton
+      envoyerForm.classList.remove('containerDisplayNone');
+    }
+  });
+}
+
 })();

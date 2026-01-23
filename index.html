@@ -576,106 +576,83 @@
 
         <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/lome/1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4 style="font-size: 13px;">WAGEDO RENEWABLE ENERGY MONTH LOME</h4>
-                <!-- <p>Web</p> -->
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/lome/1.jpg" data-gallery="portfolioGallery" class="portfokio-lightbox"
-                    title="WAGEDO RENEWABLE ENERGY MONTH LOME"><i class="bi bi-plus"></i></a>
-                  <a href="WAGEDO RENEWABLE ENERGY MONTH LOME.html" title="More Details"><i class="bi bi-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/niamey/1.JPG" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4 style="font-size: 13px;">WAGEDO RENEWABLE ENERGY MONTH NIAMEY</h4>
-                <!-- <p>Web</p> -->
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/niamey/1.JPG" data-gallery="portfolioGallery" class="portfokio-lightbox"
-                    title="WAGEDO RENEWABLE ENERGY MONTH NIAMEY"><i class="bi bi-plus"></i></a>
-                  <a href="WAGEDO RENEWABLE ENERGY MONTH NIAMEY.html" title="More Details"><i
-                      class="bi bi-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/germany/1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4 style="font-size: 13px;">CAREER AND ENTREPRENEURSHIP WORKSHOP GERMANY</h4>
-                <!-- <p>App</p> -->
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/germany/1.jpg" data-gallery="portfolioGallery"
-                    class="portfokio-lightbox" title="CAREER AND ENTREPRENEURSHIP WORKSHOP GERMANY"><i
-                      class="bi bi-plus"></i></a>
-                  <a href="CAREER AND ENTREPRENEURSHIP WORKSHOP GERMANY.html" title="More Details"><i
-                      class="bi bi-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/jae/1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4 style="font-size: 13px;">WAGEDO PARTNERSHIP WITH JAE</h4>
-                <!-- <p>Card</p> -->
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/jae/1.jpg" data-gallery="portfolioGallery" class="portfokio-lightbox"
-                    title="WAGEDO PARTNERSHIP WITH JAE"><i class="bi bi-plus"></i></a>
-                  <a href="WAGEDO PARTNERSHIP WITH JAE.html" title="More Details"><i class="bi bi-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/abidjan/1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4 style="font-size: 13px;">WAGEDO RENEWABLE ENERGY MONTH ABIDJAN</h4>
-                <!-- <p>App</p> -->
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/abidjan/1.jpg" data-gallery="portfolioGallery"
-                    class="portfokio-lightbox" title="WAGEDO RENEWABLE ENERGY MONTH ABIDJAN"><i
-                      class="bi bi-plus"></i></a>
-                  <a href="WAGEDO RENEWABLE ENERGY MONTH ABIDJAN.html" title="More Details"><i
-                      class="bi bi-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/DAKAR/1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4 style="font-size: 13px;">WAGEDO RENEWABLE ENERGY MONTH DAKAR</h4>
-                <!-- <p>App</p> -->
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/DAKAR/1.jpg" data-gallery="portfolioGallery" class="portfokio-lightbox"
-                    title="WAGEDO RENEWABLE ENERGY MONTH DAKAR"><i class="bi bi-plus"></i></a>
-                  <a href="WAGEDO RENEWABLE ENERGY MONTH DAKAR.html" title="More Details"><i class="bi bi-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
 
       </div>
 
     </section><!-- End Portfolio Section -->
+
+    <script>
+document.addEventListener("DOMContentLoaded", async () => {
+  const container = document.querySelector(".portfolio-container");
+
+  try {
+    const response = await fetch("get_media_index.php");
+    const result = await response.json();
+
+    if (!result.success || !Array.isArray(result.data)) {
+      container.innerHTML = "<p style='color:red'>Erreur de chargement des médias.</p>";
+      return;
+    }
+
+    // Vider le conteneur
+    container.innerHTML = "";
+
+    // Boucler sur les ressources
+    result.data.forEach((item) => {
+      if (!item.images || item.images.length === 0) return;
+
+      item.images.forEach((imagePath) => {
+        // ✅ Création du bloc HTML pour chaque image
+        const col = document.createElement("div");
+        col.className = "col-lg-4 col-md-6 portfolio-item filter-web";
+        col.innerHTML = `
+          <div class="portfolio-wrap" data-aos="fade-up" data-aos-delay="100">
+            <img src="${imagePath}" class="img-fluid" alt="${item.titre}">
+            <div class="portfolio-info">
+              <h4 style="font-size: 13px;">${item.titre}</h4>
+              <div class="portfolio-links">
+                <a href="${imagePath}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="${item.titre}">
+                  <i class="bi bi-plus"></i>
+                </a>
+                <a href="media-single.html?id=${item.id}" title="More Details">
+                  <i class="bi bi-link"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        `;
+        container.appendChild(col);
+      });
+    });
+
+    // ✅ Important : attendre que le DOM ait fini d'injecter les images
+    setTimeout(() => {
+      // 🔹 Réinitialiser AOS (animations au scroll)
+      if (typeof AOS !== "undefined") {
+        AOS.refresh();
+      }
+
+      // 🔹 Réinitialiser le Lightbox
+      if (typeof GLightbox !== "undefined") {
+        GLightbox({ selector: ".portfolio-lightbox" });
+      }
+
+      // 🔹 Réinitialiser Isotope (grille responsive)
+      if (typeof Isotope !== "undefined") {
+        const iso = new Isotope(container, {
+          itemSelector: ".portfolio-item",
+          layoutMode: "fitRows"
+        });
+      }
+    }, 300);
+
+  } catch (error) {
+    console.error("Erreur lors du chargement :", error);
+    container.innerHTML = "<p style='color:red'>Erreur de connexion au serveur.</p>";
+  }
+});
+</script>
 
     <!-- ======= Clients Section ======= -->
     <section id="clients" class="clients">
