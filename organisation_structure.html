@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>WAGEDO Organizational Chart</title>
+  <meta
+    content="WAGEDO is dedicated to promoting sustainable energy solutions across West Africa, focusing on renewable resources that support economic growth and environmental preservation."
+    name="description">
+  <meta
+    content="WAGEDO, West Africa, green energy, renewable energy, sustainability, development, clean technology, solar energy, wind energy, hydropower, energy efficiency, climate change, environmental protection, carbon footprint, sustainable development goals, community empowerment, energy access"
+    name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1E4D92;
+      margin-bottom: 40px;
+      font-weight: bold;
+    }
+
+    .org-chart {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .org-level {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      position: relative;
+      margin: 50px 0;
+    }
+
+    .org-box {
+      border-radius: 10px;
+      padding: 15px 25px;
+      margin: 20px;
+      text-align: center;
+      min-width: 160px;
+      color: white;
+      font-weight: 500;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .org-box:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+    }
+
+    .org-box h3 {
+      margin: 0 0 5px;
+      font-size: 1.1em;
+    }
+
+    .org-box p {
+      margin: 0;
+      font-size: 0.9em;
+    }
+
+    /* WAGEDO color palette */
+    .director {
+      background: #1E4D92;
+    }
+
+    .technical {
+      background: #28A745;
+    }
+
+    .marketing {
+      background: #3498DB;
+    }
+
+    .finance {
+      background: #2ECC71;
+    }
+
+    .project-manager {
+      background: #17A2B8;
+    }
+
+    .communication {
+      background: #20C997;
+    }
+
+    .accounting {
+      background: #6C757D;
+    }
+
+    /* Connection lines */
+    .org-level::after {
+      content: "";
+      position: absolute;
+      bottom: -25px;
+      left: 50%;
+      width: 2px;
+      height: 25px;
+      background: #ccc;
+      transform: translateX(-50%);
+    }
+
+    .org-level:last-child::after {
+      display: none;
+    }
+
+    .org-level::before {
+      content: "";
+      position: absolute;
+      top: -25px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: #ccc;
+    }
+
+    .org-level:first-child::before {
+      display: none;
+    }
+
+    .org-box::after {
+      content: "";
+      position: absolute;
+      bottom: -25px;
+      left: 50%;
+      width: 2px;
+      height: 25px;
+      background: #ccc;
+      transform: translateX(-50%);
+    }
+
+    .org-level:last-child .org-box::after {
+      display: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .org-level {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .org-level::before {
+        display: none;
+      }
+
+      .org-box {
+        margin: 15px 0;
+        width: 80%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top" style="background-color: white;">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="">
+        <div style="margin-top: 12px;">
+          <span>WAGEDO</span>
+          <div style="font-size: 11px; text-align: justify; margin-top: 14px; margin-left: 4px; color: black;">
+            <div>West African Green Energy</div>
+            <div style="margin-top: 12px;">Development Organisation</div>
+          </div>
+        </div>
+      </a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto" href="index.html">Home</a></li>
+          <li class="dropdown megamenu">
+            <a href="#"><span>About Us</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li>
+                <a href="about.html">Overview</a>
+                <a href="organisation_structure.html">Organizational Structure</a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown megamenu">
+            <a href="#"><span>Projects</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li>
+                <a href="projets.html?etat=Nouveau">Ongoing Projects</a>
+                <a href="projets.html?etat=Terminer">Completed Projects</a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown megamenu">
+            <a href="#"><span>News / Resources</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li>
+                <a href="blog.html">News</a>
+                <a href="ressource.html">Resources</a>
+                <a href="media.html">Gallery / Multimedia</a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown megamenu">
+            <a href="#"><span>Areas of Action</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li>
+                <a href="categories.html?categorie=Renewable Energy and Energy Efficiency">Renewable Energy</a>
+                <a href="categories.html?categorie=Green Hydrogen">Green Hydrogen</a>
+              </li>
+              <li>
+                <a href="categories.html?categorie=Education">Education</a>
+                <a href="categories.html?categorie=Climate Awareness">Climate Awareness</a>
+              </li>
+              <li>
+                <a href="categories.html?categorie=Energy Transition">Energy Transition</a>
+                <a href="categories.html?categorie=Environmental Protection">Environmental Protection</a>
+              </li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="getstarted scrollto" href="impliquez-vous.html">Get Involved</a></li>
+        </ul>
+
+        <div class="gtranslate_wrapper"></div>
+        <script>
+          window.gtranslateSettings = {
+            "default_language": "en",
+            "languages": ["en", "fr", "it", "es", "pt"],
+            "wrapper_selector": ".gtranslate_wrapper",
+            "flag_size": 24
+          }
+        </script>
+        <script src="https://cdn.gtranslate.net/widgets/latest/popup.js" defer></script>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Breadcrumbs ======= -->
+  <section class="breadcrumbs">
+    <div class="container">
+      <ol>
+        <li><a href="index.html">Home</a></li>
+        <li>Organizational Structure</li>
+      </ol>
+      <h2>WAGEDO Organizational Chart</h2>
+    </div>
+  </section><!-- End Breadcrumbs -->
+
+  <div class="org-chart">
+    <!-- Level 1 -->
+    <div class="org-level">
+      <div class="org-box director">
+        <h3>General Director</h3>
+        <p>Jean Dupont</p>
+      </div>
+    </div>
+
+    <!-- Level 2 -->
+    <div class="org-level">
+      <div class="org-box technical">
+        <h3>Technical Director</h3>
+        <p>Marie Martin</p>
+      </div>
+      <div class="org-box marketing">
+        <h3>Marketing Director</h3>
+        <p>Paul Leroy</p>
+      </div>
+      <div class="org-box finance">
+        <h3>Financial Director</h3>
+        <p>Sophie Bernard</p>
+      </div>
+    </div>
+
+    <!-- Level 3 -->
+    <div class="org-level">
+      <div class="org-box project-manager">
+        <h3>Project Manager</h3>
+        <p>Lucas Moreau</p>
+      </div>
+      <div class="org-box communication">
+        <h3>Communication Officer</h3>
+        <p>Emma Dubois</p>
+      </div>
+      <div class="org-box accounting">
+        <h3>Accountant</h3>
+        <p>Hugo Petit</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-5 col-md-12 footer-info">
+            <a href="index.html" class="logo d-flex align-items-center">
+              <img src="assets/img/logo.png" alt="">
+              <div style="margin-top: 12px;">
+                <span style="color: #0a7b2b;">WAGEDO</span>
+                <div style="font-size: 11px; text-align: justify; margin-top: 14px; margin-left: 4px; color: black;">
+                  <div>West African Green Energy</div>
+                  <div style="margin-top: 12px;">Development Organisation</div>
+                </div>
+              </div>
+            </a>
+            <p>Hydrogen Green Economy Driver for a Sustainable Future</p>
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+              <a href="https://www.linkedin.com/company/west-african-green-energy-development-organisation/"
+                class="linkedin"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="about.html">About Us</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#">Areas of Action</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="projets.html">Projects / Events</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="blog.html">News / Blog</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-6 footer-links">
+            <h4>Actions</h4>
+            <ul>
+              <li><i class="bi bi-chevron-right"></i> <a href="#">Contact</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="impliquez-vous.html">Get Involved</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="faire-un-don.html">Make a Donation</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="demande-partenariat.html">Partnership</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+            <h4>Contact Us</h4>
+            <p>
+              Banjul<br>
+              The Gambia<br><br>
+              <strong>Phone:</strong> +223 741 864 07<br>
+              <strong>Email:</strong> contact@wagedo-h2.org<br>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container d-flex align-items-center justify-content-center py-3">
+      <div class="copyright">
+        &copy; Copyright <strong><span style="color: #0a7b2b;">WAGEDO</span></strong>. All Rights Reserved
+      </div>
+      <div class="mx-2">-</div>
+      <div class="credits">
+        Designed by <a href="https://www.linkedin.com/company/ivoire-coding-center/" style="color: #0a7b2cbd;">Ivoire
+          Coding Center</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

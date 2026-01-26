@@ -202,9 +202,21 @@
                   const card = document.createElement('article');
                   card.className = 'entry';
                   card.innerHTML = `
-        <div class="entry-img">
-          <a href="${image}" data-gall="portfolioGallery" title="${actu.titre}">Voir la ressource</a>
-        </div>
+        <div class="entry-img" style="position: relative; height: 300px; overflow: hidden; text-align: center; ">
+  <img 
+    src="assets/img/resource.jpg" 
+    alt="${actu.titre}" 
+    style="width: 100%; height: 100%; object-fit: cover; filter: blur(4px) brightness(0.8); transform: scale(1.05);"
+  />
+  <a 
+    href="${image}" 
+    data-gall="portfolioGallery" 
+    title="${actu.titre}" 
+    style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0, 0, 0, 0.6); color: #fff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-size: 18px; font-weight: 500;"
+  >
+    See Resource
+  </a>
+</div>
 
         <h2 class="entry-title">
           <a href="ressource-single.html?categorie=${actu.categorie}&titre=${actu.titre}&id=${actu.id}">${actu.titre}</a>
